@@ -1,27 +1,40 @@
+import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
+
+plt.rcParams["font.sans-serif"] = ["SimHei"]
+plt.rcParams["axes.unicode_minus"] = False
+sns.set_style("whitegrid")
 
 url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
 df = pd.read_csv(url)
 
-# Q1: 数据集共有多少行、多少列？
-print("hangshu:",df.shape[0])
-print("lieshu:",df.shape[1])
-# Q2: Age 列有多少个缺失值？缺失率是多少？
-missing_age=df["Age"].isnull().sum()
-missing_age_rate=missing_age/df.shape[0]
-print("Age 列缺失值数量:",missing_age)
-print("Age 列缺失率: {:.2%}".format(missing_age_rate))
-# Q3: 女性乘客中，存活率是多少？（保留2位小数）
-females=df.loc[df["Sex"]=='female']
-female_survived=df.loc[(df["Sex"]=="female")&(df["Survived"]==1)]
-female_survived_rate=len(female_survived)/len(females)
-print("女性乘客存活率: {:.2%}".format(female_survived_rate))
-# Q4: 三等舱（Pclass==3）中，年龄最大的乘客叫什么名字？多少岁？
-p3=df.loc[df["Pclass"]==3]
-P3_top_age=p3["Age"].idxmax()
-print("三等舱中，年龄最大的乘客叫:",p3.loc[P3_top_age,"Name"],p3.loc[P3_top_age,"Age"],"岁")
+fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
-# Q5: 票价（Fare）最贵的前5名乘客的姓名和票价分别是什么？
-fare_large=df.nlargest(5,"Fare")
-print(fare_large.loc[:,["Name","Fare"]])
-#     提示：df.nlargest(5, "Fare") 或 df.sort_values("Fare", ascending=False).head(5)
+# (1) countplot：分类计数
+sns.countplot(data=df, x="Pclass", hue="Survived", ax=axes[0, 0],
+              palette={0: "#f44336", 1: "#4CAF50"})
+axes[0, 0].set_title("各舱位生存人数")
+axes[0, 0].set_xticklabels(["一等舱", "二等舱", "三等舱"])
+
+# (2) boxplot：箱线图（看分布 + 异常值）
+sns.boxplot(data=df, x="Pclass", y="Age", hue="Survived", ax=axes[0, 1],
+            palette={0: "#f44336", 1: "#4CAF50"})
+axes[0, 1].set_title("各舱位年龄分布（按生存）")
+
+# (3) violinplot：小提琴图（箱线图 + 密度图）
+sns.violinplot(data=df, x="Sex", y="Age", hue="Survived", split=True,
+               ax=axes[1, 0], palette={0: "#f44336", 1: "#4CAF50"})
+axes[1, 0].set_title("性别年龄分布（按生存）")
+
+# (4) kdeplot：核密度估计图
+sns.kdeplot(data=df[df["Survived"]==1], x="Age", label="存活", 
+            fill=True, alpha=0.4, color="#4CAF50", ax=axes[1, 1])
+sns.kdeplot(data=df[df["Survived"]==0], x="Age", label="遇难",
+            fill=True, alpha=0.4, color="#f44336", ax=axes[1, 1])
+axes[1, 1].set_title("年龄密度分布（按生存）")
+axes[1, 1].legend()
+
+plt.suptitle("Titanic 数据探索性分析", fontsize=18, y=1.02)
+plt.tight_layout()
+plt.show()
