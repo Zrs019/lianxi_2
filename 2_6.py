@@ -132,61 +132,98 @@ X_test_scaled = scaler.transform(X_test)
 #   max_iter=1000: 最大迭代次数（复杂数据需增大，避免收敛警告）
 #   solver="lbfgs": 优化算法，默认 lbfgs（适合中小数据集）
 #   random_state=42: 随机种子
+# 调参实验：测试 C = [0.001, 0.01, 0.1, 1, 10, 100] 
+#    打印每个 C 值对应的训练/测试准确率
+#    找出最佳 C 值
 C_test=[0.001, 0.01, 0.1, 1, 10, 100]
-models=[]
-for i in C_test:
-    models[i]=LogisticRegression(
-    C=C_test[i],
-    penalty="l2",
-    max_iter=1000,
-    random_state=42
-)
-print(models)
-# fit(X, y): 训练模型，从数据中学习权重 w 和截距 b
-model.fit(X_train_scaled, y_train)
+train_score=[]
+test_score=[]
+for C in C_test:
+    model=LogisticRegression(C=C,max_iter=1000,random_state=42)
+    model.fit(X_train_scaled,y_train)
+    train_score.append(accuracy_score(y_train,model.predict(X_train_scaled)))
+    test_score.append(accuracy_score(y_test,model.predict(X_test_scaled)))
+    print(f"C={C:6} | 训练准确率={train_score[-1]:.4f} | 测试准确率={test_score[-1]:.4f}")
 
+best_idx=np.argmax(test_score)
+best_C=C_test[best_idx]
+best_test_C = test_score[best_idx]
+print(f"\n🏆 最佳C值: {best_C}, 测试准确率: {best_test_C:.4f}")
 # ============================================================
-# 4. 预测
-# ============================================================
-# predict(X): 直接预测类别（0 或 1）
-#   内部流程：计算概率 → 和阈值0.5比较 → 输出类别
-y_pred = model.predict(X_test_scaled)
+# 2. 用最佳 C 值重新训练模型
+#    打印 classification_report
+#    绘制混淆矩阵
+model=LogisticRegression(C=best_C,max_iter=1000,random_state=42)
+model.fit(X_train_scaled,y_train)
+best_train_score=model.predict(X_train_scaled)
+best_test_score=model.predict(X_test_scaled)
+print(classification_report(y_test, best_test_score, target_names=['遇难', '存活']))
 
-# predict_proba(X): 预测每个类别的概率
-#   返回 shape: (n_samples, n_classes)
-#   例如 [[0.85, 0.15],  → 85% 概率是类别0，15% 概率是类别1
-#         [0.30, 0.70]]  → 30% 概率是类别0，70% 概率是类别1
-y_proba = model.predict_proba(X_test_scaled)
+#3. 用 predict_proba() 获取预测概率
+#    找出模型"最不确定"的5个样本（概率最接近0.5的）
+#    打印它们的特征、预测概率和真实标签
+#    提示：np.abs(y_proba[:, 1] - 0.5) 求和 0.5 的距离
+y_test_prob=model.predict_proba(X_test_scaled)
+uncertain_test=np.abs(y_test_prob[:,1]-0.5)
+most_uncertain_test_idx=np.argsort(uncertain_test)[:5]
+print("=" * 80)
+print("最不确定的5个样本（预测概率最接近0.5）")
+print("=" * 80)
 
-print(f"\n前5个样本的预测概率:")
-print(f"{'遇难概率':>10} {'存活概率':>10} {'预测':>6} {'真实':>6}")
-print("-" * 40)
-for i in range(5):
-    print(f"{y_proba[i, 0]:>10.4f} {y_proba[i, 1]:>10.4f} {y_pred[i]:>6} {y_test.iloc[i]:>6}")
+# 打印表头
+print(f"{'索引':<6} {'预测为存活概率':<16} {'预测类别':<10} {'真实标签':<10} {'距离0.5':<10}")
+print("-" * 60)
+for idx in most_uncertain_test_idx:
+    live_prob=y_test_prob[idx,1]
+    #survive_pred=best_test_score[idx]
+    survive_pred = 1 if live_prob >= 0.5 else 0 
+    survive_true=y_test.iloc[idx]
+    distance=np.abs(y_test_prob[idx,1]-0.5)
+    print(f"{idx<6}{live_prob:<12.4f}{survive_pred:<10}{survive_true:<10}{distance:<10.4f}")
 
-# ============================================================
-# 5. 模型评估
-# ============================================================
-# accuracy_score(y_true, y_pred): 准确率
-#   = 预测正确的样本数 / 总样本数
-acc = accuracy_score(y_test, y_pred)
-print(f"\n准确率: {acc:.4f}")
+print("\n" + "=" * 80)
+print("这些样本的详细特征：")
+print("=" * 80)
 
-# classification_report(y_true, y_pred): 生成完整的分类报告
-#   包含每个类别的 precision, recall, f1-score, support
-#   precision（精确率）: 预测为正的样本中，真正为正的比例 → TP/(TP+FP)
-#   recall（召回率）:    真正为正的样本中，被预测为正的比例 → TP/(TP+FN)
-#   f1-score:           precision 和 recall 的调和平均
-#   support:            每个类别的样本数
-print(f"\n分类报告:")
-print(classification_report(y_test, y_pred, target_names=["遇难", "存活"]))
+# 获取这些样本的原始特征（未标准化前的，更容易理解）
+for idx in most_uncertain_test_idx:
+    print(f"\n📊 样本索引 {idx}（原始测试集中的第{idx}个样本）")
+    print("-" * 40)
+    
+    # 打印特征
+    for feature in X_test.columns:
+        value = X_test.iloc[idx][feature]
+        print(f"{feature:20}: {value}")
+    
+    # 打印预测信息
+    prob = y_test_prob[idx, 1]
+    pred = "存活" if prob >= 0.5 else "遇难"
+    true = "存活" if y_test.iloc[idx] == 1 else "遇难"
+    print(f"\n{'预测结果':20}: {pred} (概率={prob:.4f})")
+    print(f"{'真实结果':20}: {true}")
+    print(f"{'模型信心':20}: {abs(prob-0.5)*2:.2%}")  # 信心度：离0.5越远越有信心
+#4.分析特征重要性：
+#    哪3个特征对"存活"影响最大？（看 model.coef_ 的绝对值）
+#    它们的权重是正还是负？正负意味着什么？
+weight=model.coef_[0]
+feature_importance=pd.Series(weight,index=X.columns)
+importance_abs = feature_importance.abs().sort_values(ascending=False)
+top3_features = importance_abs.head(3).index  # 最重要的3个特征名
+top3_values = feature_importance[top3_features]  # 它们的原始权重
 
-# confusion_matrix(y_true, y_pred): 混淆矩阵
-#   [[TN, FP],    TN=真负（预测遇难，实际也遇难）  FP=假正（预测存活，实际遇难）
-#    [FN, TP]]    FN=假负（预测遇难，实际存活）    TP=真正（预测存活，实际也存活）
-cm = confusion_matrix(y_test, y_pred)
+print("=" * 60)
+print("🏆 对存活影响最大的3个特征")
+print("=" * 60)
 
-# ============================================================
+for feature in top3_features:
+    weight = feature_importance[feature]
+    direction = "正向" if weight > 0 else "负向"
+    impact = "增加" if weight > 0 else "降低"
+    
+    print(f"\n📌 {feature}")
+    print(f"   权重值: {weight:.4f}")
+    print(f"   影响方向: {direction}（{impact}存活概率）")
+   
 # 6. 可视化
 # ============================================================
 fig, axes = plt.subplots(1, 3, figsize=(18, 5))
@@ -196,6 +233,7 @@ fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 #   annot=True: 在格子里显示数字
 #   fmt="d": 数字格式为整数
 #   cmap="Blues": 蓝色色系
+cm = confusion_matrix(y_test, best_test_score)
 sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=axes[0],
             xticklabels=["遇难", "存活"], yticklabels=["遇难", "存活"])
 axes[0].set_title("混淆矩阵", fontsize=14)
@@ -206,10 +244,7 @@ axes[0].set_ylabel("真实值")
 # model.coef_[0]: 逻辑回归的权重数组
 #   注意：逻辑回归的 coef_ 是二维的 shape: (n_classes, n_features)
 #   二分类时取 [0] 即可
-feature_importance = pd.Series(
-    np.abs(model.coef_[0]),       # np.abs(): 取绝对值
-    index=X.columns               # 用特征名作为索引
-).sort_values(ascending=True)     # 按值升序排列（barh 从下到上画）
+feature_importance.sort_values(ascending=True)     # 按值升序排列（barh 从下到上画）
 
 feature_importance.plot(kind="barh", ax=axes[1], color="#2196F3")
 axes[1].set_title("特征重要性（|权重|）", fontsize=14)
@@ -217,9 +252,9 @@ axes[1].set_xlabel("权重绝对值")
 
 # --- 子图3：预测概率分布 ---
 # 看模型的预测概率分布，理想情况是两类明显分开
-axes[2].hist(y_proba[y_test == 0, 1], bins=25, alpha=0.6,
+axes[2].hist(y_test_prob[y_test == 0, 1], bins=25, alpha=0.6,
              color="#f44336", label="实际遇难", edgecolor="white")
-axes[2].hist(y_proba[y_test == 1, 1], bins=25, alpha=0.6,
+axes[2].hist(y_test_prob[y_test == 1, 1], bins=25, alpha=0.6,
              color="#4CAF50", label="实际存活", edgecolor="white")
 axes[2].axvline(x=0.5, color="black", linestyle="--", label="决策边界(0.5)")
 axes[2].set_title("预测概率分布", fontsize=14)
@@ -230,28 +265,6 @@ axes[2].legend()
 plt.suptitle("逻辑回归 — Titanic 生存预测", fontsize=16, fontweight="bold")
 plt.tight_layout()
 plt.show()
-
-# ============================================================
-# 请基于第四节的完整代码，继续完成以下任务
-# ============================================================
-
-# 1. 调参实验：测试 C = [0.001, 0.01, 0.1, 1, 10, 100] 
-#    打印每个 C 值对应的训练/测试准确率
-#    找出最佳 C 值
-
-# 2. 用最佳 C 值重新训练模型
-#    打印 classification_report
-#    绘制混淆矩阵
-
-# 3. 用 predict_proba() 获取预测概率
-#    找出模型"最不确定"的5个样本（概率最接近0.5的）
-#    打印它们的特征、预测概率和真实标签
-#    提示：np.abs(y_proba[:, 1] - 0.5) 求和 0.5 的距离
-
-# 4. 分析特征重要性：
-#    哪3个特征对"存活"影响最大？（看 model.coef_ 的绝对值）
-#    它们的权重是正还是负？正负意味着什么？
-
 # 5. 回答问题（写在注释中）：
 #    (a) 为什么 Sex（性别）的权重最大？
 #    (b) 如果把阈值从 0.5 改为 0.3，准确率会怎样变化？Recall 呢？
