@@ -214,7 +214,11 @@ for i, (name, auc_score) in enumerate(sorted(auc_scores.items(),
 #    选出交叉验证中表现最好的模型
 #    绘制它的学习曲线
 #    判断：它是过拟合还是欠拟合？有没有改进空间？
-def plot_learning_curve(estimator, title, X, y, ax, cv=5):
+plt.close('all')  # 关闭所有已有图表
+#plt.ion()  # 开启交互模式
+plt.figure(figsize=(12, 8))
+
+def plot_learning_curve(estimator, title, X, y,cv=5):
     """
     绘制学习曲线，诊断过拟合/欠拟合
 
@@ -222,7 +226,6 @@ def plot_learning_curve(estimator, title, X, y, ax, cv=5):
         estimator: 模型（Pipeline 或单个模型）
         title: 图表标题
         X, y: 数据
-        ax: matplotlib 的 Axes 对象（用于在子图上绘制）
         cv: 交叉验证折数
     """
     # np.linspace(0.1, 1.0, 10): 从 10% 到 100% 的训练集大小
@@ -240,33 +243,33 @@ def plot_learning_curve(estimator, title, X, y, ax, cv=5):
     test_std = test_scores.std(axis=1)
 
     # 绘制均值曲线
-    ax.plot(train_sizes, train_mean, "o-", color="#2196F3", label="训练集分数", linewidth=2)
-    ax.plot(train_sizes, test_mean, "o-", color="#FF5722", label="验证集分数", linewidth=2)
+    plt.plot(train_sizes, train_mean, "o-", color="#2196F3", label="训练集分数", linewidth=2)
+    plt.plot(train_sizes, test_mean, "o-", color="#FF5722", label="验证集分数", linewidth=2)
 
     # fill_between(): 绘制±1标准差的阴影区域，表示分数的波动范围
-    ax.fill_between(train_sizes, train_mean - train_std, train_mean + train_std,
+    plt.fill_between(train_sizes, train_mean - train_std, train_mean + train_std,
                     alpha=0.1, color="#2196F3")
-    ax.fill_between(train_sizes, test_mean - test_std, test_mean + test_std,
+    plt.fill_between(train_sizes, test_mean - test_std, test_mean + test_std,
                     alpha=0.1, color="#FF5722")
 
-    ax.set_title(title, fontsize=13)
-    ax.set_xlabel("训练集大小")
-    ax.set_ylabel("Accuracy")
-    ax.legend(loc="lower right")
-    ax.grid(True, alpha=0.3)
+    plt.title(title, fontsize=13)
+    plt.xlabel("训练集大小")
+    plt.ylabel("Accuracy")
+    plt.legend(loc="lower right")
+    plt.grid(True, alpha=0.3)
 
     # 标注最终的训练/验证差距
     gap = train_mean[-1] - test_mean[-1]
-    ax.annotate(f"差距={gap:.3f}", xy=(train_sizes[-1], test_mean[-1]),
+    plt.annotate(f"差距={gap:.3f}", xy=(train_sizes[-1], test_mean[-1]),
                 xytext=(train_sizes[-1]-200, test_mean[-1]-0.05),
                 fontsize=10, arrowprops=dict(arrowstyle="->"))
 
 # ============================================================
 # 对比：欠拟合 vs 正常 vs 过拟合
 # ============================================================
-fig, axes = plt.subplots(1, 3, figsize=(18, 5))
+
 pipebest=Pipeline([("scaler",StandardScaler()),("model",LogisticRegression(C=1.0,random_state=42))])
-plot_learning_curve(pipebest, "逻辑回归", X, y, axes[2])
+plot_learning_curve(pipebest, "逻辑回归", X, y)
 
 plt.suptitle("学习曲线 — 诊断过拟合/欠拟合", fontsize=16, fontweight="bold")
 plt.tight_layout()
