@@ -22,86 +22,94 @@ class TreePumpSystemSimulator:
         self.pump_params = pump_params
         self.branch_params = {branch["name"]: branch for branch in branch_params}  # 转化为方便查询的字典
         self.tree_structure = tree_structure
-        self.update_hydraulic_properties()
+        self.update_hydraulic_properties()  # 初始化水力和热力学属性
 
     def update_hydraulic_properties(self):
-        """根据支路参数，计算水头损失系数及热损失参数"""
+        """初始化水力学特性和热损失系数"""
         for branch in self.branch_params.values():
-            # 水力学参数：摩擦系数和沿程阻力  h_f ∝ f * (L/D) * v²
+            # 计算水力阻力
             length = branch["length"]
             diameter = branch["diameter"]
-            f = 0.02  # 假设管道摩擦系数为0.02
-            branch["friction_constant"] = f * length / diameter
+            f = 0.02  # 假设平均摩擦系数
+            branch["friction_constant"] = f * length / diameter  # 摩擦阻力系数
+            
+            # 热损失计算
+            if branch.get("pipe_insulation", True):  # 有保温管
+                heat_loss_rate = 5  # W/m (保温)
+            else:
+                heat_loss_rate = 20  # W/m (无保温)
+            
+            branch["heat_loss_rate"] = heat_loss_rate / 1000  # 转换成 kW/m
 
-            # 热力学参数：假设沿管道每米的热损失
-            if branch["pipe_insulation"]:  # 如果管道有保温层
-                heat_loss_rate = 5  # W/m（较低的热损失）
-            else:  # 无保温情况下热损失上升
-                heat_loss_rate = 20  # W/m
-
-            branch["heat_loss_rate"] = heat_loss_rate / 1000  # 转化为 kW/m
-
-    def calculate_heat_flow_distribution(self, supply_temp, return_temp, node):
+    def calculate_heat_and_flow(self, node, supply_temp, return_temp):
         """
-        递归计算树状网络中每条支路的流量、热损及回水温度
-        :param supply_temp: 根节点供水温度
-        :param return_temp: 末端回水温度
-        :param node: 当前计算的支路
-        :return: 当前支路的总流量和回水温度
+        递归计算从树的叶节点到根节点的流量和热损失
+        :param node: 当前支路节点名
+        :param supply_temp: 供水温度 (°C)
+        :param return_temp: 回水温度 (°C)
+        :return: 当前支路的总流量和平均回水温度
         """
-        downstream_branches = self.tree_structure.get(node, [])  # 获取当前支路的下游分支
+        downstream_branches = self.tree_structure.get(node, [])  # 获取下游分支
 
-        if not downstream_branches:  # 如果是叶节点（即用户）
+        if not downstream_branches:  # 如果是叶节点（用户节点）
             branch = self.branch_params[node]
-            delta_t = return_temp - supply_temp  # 定义供回水温差
-            heat_loss_total = branch["heat_loss_rate"] * branch["length"]  # 当前支路热损失总量 kW
-            adjusted_cooling_demand = branch["user_cooling_demand"] + heat_loss_total  # 考虑热损失的冷量总需求
+            delta_t = return_temp - supply_temp  # 当前供回水温差
+            heat_loss_total = branch["heat_loss_rate"] * branch["length"]  # 总热损失 (kW)
+            adjusted_cooling_demand = branch["user_cooling_demand"] + heat_loss_total  # 总冷量需求
 
-            # 流量 = 用冷量 / (c_p * ΔT)
-            branch["flow_rate"] = adjusted_cooling_demand / (4.2 * delta_t)  # m^3/s
+            # 计算流量 = 用冷量 / (比热 * 温差)
+            branch["flow_rate"] = adjusted_cooling_demand / (4.2 * delta_t)  # m³/s
 
-            # 返回调整后的供回水温度
-            branch["supply_temp_loss"] = supply_temp
-            branch["return_temp_loss"] = return_temp - (heat_loss_total / (4.2 * branch["flow_rate"])) if branch["flow_rate"] > 0 else return_temp
-            return branch["flow_rate"], branch["return_temp_loss"]  # 返回流量与回水温度
+            # 计算温差的变化
+            branch["supply_temp_loss"] = supply_temp + (
+                heat_loss_total / (4.2 * branch["flow_rate"]) if branch["flow_rate"] > 0 else 0
+            )
+            branch["return_temp_loss"] = return_temp - (
+                heat_loss_total / (4.2 * branch["flow_rate"]) if branch["flow_rate"] > 0 else 0
+            )
 
-        # 对非叶节点，递归计算其下游分支的流量和热平衡
-        total_flow_rate = 0
-        weighted_downstream_temp = 0
+            return branch["flow_rate"], branch["return_temp_loss"]
+
+        # 如果是中间节点，递归处理下游节点
+        total_flow_rate = 0  # 下游总流量
+        weighted_temp = 0  # 加权回水温度求和
 
         for downstream in downstream_branches:
-            flow, downstream_temp = self.calculate_heat_flow_distribution(supply_temp, return_temp, downstream)
+            flow, downstream_temp = self.calculate_heat_and_flow(
+                downstream, supply_temp, return_temp
+            )
             total_flow_rate += flow
-            weighted_downstream_temp += flow * downstream_temp
+            weighted_temp += flow * downstream_temp
 
         # 当前支路的回水温度 = 加权平均回水温度
         branch = self.branch_params[node]
-        branch["flow_rate"] = total_flow_rate  # 本支路的流量为下游总流量
-        branch["return_temp_loss"] = weighted_downstream_temp / total_flow_rate if total_flow_rate > 0 else return_temp
+        branch["flow_rate"] = total_flow_rate  # 当前支路流量为所有下游流量总和
+        branch["return_temp_loss"] = weighted_temp / total_flow_rate if total_flow_rate > 0 else return_temp
 
+        # 计算热损失对供水/回水温度的影响
         heat_loss_total = branch["heat_loss_rate"] * branch["length"]
         branch["supply_temp_loss"] = supply_temp
-        branch["return_temp_loss"] -= heat_loss_total / (4.2 * branch["flow_rate"]) if branch["flow_rate"] > 0 else return_temp
+        branch["return_temp_loss"] -= heat_loss_total / (4.2 * branch["flow_rate"]) if branch["flow_rate"] > 0 else 0
 
         return branch["flow_rate"], branch["return_temp_loss"]
 
     def calculate_pump_performance(self):
-        """计算水泵性能，包括扬程、功率和效率"""
-        total_flow_rate = self.branch_params["root"]["flow_rate"]  # 获取根节点泵的进水总流量 (m^3/s)
-        total_flow_rate_m3h = total_flow_rate * 3600  # 转化为 m^3/h
+        """根据总流量计算泵的性能"""
+        total_flow_rate = self.branch_params["root"]["flow_rate"]  # 根节点的流量为总流量
+        total_flow_rate_m3h = total_flow_rate * 3600  # 转换为 m³/h
 
-        speed_ratio = self.pump_params["speed"] / 2900  # 以额定转速（2900rpm）为基准
-        max_head = self.pump_params["rated_head"] * (speed_ratio ** 2)
-        max_flow = self.pump_params["rated_flow"] * speed_ratio
+        speed_ratio = self.pump_params["speed"] / 2900  # 转速调整
+        max_head = self.pump_params["rated_head"] * (speed_ratio ** 2)  # 扬程变化
+        max_flow = self.pump_params["rated_flow"] * speed_ratio  # 最大流量限制
 
-        # 限制流量超出额定范围
+        # 限制超出额定限制的流量
         if total_flow_rate_m3h > max_flow:
             total_flow_rate_m3h = max_flow
 
-        # 耗电功率和效率
+        # 立方关系功率曲线和效率
         power_curve = (total_flow_rate_m3h / self.pump_params["rated_flow"]) ** 3 * self.pump_params["rated_power"]
         efficiency_curve = max(0, -0.3 * (total_flow_rate_m3h / self.pump_params["rated_flow"] - 1) ** 2 + 0.8)
-        actual_power = power_curve / efficiency_curve if efficiency_curve > 0 else 0
+        actual_power = power_curve / efficiency_curve if efficiency_curve > 0 else 0  # 实际功率
 
         self.performance = {
             "total_flow_rate": total_flow_rate_m3h,
@@ -111,61 +119,17 @@ class TreePumpSystemSimulator:
         }
 
     def simulate(self, supply_temp, return_temp):
-        """运行树状系统模拟"""
-        self.calculate_heat_flow_distribution(supply_temp, return_temp, node="root")
+        """运行模拟"""
+        self.calculate_heat_and_flow("root", supply_temp, return_temp)
         self.calculate_pump_performance()
 
-        print("\n=== Simulation Results ===")
+        print("\n=== 模拟结果 ===")
         for branch_name, branch in self.branch_params.items():
             print(f"{branch_name}:")
-            print(f"  Flow Rate = {branch['flow_rate'] * 3600:.2f} m^3/h")
-            print(f"  Supply Temp (after loss) = {branch['supply_temp_loss']:.2f} °C")
-            print(f"  Return Temp (after loss) = {branch['return_temp_loss']:.2f} °C")
-        print(f"Total Pump Flow Rate: {self.performance['total_flow_rate']:.2f} m^3/h")
-        print(f"Pump Power Consumption: {self.performance['total_power']:.2f} kW")
-        print(f"Pump Head: {self.performance['head']:.2f} m")
-        print(f"Pump Efficiency: {self.performance['efficiency'] * 100:.2f}%\n")
-
-
-# 示例：树状泵系统参数初始化
-pump_params = {
-    "rated_flow": 100,     # 额定流量 (m^3/h)
-    "rated_head": 30,      # 额定扬程 (m)
-    "rated_power": 22,     # 额定功率 (kW)
-    "speed": 2900,         # 当前转速 (rpm)
-    "efficiency_curve": lambda x: -0.3 * (x - 1)**2 + 0.8  # 假设泵效率曲线
-}
-
-# 支路参数
-branch_params = [
-    {"name": "root", "length": 0, "diameter": 0.6, "user_cooling_demand": 0, "pipe_insulation": True},
-    {"name": "DN600_top", "length": 400, "diameter": 0.6, "user_cooling_demand": 0, "pipe_insulation": True},
-    {"name": "DN600_bottom", "length": 300, "diameter": 0.6, "user_cooling_demand": 0, "pipe_insulation": False},
-    {"name": "省药检局", "length": 120, "diameter": 0.2, "user_cooling_demand": 50, "pipe_insulation": True},
-    {"name": "天境生物", "length": 150, "diameter": 0.15, "user_cooling_demand": 30, "pipe_insulation": True},
-    {"name": "接3站", "length": 200, "diameter": 0.15, "user_cooling_demand": 20, "pipe_insulation": False},
-    {"name": "和泽", "length": 280, "diameter": 0.25, "user_cooling_demand": 60, "pipe_insulation": True},
-    {"name": "加速五期", "length": 300, "diameter": 0.2, "user_cooling_demand": 40, "pipe_insulation": False},
-]
-
-# 树状网络
-tree_structure = {
-    "root": ["DN600_top", "DN600_bottom"],
-    "DN600_top": ["省药检局", "天境生物", "接3站"],
-    "DN600_bottom": ["和泽", "加速五期"],
-}
-
-# 创建模拟器实例
-simulator = TreePumpSystemSimulator(pump_params, branch_params, tree_structure)
-
-# 流体温度设置
-supply_temp = 7    # 供水温度 (°C)
-return_temp = 12   # 回水温度 (°C)
-
-# 开始模拟
-simulator.simulate(supply_temp, return_temp)
-
-# 增加支路用户需求和动态调整泵速
-simulator.set_user_cooling_demand("天境生物", 50)  # 增加天境生物的用冷需求
-simulator.set_pump_speed(2500)  # ��低泵的转速以降低能耗
-simulator.simulate(supply_temp, return_temp)
+            print(f"  流量 = {branch['flow_rate'] * 3600:.2f} m³/h")
+            print(f"  供水温度(含热损) = {branch['supply_temp_loss']:.2f} °C")
+            print(f"  回水温度(含热损) = {branch['return_temp_loss']:.2f} °C")
+        print(f"总流量: {self.performance['total_flow_rate']:.2f} m³/h")
+        print(f"泵功耗: {self.performance['total_power']:.2f} kW")
+        print(f"泵扬程: {self.performance['head']:.2f} m")
+        print(f"泵效率: {self.performance['efficiency'] * 100:.2f}%\n")
