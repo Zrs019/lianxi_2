@@ -1,0 +1,11 @@
+url: http://39.170.91.50:2303/RUNPAQ/gui-R2/images/icons/export.png
+method: GET
+headers:
+  user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
+    like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0
+  referer: http://39.170.91.50:2303/RUNPAQ/gui-R2/css/2021.css
+post_data: null
+resource_type: image
+body_format: query
+captured_at: '2026-04-29 17:46:25'
+payload_keys: []

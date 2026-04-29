@@ -52,11 +52,13 @@ MAX_DISCHARGE_PER_HOUR = TANK_CAPACITY_MAX * ice_chiller_df.loc[0, 'discharge_ra
 CP_WATER_KJ_PER_KG_K = 4.186
 DESIGN_DELTA_T_C = 5.0
 VALVE_SETTING_FILE = 'Valve_Quarter_Settings.csv'
+NEXT_VALVE_SETTING_FILE = 'Valve_Quarter_Settings_next.csv'
 SIMULINK_BOUNDARY_FILE = 'Simulink_30Days_UserBoundary.csv'
 SIMULINK_INPUT_MAT_FILE = 'Simulink_30Days_Input.mat'
 VALVE_REPORT_FILE = 'valve_adjustment_report.csv'
+STATION_DIAGNOSIS_FILE = 'station_side_diagnosis.txt'
 USER_LOAD_RATIOS = {3: 1 / 22, 4: 9 / 22, 6: 12 / 22}
-DEFAULT_VALVE_OPENING = {3: 0.40, 4: 0.75, 6: 0.75}
+DEFAULT_VALVE_OPENING = {3: 0.40, 4: 0.75, 6: 0.90}
 MIN_VALVE_OPENING = 0.10
 MAX_VALVE_OPENING = 1.00
 VALVE_STEP_LIMIT = 0.15
@@ -248,7 +250,7 @@ def load_or_create_valve_settings():
                 'design_flow_kg_s': design_flow_kg_s,
             })
         settings = pd.DataFrame(rows)
-        settings.to_csv(VALVE_SETTING_FILE, index=False)
+        settings.to_csv(VALVE_SETTING_FILE, index=False, encoding='utf-8-sig')
         print(f"✅ 已创建季度阀门开度模板: {VALVE_SETTING_FILE}，请按现场实际开度修正后再跑 Simulink。")
 
     settings['user_id'] = settings['user_id'].astype(int)
@@ -428,6 +430,82 @@ def _recommend_opening(current_opening, required_flow, actual_flow, row):
     return float(np.clip(raw, lower, upper))
 
 
+def _save_next_quarter_valve_settings(valve_settings, report):
+    """按本次诊断结果生成下一季度阀门配置，只有调大/调小项会改开度。"""
+    next_settings = valve_settings.reset_index().copy()
+    for _, item in report.iterrows():
+        if item['action'] not in ['调大', '调小']:
+            continue
+        user_id = int(item['user_id'])
+        next_settings.loc[
+            next_settings['user_id'] == user_id,
+            'valve_opening'
+        ] = round(float(item['suggested_opening']), 4)
+
+    next_settings.to_csv(NEXT_VALVE_SETTING_FILE, index=False, encoding='utf-8-sig')
+    return next_settings
+
+
+def _write_station_side_diagnosis(report):
+    report = report.copy()
+    report['flow_adequacy_ratio'] = (
+        report['actual_peak_flow_kg_s'] / report['required_peak_flow_kg_s']
+    )
+
+    all_non_valve = (report['action'] == '非阀门优先').all()
+    min_flow_ratio = float(report['flow_adequacy_ratio'].min())
+    max_unmet = report.loc[report['peak_unmet_kw'].idxmax()]
+    low_delta_t = report['median_delta_t_c'] < DESIGN_DELTA_T_C * LOW_DELTA_T_RATIO
+
+    lines = [
+        '站侧诊断结论',
+        '=' * 40,
+        f"最大峰值缺冷: 用户{int(max_unmet['user_id'])}，{max_unmet['peak_unmet_kw']:.1f} kW",
+        f"最大未满足率: {report['unmet_ratio'].max() * 100:.2f}%",
+        f"最小高峰流量满足系数: {min_flow_ratio:.2f}",
+        '',
+        '各用户高峰流量满足系数 actual/required:',
+    ]
+
+    for _, item in report.iterrows():
+        lines.append(
+            f"  用户{int(item['user_id'])}: "
+            f"{item['flow_adequacy_ratio']:.2f}, "
+            f"中位ΔT={item['median_delta_t_c']:.2f}℃, "
+            f"未满足率={item['unmet_ratio'] * 100:.2f}%"
+        )
+
+    lines.append('')
+    if all_non_valve and min_flow_ratio >= 0.98:
+        lines.extend([
+            '判断: 当前缺冷不再是阀门开度或支路流量不足导致。',
+            '建议: 保持现有阀门开度，不要继续调大阀门。',
+        ])
+        if low_delta_t.any():
+            lines.extend([
+                '同时检测到多数支路ΔT偏低，继续增加流量或提高泵压可能只会加重低温差运行。',
+                '下一轮优先检查:',
+                '1. 冷站供水温度设定与实际到户供水温度，建议先尝试降低供水设定0.5~1.0℃。',
+                '2. 冷机/蓄冰实际输出是否覆盖用户需求、管网漏热和水泵热。',
+                '3. 用户热源保护逻辑中的ΔT_max是否过低，或热源/温度测点是否存在时间错位。',
+                '4. 若供水温度和冷源能力均正常，再检查泵压差；泵压差只在高峰流量不足时优先调整。',
+            ])
+        else:
+            lines.extend([
+                '下一轮优先检查冷源容量、供水温度设定和水泵压差设定。',
+            ])
+    else:
+        lines.extend([
+            '判断: 仍存在阀门或水力分配问题。',
+            '建议: 先按 valve_adjustment_report.csv 调整标记为“调大/调小”的用户，再重新仿真。',
+        ])
+
+    with open(STATION_DIAGNOSIS_FILE, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(lines) + '\n')
+
+    return lines
+
+
 def step2_optimize_with_real_physics_data():
     """
     固定阀门逻辑下的二阶段分析：
@@ -496,7 +574,10 @@ def step2_optimize_with_real_physics_data():
                 reason = '高峰期实际流量低于设计流量，固定阀门限制了最不利时段供冷'
             else:
                 action = '非阀门优先'
-                reason = '流量基本够但仍缺冷，优先检查供水温度、冷源能力或泵压差'
+                if np.isfinite(median_delta_t) and median_delta_t < design_dt * LOW_DELTA_T_RATIO:
+                    reason = '流量不低且ΔT偏低，继续开阀或加泵压意义有限，优先检查供水温度、冷源输出和负荷施加逻辑'
+                else:
+                    reason = '流量基本够但仍缺冷，优先检查供水温度、冷源能力或泵压差'
         elif np.isfinite(median_delta_t) and median_delta_t < design_dt * LOW_DELTA_T_RATIO and np.isfinite(actual_peak_flow):
             new_opening = _recommend_opening(current_opening, required_peak_flow * 0.98, actual_peak_flow, row)
             if new_opening < current_opening:
@@ -514,6 +595,7 @@ def step2_optimize_with_real_physics_data():
             'peak_unmet_kw': peak_unmet_kw,
             'required_peak_flow_kg_s': required_peak_flow,
             'actual_peak_flow_kg_s': actual_peak_flow,
+            'flow_adequacy_ratio': actual_peak_flow / required_peak_flow if np.isfinite(actual_peak_flow) else np.nan,
             'median_delta_t_c': median_delta_t,
         })
 
@@ -527,7 +609,9 @@ def step2_optimize_with_real_physics_data():
         return
 
     report = pd.DataFrame(report_rows)
-    report.to_csv(VALVE_REPORT_FILE, index=False)
+    report.to_csv(VALVE_REPORT_FILE, index=False, encoding='utf-8-sig')
+    next_settings = _save_next_quarter_valve_settings(valve_settings, report)
+    station_lines = _write_station_side_diagnosis(report)
 
     print("\n========== 下一季度阀门开度建议 ==========")
     for _, r in report.iterrows():
@@ -538,9 +622,28 @@ def step2_optimize_with_real_physics_data():
         )
         print(f"  原因: {r['reason']}")
     print(f"✅ 详细报告已保存: {VALVE_REPORT_FILE}")
+    print(f"✅ 下一季度阀门配置已保存: {NEXT_VALVE_SETTING_FILE}")
+    print(next_settings[['user_id', 'valve_opening']].to_string(index=False))
+    print(f"✅ 站侧诊断已保存: {STATION_DIAGNOSIS_FILE}")
+    print("\n".join(station_lines[:8]))
+
+
+def main():
+    mode = sys.argv[1].lower() if len(sys.argv) > 1 else 'prepare'
+    if mode in ['prepare', 'input']:
+        step1_generate_fixed_valve_boundaries_for_simulink()
+        print("\n下一步：请在 Simulink 中重新加载 Simulink_30Days_Input.mat 并运行模型。")
+        print("仿真完成并保存 sim_result.mat 后，再执行: python monthcooling.py diagnose")
+    elif mode in ['diagnose', 'report']:
+        step2_optimize_with_real_physics_data()
+    elif mode == 'all':
+        step1_generate_fixed_valve_boundaries_for_simulink()
+        print("\n⚠️ all 模式会立即读取现有 sim_result.mat；请确认它对应当前阀门配置。")
+        step2_optimize_with_real_physics_data()
+    else:
+        print("用法: python monthcooling.py prepare | diagnose | all")
 
 
 # 执行入口
 if __name__ == "__main__":
-    step1_generate_fixed_valve_boundaries_for_simulink()
-    step2_optimize_with_real_physics_data()
+    main()

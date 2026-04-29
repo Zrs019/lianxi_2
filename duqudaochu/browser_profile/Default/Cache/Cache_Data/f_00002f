@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<base href="http://39.170.91.50:2303/RUNPAQ/">
+
+		<title>My JSP 'index.jsp' starting page</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+
+		<script src="miniui3.8/boot.js" type="text/javascript"></script>
+		<link href="miniui3.8/frame1/res/fontcss/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="miniui3.8/miniui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
+		<link href="gui-R2/css/2021.css" rel="stylesheet" type="text/css" />
+		<link href="gui-R2/css/miniui/medium-mode.css" rel="stylesheet" type="text/css" />
+		<link href="gui-R2/css/skin.css" rel="stylesheet" type="text/css" />
+		<!-- toolbaroverflow -->
+    	<link href="gui-R2/css/toolbaroverflow.css" rel="stylesheet" type="text/css" />
+    	<script src="gui-R/js/toolbaroverflow.js" type="text/javascript"></script>
+    	<script type="text/javascript" src="Highcharts-8.0.4/highcharts.js"></script>
+    	<script src="gui-R2/js/line.js" type="text/javascript"></script>
+		<style type="text/css">
+			html, body{
+				/*margin:0;padding:0;border:0;width:1710px;height:833px;*/
+				margin:0;padding:0;border:0;width:100%;height:100%;
+         	}
+         	.mini-messagebox-buttons .mini-button{
+				width:72px !important;
+				color:#fff !important;
+			}
+			.mini-messagebox-buttons .mini-button:hover{
+				color:#4bbbff !important;
+			}
+        </style>
+	</head>
+
+	<body>
+		<div class="bgDiv" style="width:100%;height:100%;">
+			<div class="mini-splitter main" style="width:100%;height:100%;" handlerSize="15" allowResize="false">
+    			<div size="330px" showCollapseButton="true" style="padding:0px;border:none"> 
+    				<div class="mini-splitter main" style="width:100%;height:100%;" handlerSize="15" allowResize="false" vertical="true">
+						<div size="70.5%" showCollapseButton="false" style="padding:15px;">
+							<div class="mini-toolbar" style="border:0;padding:5px 0 20px 0;">
+        						<label style="margin-right:5px;color:#fff;">关键字</label>
+        						<input id="searchKey" class="mini-textbox" emptyText="请输入设备名称或编号" style="width:143px;" enter="filterTree"/>
+        						<a class="mini-button searchBtn" onclick="filterTree">检索</a> 
+        						<a class="mini-button resetBtn" onclick="resetSearch">清空</a> 
+        					</div>
+        					<div class="mini-fit">
+        						<div>
+		        				<div style="width:62px;height:3px;background:linear-gradient(90deg,#4BBBFF 0%,#4B58FF 100%);"></div>
+		        				<div style="width:100%;height:1px;background:#42689C;"></div>
+		        			    </div>
+        						<div class="mini-fit mini-grid-rows-view" style="padding-top:20px">
+            						<ul id="tree" class="mini-tree treeBar" url="2021/regionListForEquipment?type=水表" style="width:100%;"
+                						showTreeIcon="true" textField="name" idField="id" parentField="pid" resultAsTree="false"
+                						showCheckBox="true" checkRecursive="true" expandOnLoad="0">        
+            						</ul>
+            					</div>
+        					</div>
+        				</div>
+        				<div style="padding:15px;">
+        					<div class="mini-toolbar chartLengedTitle" style="border:0;padding:0 0 15px 0;">
+        						参数列表
+        						<div>
+		        				<div style="width:62px;height:3px;background:linear-gradient(90deg,#4BBBFF 0%,#4B58FF 100%);"></div>
+		        				<div style="width:100%;height:1px;background:#42689C;"></div>
+		        			    </div>
+        					</div>
+        					<div class="mini-fit mini-grid-rows-view">
+        						<div id="chartLegendName" class="mini-checkboxlist chartLenged" repeatItems="1" repeatLayout="flow"
+        							textField="id" valueField="id" value="累计水量使用量"
+        							data="lineType">
+    							</div>
+        					</div>
+        				</div>
+        			</div>
+    			</div>
+    			<div style="padding:15px;">
+    				<div style="width: 100%; height: 64%;">
+    					<div class="uc-toolbaroverflow searchTool" style="margin-bottom:15px;border:0;">
+        					<span>开始时间</span>
+                			<input id="searchBeginDate" class="mini-datepicker searchDate"
+						   		format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true" 
+						   		value="new Date()" required="true"/>
+						   	<span>截止时间</span>
+						   	<input id="searchEndDate" class="mini-datepicker searchDate"
+						   		format="yyyy-MM-dd H:mm:ss" timeFormat="H:mm:ss" showTime="true"  
+						   		value="new Date()" required="true"/>
+						   	<a id="searchTypeBtn1" class="mini-button searchTypeBtn" iconCls="icon-realTime" checkOnClick="true" groupName="searchTypeBtns" tooltip="抄表数据" oncheckedchanged="onCheckedChanged">抄</a>
+						   	<a id="searchTypeBtn2" class="mini-button searchTypeBtn" iconCls="icon-hour" checkOnClick="true" groupName="searchTypeBtns" tooltip="小时数据" oncheckedchanged="onCheckedChanged">时</a>
+						   	<a id="searchTypeBtn3" class="mini-button searchTypeBtn" iconCls="icon-day" checkOnClick="true" groupName="searchTypeBtns" tooltip="日数据" oncheckedchanged="onCheckedChanged">日</a>
+						   	<a id="searchTypeBtn4" class="mini-button searchTypeBtn" iconCls="icon-month" checkOnClick="true" groupName="searchTypeBtns" tooltip="月数据" oncheckedchanged="onCheckedChanged">月</a>
+						   	<a id="searchTypeBtn5" class="mini-button searchTypeBtn" iconCls="icon-year" checkOnClick="true" groupName="searchTypeBtns" tooltip="年数据" oncheckedchanged="onCheckedChanged">年</a>
+						   	<span class="separator"></span>
+						   	<a class="mini-button searchButton" style="margin-right:20px;margin-left:10px" onclick="search">查询</a>
+                			<a class="mini-button" iconCls="icon-export" plain="true" onclick="exportData" style="color:#fff">导出</a>
+    					</div>
+    					<div class="mini-fit">
+    						<div id="datagrid" class="mini-datagrid dataShow" style="width: 100%; height: 100%;"
+				 				url="2021/equipmentHistoryPageList?equipmentType=水表" idField="设备ID"
+				 				allowResize="false" pageSize="20" allowCellSelect="true"
+				 				allowAlternating="true" showHGridLines="false">
+				 				<div property="columns">
+									<div type="indexcolumn" width="50" headerAlign="center" allowMove="false" headerCls="indexCol" cellCls="indexCol" headerStyle="height:40px">
+										序号
+									</div>
+									<div field="区域名称" width="120" align="center" headerAlign="center">
+										区域名称
+									</div>
+									<div field="设备名称" width="120" align="center" headerAlign="center">
+										设备名称
+									</div>
+									<div field="采集时间" dateFormat="yyyy-MM-dd HH:mm:ss" width="150" align="center" headerAlign="center">
+										采集时间
+									</div>
+									<div field="累计水量" width="100" align="center" headerAlign="center" dataType="float" decimalPlaces="2">
+										累计水量(t)
+									</div>
+									<div field="累计水量使用量" width="130" align="center" headerAlign="center" dataType="float" decimalPlaces="2" name="累计水量使用量">
+										累计水量使用量(t)
+									</div>
+									<div name="位置" width="150" align="left" headerAlign="center">
+										位置
+									</div>
+									<div field="设备编号" width="120" align="center" headerAlign="center">
+										设备编号
+									</div>
+									<!--  
+									<div field="备注" width="100" align="center" headerAlign="center">
+										备注
+									</div>
+									-->
+								</div>
+    						</div>       
+    					</div>
+    				</div>
+					<div style="width: 100%; height: 36%;">
+						<div id="chartDiv" style="width: 100%;height: 100%;display:none;">
+							
+						</div>
+						<div id="chartTip" style="width: 100%;height: 100%;position:relative;">
+							<div id="limitChart" style="position: absolute;top: 50%;left: 40%;display:none;"><i class="chartWarn"></i>曲线数量超过上限，此处不做显示(最多显示10条曲线)</div>
+							<div id="noChart" style="position: absolute;top: 50%;left: 40%;"><i class="chartWarn"></i>暂无曲线</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script type="text/javascript">
+			var lineType=[{id:"累计水量"},{id:"累计水量使用量"}];
+			mini.parse();
+			var tree=mini.get("tree");
+			var searchBeginDate=mini.get("searchBeginDate");
+            var searchEndDate=mini.get("searchEndDate");
+            
+            var now = new Date();
+		    var reNow = new Date( now.setDate(now.getDate() - 1));
+		    mini.get("searchBeginDate").setValue(reNow);
+            
+            tree.on("drawnode",function(e){
+            	var tree = e.sender;
+            	var node = e.node;
+            	
+            	//修改默认的父子节点图标
+            	if (node.type == "水表") 
+                	e.iconCls = "file";
+            	else
+            		e.iconCls = "folder";
+            });
+            filterTree();
+            function filterTree(){
+            	var key=mini.get("searchKey").getValue();
+            	tree.uncheckAllNodes();
+            	tree.filter(function(node){ 
+            		if(key==null||key.length==0){
+            			if(node.type=="水表"||node.type=="水表虚节点")
+            		 		return true;
+            		} 		
+            		else{
+            			if(node.type=="水表"||node.type=="水表虚节点"){
+            		 		if(node.name.indexOf(key)!=-1)
+            					return true; 
+            				else if(node.code!=null&&node.code.indexOf(key)!=-1)
+            					return true; 
+            			}
+            		}
+            	});
+            }
+            function resetSearch(){
+            	mini.get("searchKey").setValue(null);
+            	filterTree();
+            }
+            mini.get("searchTypeBtn2").doClick();
+            var tip = new mini.ToolTip();
+    		tip.set({
+        		target: document,
+        		placement:'top',
+        		selector: '[data-tooltip], [title]'
+    		});
+    		var searchType="小时";
+    		function onCheckedChanged(e) {
+            	var btn = e.sender;
+            	var checked = btn.getChecked();
+            	var text = btn.getText();
+
+            	if(checked){
+                	if(text=="抄")
+                		searchType="实时";
+                	else if(text=="时")
+                		searchType="小时";
+                	else if(text=="日")
+                		searchType="日";
+                	else if(text=="月")
+                		searchType="月";
+                	else if(text=="年")
+                		searchType="年";
+            	}
+        	}
+    		////////////////////////////////////////////////////////////////////////////
+            var grid=mini.get("datagrid");
+            //grid.frozenColumns(0, 3);
+            grid.on("drawcell", function (e) {
+            	var record = e.record,
+        		column = e.column,
+        		field = e.field,
+        		value = e.value;
+            	
+            	var regionArr=[];
+				for(var i=1;i<=4;i++){
+					if(record["区域名称"+i]==null)
+						break;
+					else
+						regionArr.add(record["区域名称"+i]);
+				}
+				if(column.name == "位置"){
+					regionArr.pop();
+					regionArr.reverse();
+					e.cellHtml =regionArr.join("");
+				}
+				if(column.name == "区域名称"){
+					e.cellHtml =regionArr[regionArr.length-1];
+				}
+            });
+            function searchValidate(){
+            	searchBeginDate.validate();
+            	if(searchBeginDate.isValid() == false){
+ 					mini.alert("请选择开始时间");
+			    	return false;
+			  	}
+			  	searchEndDate.validate();
+            	if(searchEndDate.isValid() == false){
+ 					mini.alert("请选择结束时间");
+			    	return false;
+			  	}
+			  	return true;
+            }
+            function search(){
+            	if(!searchValidate())
+            		return;
+            	var nodes=tree.getCheckedNodes(false);
+            	if(nodes.length>0){
+            		var ids="",size=0;
+            		for(var i=0,l=nodes.length;i<l;i++){
+            			if(nodes[i].type=="水表"){
+            				ids=ids+nodes[i].id+",";
+            				size++;
+            			}
+            		}
+            		if(size==0)
+            			mini.alert("设备未找到");
+            		else if(size>100)
+            			mini.alert("最多选择100个设备");
+            		else{
+            			ids=ids.substring(0,ids.length-1);
+            			var beginDate=searchBeginDate.getFormValue();
+              			var endDate=searchEndDate.getFormValue();
+            			if(searchType=="实时"){
+           			 		grid.hideColumn("累计水量使用量");
+           	  			}
+           	  			else{
+           			 		grid.showColumn("累计水量使用量");
+           	  			}
+            			grid.load({
+                   			"ids":ids,
+                   			"beginDateStr":beginDate,
+                   			"endDateStr":endDate,
+                   			"type":searchType
+              			});
+            			
+           	  			showChart(size,ids,beginDate,endDate,searchType);
+            		}
+            	}
+            	else
+            		mini.alert("请选择设备");
+            }
+            var chart;
+			function showChart(equipmentSize,ids,beginDate,endDate,searchType) { 
+				var chartLegendName=mini.get("chartLegendName");
+				var lengendSize=chartLegendName.getSelecteds().length;
+				if(lengendSize>0){
+					if(lengendSize*equipmentSize>10){
+						document.getElementById("chartDiv").style.display="none";
+						document.getElementById("chartTip").style.display="block";
+						document.getElementById("limitChart").style.display="block";
+						document.getElementById("noChart").style.display="none";
+					}
+					else{
+						$.ajax( {
+			    			type : "POST",
+			    			url : "2021/equipmentHistoryLineJson",
+			    			data : {
+			    				"equipmentType":"水表",
+				   				"ids":ids,
+                   				"beginDateStr":beginDate,
+                   				"endDateStr":endDate,
+                   				"type":searchType,
+                   				"legendNames":chartLegendName.getValue()
+			    			},
+			    			dataType : "json",
+			    			success : function(data) {
+			    				if(data!=null&&data.length>0){
+			    					document.getElementById("chartDiv").style.display="block";
+									document.getElementById("chartTip").style.display="none";
+				  					chart=createLine('chartDiv',data);
+				  				}
+				  				else{
+				  					document.getElementById("chartDiv").style.display="none";
+									document.getElementById("chartTip").style.display="block";
+									document.getElementById("limitChart").style.display="none";
+									document.getElementById("noChart").style.display="block";
+									chart=null;
+				  				}
+				  				
+			    			},
+			    			error : function(data) {
+								mini.alert("对不起，加载错误");
+								return false;
+							}
+		     			});
+					}
+				}
+				else{
+					document.getElementById("chartDiv").style.display="none";
+					document.getElementById("chartTip").style.display="block";
+					document.getElementById("limitChart").style.display="none";
+					document.getElementById("noChart").style.display="block";
+				}
+			}
+        	function exportData(){
+           		if(!searchValidate())
+            		return;
+           		mini.showMessageBox({
+                	title: "类型选择",
+                   	iconCls: "mini-messagebox-question",
+                   	buttons: ["包含图表", "不含图表", "取消"],
+                   	message: "请选择导出类型",
+                   	callback: function (action) {
+                    	if(action == '包含图表'){
+                       		var form = $("<form></form>").attr("action", "2021/exportEquipmentHistoryChart").attr("method", "post");
+                       		var nodes=tree.getCheckedNodes(false);
+                       		if(nodes.length>0){
+                        		var ids="",size=0;
+                        		var excelNames="";
+                        		for(var i=0,l=nodes.length;i<l;i++){
+                        			if(nodes[i].type=="水表"){
+                        				ids=ids+nodes[i].id+",";
+                        				if(i<3){
+                        					excelNames=excelNames+nodes[i].name+","; 
+                                		}else{
+                                			excelNames="";
+                                        }
+                        				size++;
+                        			}
+                        		}
+                        		if(size==0)
+                        			mini.alert("设备未找到");
+                        		else if(size>100)
+                        			mini.alert("最多选择100个设备");
+                        		else{
+                        			ids=ids.substring(0,ids.length-1);
+                        			excelNames=excelNames.substring(0,excelNames.length-1);
+                        			var beginDate=searchBeginDate.getFormValue();
+                          			var endDate=searchEndDate.getFormValue();
+                          			var legendNames=mini.get("chartLegendName").getValue();
+                        			
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "equipmentType").attr("value", "水表"));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "ids").attr("value", ids));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "excelNames").attr("value", excelNames));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "legendNames").attr("value", legendNames));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "beginDateStr").attr("value", beginDate));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "endDateStr").attr("value", endDate));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "type").attr("value", searchType));
+                        			form.appendTo('body').submit().remove();	
+                        		}
+                        	}
+                        	else
+                        		mini.alert("请选择设备");
+                       	}
+                       	else if(action == '不含图表'){
+                       		var form = $("<form></form>").attr("action", "2021/exportEquipmentHistory").attr("method", "post");
+                       		var nodes=tree.getCheckedNodes(false);
+                       		if(nodes.length>0){
+                        		var ids="",size=0;
+                        		var excelNames="";
+                        		for(var i=0,l=nodes.length;i<l;i++){
+                        			if(nodes[i].type=="水表"){
+                        				ids=ids+nodes[i].id+",";
+                        				if(i<3){
+                        					excelNames=excelNames+nodes[i].name+","; 
+                                		}else{
+                                			excelNames="";
+                                        }
+                        				size++;
+                        			}
+                        		}
+                        		if(size==0)
+                        			mini.alert("设备未找到");
+                        		else if(size>100)
+                        			mini.alert("最多选择100个设备");
+                        		else{
+                        			ids=ids.substring(0,ids.length-1);
+                        			excelNames=excelNames.substring(0,excelNames.length-1);
+                        			var beginDate=searchBeginDate.getFormValue();
+                          			var endDate=searchEndDate.getFormValue();
+                          			var legendNames=mini.get("chartLegendName").getValue();
+                        			
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "equipmentType").attr("value", "水表"));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "ids").attr("value", ids));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "excelNames").attr("value", excelNames));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "legendNames").attr("value", legendNames));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "beginDateStr").attr("value", beginDate));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "endDateStr").attr("value", endDate));
+                        			form.append($("<input></input>").attr("type", "hidden").attr("name", "type").attr("value", searchType));
+                        			form.appendTo('body').submit().remove();	
+                        		}
+                        	}
+                        	else
+                        		mini.alert("请选择设备");
+                       	}    
+                   	}
+               	}); 
+            }
+        </script>	
+	</body>
+</html>

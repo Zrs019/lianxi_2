@@ -1,0 +1,90 @@
+# 和达能源仪表平台 - 冷热量表历史记录导出配置
+#
+# 第一次使用建议保持 headless: false，让浏览器可见。登录成功后，登录状态会保存在
+# browser_profile 目录，下次通常不需要重新登录。
+
+website_url: "http://39.170.91.50:2303/RUNPAQ/Login"
+history_menu_text: "冷热量表历史记录"
+app_frame_url_contains: "functionCode=5-20"
+
+# 网站一次查询设备上限。脚本会按这个数量自动分批。
+max_devices_per_query: 100
+
+# 只允许从设备树的第几级目录中选择。2 表示“中心站-维亚园区”这种二级目录。
+selection_level: 2
+selection_levels_preferred: [2, 3]
+
+headless: false
+slow_mo_ms: 80
+
+# 使用 Microsoft Edge 打开浏览器。若想改回 Playwright 自带 Chromium，可设为空字符串 ""。
+browser_channel: "msedge"
+browser_profile_dir: "browser_profile"
+download_dir: "downloads"
+output_dir: "output"
+keep_batch_files: true
+export_timeout_ms: 120000
+wait_after_query_seconds: 2
+output_extension: "xlsx"
+
+# 导出方式：
+# - browser：继续使用页面自动化点击，最稳。
+# - api：使用 capture_api.bat 抓到的后端接口直接导出，速度更快。
+export_mode: "api"
+api_capture_file: "api_capture.yaml"
+api:
+  # 如果自动识别失败，运行 capture_api.bat 后按提示把真实参数名填到这里。
+  parameter_keys:
+    device_ids: ""
+    start_time: ""
+    end_time: ""
+    interval: ""
+    export_type: ""
+  interval_values:
+    hour: "时"
+    day: "日"
+    month: "月"
+    year: "年"
+  export_without_chart_value: "不含图表"
+  device_value_keys: ["id", "ID", "deviceId", "devId", "meterId", "nodeId", "code", "value", "domId", "pathText"]
+
+# 该页面看起来像 Element UI / Vue。若脚本找不到控件，优先调整这里。
+selectors:
+  tree: ".el-tree"
+  tree_node: ".el-tree-node"
+  tree_content: ".el-tree-node__content"
+  tree_children: ".el-tree-node__children"
+  tree_label: ".el-tree-node__label"
+  tree_checkbox: ".el-checkbox__input"
+  expand_icon: ".el-tree-node__expand-icon"
+  checked_class: "is-checked"
+  indeterminate_class: "is-indeterminate"
+
+  # MiniUI 页面中的 mini-buttonedit-input 依次包含多个控件。
+  # 当前页面检查结果中，第 2、3 个 mini-buttonedit-input 是开始/截止时间。
+  time_input_selector: ".mini-buttonedit-input"
+  start_time_input_index: 1
+  end_time_input_index: 2
+
+  # 右上角下拉导出按钮的小箭头/触发器。若无法打开导出菜单，可改成更精确的 CSS。
+  export_dropdown_trigger: ".el-dropdown, .el-dropdown-link, .el-icon-arrow-down, [class*='arrow-down']"
+
+buttons:
+  query: "查询"
+  export: "导出"
+  export_without_chart: "不含图表"
+  clear: "清空"
+
+intervals:
+  hour:
+    label: "时"
+    aliases: ["h", "hour", "小时", "时"]
+  day:
+    label: "日"
+    aliases: ["d", "day", "天", "日"]
+  month:
+    label: "月"
+    aliases: ["m", "month", "月"]
+  year:
+    label: "年"
+    aliases: ["y", "year", "年"]
