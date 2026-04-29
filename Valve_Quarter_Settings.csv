@@ -1,0 +1,4 @@
+user_id,valve_opening,min_opening,max_opening,design_delta_t_c,design_flow_kg_s
+3,0.4,0.1,1.0,5.0,9.38660476917622
+4,0.75,0.1,1.0,5.0,84.47944292258597
+6,0.75,0.1,1.0,5.0,112.63925723011462

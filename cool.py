@@ -218,7 +218,7 @@ def process_cooling_data_new_format(file_path):
     return result_by_peak
 
 # 使用函数处理数据
-result_df = process_cooling_data_new_format(r"D:\study\和达能源站\zrs2026\峰值处理\原始\3站十月数据.xls")  # 修改为你的测试文件
+result_df = process_cooling_data_new_format(r"D:\study\和达能源站\zrs2026\峰值处理\原始\C座7月17.xls")  # 修改为你的测试文件
 
 if not result_df.empty:
     print("\n" + "="*50)
@@ -233,7 +233,7 @@ if not result_df.empty:
         print(f"{row['时间']} {row['总冷量']:.2f}")
     
     # 保存结果
-    output_csv = r"D:\study\和达能源站\zrs2026\峰值处理\原始\3站十月数据_总冷量_新格式.csv"
+    output_csv = r"D:\study\和达能源站\zrs2026\峰值处理\已处理后\C座7月17日_总冷量_新格式.csv"
     try:
         result_df.to_csv(output_csv, index=False, encoding='utf-8-sig')
         print(f"\n结果已保存到: {output_csv}")
