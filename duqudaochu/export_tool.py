@@ -932,6 +932,28 @@ def make_export_batches(choices: list[TreeChoice], max_devices: int) -> list[Exp
     return batches
 
 
+def split_export_batch(batch: ExportBatch) -> list[ExportBatch]:
+    if len(batch.nodes) <= 1:
+        return [batch]
+    midpoint = max(1, len(batch.nodes) // 2)
+    left_nodes = batch.nodes[:midpoint]
+    right_nodes = batch.nodes[midpoint:]
+    return [
+        ExportBatch(
+            label=f"{batch.label}_part1",
+            nodes=left_nodes,
+            leaf_count=len(left_nodes),
+            uses_leaf_devices=True,
+        ),
+        ExportBatch(
+            label=f"{batch.label}_part2",
+            nodes=right_nodes,
+            leaf_count=len(right_nodes),
+            uses_leaf_devices=True,
+        ),
+    ]
+
+
 def set_time_inputs(scope: Scope, page: Page, cfg: dict[str, Any], start_time: str, end_time: str) -> None:
     selectors = cfg["selectors"]
     locator = scope.locator(selectors["time_input_selector"])
@@ -1289,8 +1311,9 @@ def update_payload_for_export(
     return updated
 
 
-def requests_session_from_context(context: Any) -> requests.Session:
+def requests_session_from_context(context: Any, cfg: dict[str, Any]) -> requests.Session:
     session = requests.Session()
+    session.trust_env = not bool((cfg.get("api") or {}).get("disable_env_proxy", True))
     for cookie in context.cookies():
         session.cookies.set(
             cookie["name"],
@@ -1310,13 +1333,15 @@ def send_captured_request(
     session: requests.Session,
     capture: dict[str, Any],
     payload: dict[str, Any],
+    cfg: dict[str, Any],
 ) -> requests.Response:
     method = str(capture.get("method", "GET")).upper()
     url = capture["url"]
     headers = clean_headers(capture.get("headers") or {})
     body_format = capture.get("body_format") or guess_body_format(headers, capture.get("post_data"))
 
-    kwargs: dict[str, Any] = {"headers": headers, "timeout": 180}
+    timeout = int((cfg.get("api") or {}).get("request_timeout_seconds", 600))
+    kwargs: dict[str, Any] = {"headers": headers, "timeout": timeout}
     if method == "GET":
         parts = urlsplit(url)
         url = urlunsplit((parts.scheme, parts.netloc, parts.path, "", parts.fragment))
@@ -1335,12 +1360,13 @@ def request_export_file(
     session: requests.Session,
     capture: dict[str, Any],
     payload: dict[str, Any],
+    cfg: dict[str, Any],
     batch: ExportBatch,
     batches_dir: Path,
     batch_index: int,
     extension: str,
 ) -> Path:
-    response = send_captured_request(session, capture, payload)
+    response = send_captured_request(session, capture, payload, cfg)
     fallback = sanitize_filename(f"batch_{batch_index:03d}_{batch.label}", 140)
     filename = response_filename(dict(response.headers), fallback, extension)
     suffix = Path(filename).suffix or f".{extension.lstrip('.')}"
@@ -1410,17 +1436,23 @@ def run_api_exports(
     for name, key in keys.items():
         print(f"  {name}: {key or '(未设置)'}")
 
-    session = requests_session_from_context(context)
+    session = requests_session_from_context(context, cfg)
     downloaded: list[Path] = []
     extension = str(cfg.get("output_extension", "xlsx")).lstrip(".")
     export_payload = parse_request_payload(capture)
     export_keys = infer_parameter_keys(export_payload, cfg)
-    for index, batch in enumerate(batches, start=1):
-        print(f"\n接口导出第 {index}/{len(batches)} 批: {batch.label}，约 {batch.leaf_count} 台")
+    pending = list(batches)
+    index = 1
+    min_split_devices = int((cfg.get("api") or {}).get("min_split_devices", 10))
+    adaptive_split = bool((cfg.get("api") or {}).get("adaptive_split_on_timeout", True))
+    while pending:
+        batch = pending.pop(0)
+        total_planned = index + len(pending)
+        print(f"\n接口导出第 {index}/{total_planned} 批: {batch.label}，约 {batch.leaf_count} 台")
         payload = update_payload_for_export(base_payload, keys, cfg, batch, start_time, end_time, interval_key)
         prep_payload_for_debug = None
         if prep_capture:
-            send_captured_request(session, prep_capture, payload)
+            send_captured_request(session, prep_capture, payload, cfg)
             prep_payload_for_debug = payload
             payload_for_download = export_payload
             if export_payload and export_keys.get("device_ids"):
@@ -1436,9 +1468,21 @@ def run_api_exports(
         else:
             payload_for_download = payload
         save_debug_payload(cfg, index, batch, prep_payload_for_debug, payload_for_download)
-        file = request_export_file(session, capture, payload_for_download, batch, batches_dir, index, extension)
+        try:
+            file = request_export_file(session, capture, payload_for_download, cfg, batch, batches_dir, index, extension)
+        except (requests.Timeout, requests.ConnectionError) as exc:
+            if adaptive_split and len(batch.nodes) > min_split_devices:
+                parts = split_export_batch(batch)
+                pending = parts + pending
+                print(
+                    f"本批约 {batch.leaf_count} 台导出超时，已自动拆成 "
+                    f"{len(parts[0].nodes)} 台和 {len(parts[1].nodes)} 台后继续。原因: {exc}"
+                )
+                continue
+            raise
         downloaded.append(file)
         print(f"已下载: {file.name}")
+        index += 1
     return downloaded
 
 
@@ -1740,7 +1784,10 @@ def run_export(args: argparse.Namespace) -> None:
                 interval_raw = ask("请输入查询间隔（时/日/月/年）", "时")
                 interval_key, interval_label = normalize_interval(interval_raw, cfg)
 
-                max_devices = int(cfg.get("max_devices_per_query", 100))
+                if str(cfg.get("export_mode", "browser")).lower() == "api":
+                    max_devices = int((cfg.get("api") or {}).get("max_devices_per_request", cfg.get("max_devices_per_query", 100)))
+                else:
+                    max_devices = int(cfg.get("max_devices_per_query", 100))
                 batches = make_export_batches(selected_choices, max_devices)
                 total_leaves = sum(len(choice.leaves) for choice in selected_choices)
                 directory_batches = sum(1 for batch in batches if not batch.uses_leaf_devices)

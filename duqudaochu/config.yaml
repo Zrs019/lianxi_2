@@ -30,6 +30,11 @@ api_capture_file: "api_capture.yaml"
 api:
   use_prep_request: false
   require_numeric_device_ids: true
+  disable_env_proxy: true
+  request_timeout_seconds: 600
+  max_devices_per_request: 50
+  adaptive_split_on_timeout: true
+  min_split_devices: 10
   parameter_keys:
     device_ids: "ids"
     excel_names: "excelNames"

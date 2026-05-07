@@ -91,6 +91,6 @@ export_payload:
   ids: 161,163,171
   excelNames: 鼎龙科技,鼐济药业,加五霍德
   legendNames: 累计冷量使用量,累计热量使用量
-  beginDateStr: '2025-10-25 00:00:00'
-  endDateStr: '2025-10-26 00:00:00'
+  beginDateStr: '2026-01-01 00:00:00'
+  endDateStr: '2026-02-01 00:00:00'
   type: 小时

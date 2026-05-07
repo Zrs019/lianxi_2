@@ -1,0 +1,948 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<base href="http://39.170.91.50:2303/RUNPAQ/">
+
+		<title>My JSP 'index.jsp' starting page</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> 
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<meta http-equiv="expires" content="0">
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+		<meta http-equiv="description" content="This is my page">
+
+		<!--  <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=eXC7nHHbr84hskMvFbi05K05A7HgrMvz"></script>-->
+		<script src="http://39.170.91.50:2303/RUNPAQ/miniui3.8/boot.js" type="text/javascript"></script>
+		<link href="http://39.170.91.50:2303/RUNPAQ/miniui3.8/frame1/res/fontcss/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="http://39.170.91.50:2303/RUNPAQ/miniui3.8/miniui/themes/cupertino/skin.css" rel="stylesheet" type="text/css" />
+		<link href="http://39.170.91.50:2303/RUNPAQ/miniui3.8/miniui/themes/default/medium-mode.css" rel="stylesheet" type="text/css" />
+		<link href="http://39.170.91.50:2303/RUNPAQ/gui-R2/css/2021.css" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/Highcharts-8.0.4/highcharts.js"></script>
+    	<script src="http://39.170.91.50:2303/RUNPAQ/gui-R2/js/line.js" type="text/javascript"></script>
+    	
+    	<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/build/three.min.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/controls/OrbitControls.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/renderers/CSS2DRenderer.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/renderers/CSS3DRenderer.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/lines/LineSegments2.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/lines/Line2.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/lines/LineSegmentsGeometry.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/lines/LineGeometry.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-FlowCharts/threeJS128/examples/js/lines/LineMaterial.js"></script>
+		<script type="text/javascript" src="http://39.170.91.50:2303/RUNPAQ/3D-Map/mapTools.js"></script>
+		
+		<style type="text/css">
+			html, body{
+				/*margin:0;padding:0;border:0;width:1710px;height:833px;*/
+				margin:0;padding:0;border:0;width:100%;height:100%;
+         	}
+         	.anchorBL{
+         		display:none;
+         	}
+			#searchTypeBtn1,#searchTypeBtn2,#searchTypeBtn3,#searchTypeBtn4,#searchTypeBtn5,#searchTypeBtn6{
+				padding:1.5vh 0 !important;
+				/*width:15vw;*/ /*6个*/
+				width:18.4vw; /*5个*/
+				font-size:1.05vw;
+			}
+			#searchTypeBtn1,#searchTypeBtn2,#searchTypeBtn3,#searchTypeBtn4,#searchTypeBtn5{
+				margin-right:1.6%;
+			}
+			.regionDiv{
+				background: #0A235F;
+				box-shadow: inset 0px 0px 5px 0px rgba(117, 117, 117, 0.23);
+				border-radius: 10px;
+				padding:2vh 3vh;
+				border:1px solid #1382CF;
+			}
+			.regionDiv .title,.chartJump{
+				font-size:1.08vw;
+				font-family: Microsoft YaHei;
+				font-weight: 400;
+				color: #fff;
+				line-height: 2.2vw;
+			}
+			.regionDiv .chartJump{
+				color:#00FF7F;
+				text-shadow: 0px 0px 10px #FFFF00,0 0 15px #FFFF00,0 0 20px #FFD700,0 0 35px #FFFF00,0 0 40px #FFFF00,0 0 45px #FFFF00,0 0 50px #FFD700,0 0 55px #FFD700;
+				float:right;
+				font-size:1.7vw;
+				letter-spacing:1vw;
+				margin-right:-1vw;
+			}
+			.runStateImg{
+				width:15%;
+				height:100%;
+				float:left;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+			}
+			.runStateContent{
+				height:50%;
+				display: flex;
+				align-items: flex-end;
+				justify-content: center;
+				padding-bottom: 10%;
+				font-size: 1.2vw;
+				font-family: Microsoft YaHei;
+				font-weight: 400;
+				color: #fff;
+			}
+			.runStateContent span{
+				color:#FE0000;
+				padding:0 0 0 5;
+			}
+			.runStateContent2{
+				font-size: 1.05vw;
+				font-family: Microsoft YaHei;
+				font-weight: 400;
+				color: #fff;
+			}
+			.runStateImg.borderDiv:before {
+            	content: "";
+    			position: absolute;
+    			left: 0;
+    			top: 25%;
+    			height: 50%;
+    			width: 2px;
+    			background-color: #E5E5E5;
+        	}
+        	.equipmentState table{
+				border: 0px;
+				text-align: center;
+			}
+			.equipmentState table td {
+				width:50%;
+				border: 1px solid #1382CF;
+				border-radius: 5px;
+				font-size: 1.05vw;
+				font-family: Microsoft YaHei;
+				font-weight: 400;
+				color: #fff;
+			}
+			.equipmentState table td div{
+				display:inline;
+			}
+			.equipmentState table td span{
+				color:#FE0000;
+				padding:0 5;
+			}
+			.energyAnalysis{
+				display: -webkit-box;
+    			-webkit-box-orient: vertical;
+			}
+			.energyAnalysis div{
+				width:100%;
+				margin-top:1.5vh;
+				background: #12468d;
+				padding:0 5%;
+				border-radius: 5px;
+				-webkit-box-flex: 1;
+				display: flex;
+    			align-items: center;
+    			justify-content: flex-start;
+    			font-size: 1.05vw;
+    			font-family: Microsoft YaHei;
+    			font-weight: 400;
+    			color: #fff;
+			}
+			.chart{
+				width:100%;
+				height:100%;
+				display: flex;
+    			align-items: center;
+    			justify-content: center;
+    			color:#fff;
+			}
+			a,a:visited{
+         		text-decoration: none;
+         		color:inherit;
+         	}
+         	.separatorDiv{
+    			background: url(gui-R2/images/separator.png) no-repeat;
+    			width: 100%;
+    			height:0.42vh;
+    		}
+    		.separatorDiv.longer{
+    			background: url(gui-R2/images/separator.png) no-repeat;
+    		}
+    		/****************************************地图**********************************************/
+			.tagDiv{
+			   	position: absolute;
+				padding: 5px 10px;
+				background-color: rgba(255, 255, 255, 0.1);
+				color: #fff;
+				border-radius: 5px;
+				visibility: hidden;
+				font-size:14px;
+			}
+			.projectName{
+				writing-mode: vertical-lr;/*从左向右 从右向左是 writing-mode: vertical-rl;*/
+				writing-mode: tb-lr;/*IE浏览器的从左向右 从右向左是 writing-mode: tb-rl；*/
+				text-orientation: upright;/*数字纵向*/
+				font-weight: bold;
+				color:#ffff00!important;
+				padding:0!important;
+				background-color:transparent!important;
+			}
+			/* 图例整体容器：横向排列 + 自动换行 */
+	        .legend-wrapper {
+	            display: flex;
+	            flex-wrap: wrap;
+	            gap: 15px; /* 图例项之间的间距 */
+	            padding: 5px;
+	            width: fit-content;
+	            position: absolute;
+			    bottom: 0;
+			    left: 50%;        /* 水平居中第一步 */
+    			transform: translateX(-50%); /* 仅水平偏移 */
+			    background: transparent;
+			    
+	        }
+	
+	        /* 单个图例项：图标+文字垂直居中 */
+	        .legend-item {
+	            display: flex;
+	            align-items: center;
+	            font-size: 1.29vh;
+	            color: #333;
+	            font-family: "Microsoft Yahei", sans-serif;
+	        }
+	
+	        /* 双圆环图标基础样式（透明背景核心） */
+	        .legend-icon{
+	            width: 10px;       /* 图标整体大小 */
+	            height: 10px;
+	            border-radius: 50%;/* 圆形 */
+	            margin-right: 5px;/* 图标与文字间距 */
+	            padding: 1px;      /* 内外圆环间距 */
+	            background-clip: content-box; /* 关键：背景仅填充内容区 */
+	            box-shadow: 0 0 3px rgba(0,0,0,0.1); /* 轻微阴影增强质感 */
+	        }
+        </style>
+	</head>
+
+	<body>
+		<div class="bgDiv" style="width:100%;height:100%;background: #071B4E;">
+			<div style="width:100%;height:52%;display: flex;background: #071B4E">
+				<div style="width:25.7%;height:100%;padding-right:2vh;">
+					<div class="regionDiv" style="width:100%;height:47.3%;">
+						<span class="title">平台运行状态</span>
+						<!-- <span class="chartJump1">(可点击)</span> -->
+						<div class="chartJump"><a href="javascript:;test()">一站总览</a></div>
+        				<div class="separatorDiv longer"></div>
+        				<div class="mini-fit">
+        					<div class="runStateImg">
+        						<img src="gui-R/images/gateway.png" width="60%" style="max-width:48px;"/>
+        					</div>
+        					<div style="width:35%;height:100%;float:left;text-align:center;color:#fff">
+        						<div id="gatewayCount" class="runStateContent">0<span>(0)</span></div>
+        						<div class="runStateContent2">网关(个)</div>
+        					</div>
+        					<div class="runStateImg borderDiv" style="position: relative;">
+        						<img src="gui-R/images/equipment.png" width="60%" style="max-width:48px;"/>
+        					</div>
+        					<div style="width:35%;height:100%;float:left;text-align:center;">
+        						<div id="equipmentCount" class="runStateContent">0<span>(0)</span></div>
+        						<div class="runStateContent2">仪表(个)</div>
+        					</div>
+        				</div>
+					</div>
+					<div style="width:100%;height:4%;"></div>
+					<div class="regionDiv" style="width:100%;height:49.2%;">
+						<span class="title">仪表运行详情</span>
+        				<div class="separatorDiv longer"></div>
+        				<div class="mini-fit equipmentState" style="padding-top:1vh;">
+							<table border="1" cellspacing="3vh" height="100%" width="100%">
+								<tr>
+  									<td>电表：<div id="electricMeterCount">0<span>(0)</span></div></td>
+  									<td>水表：<div id="waterMeterCount">0<span>(0)</span></div></td>
+  								</tr>   
+  								<tr>
+  									<td>冷热量表：<div id="coldHeatMeterCount">0<span>(0)</span></div></td>
+  									<td>温控器：<div id="thermostatCount">0<span>(0)</span></div></td>
+  								</tr>
+  								<tr>
+  									<td>流量计：<div id="flowMeterCount">0<span>(0)</span></div></td>
+  									<td>采样仪：<div id="timeSamplingInstrumentCount">0<span>(0)</span></div></td>
+  								</tr>
+  							</table>
+        				</div>
+					</div>
+				</div>
+				<div id="allmap" class="regionDiv" style="position: relative;flex:1;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;color: #fff;font-size: 16px;">
+					<div id="map" style="width:100%;height:100%;"></div>
+					<!--  当前服务器未接通外网，地图功能无法显示-->
+					<div class="tagDiv" id="nameDiv"></div>
+	       			<!-- 图例容器 -->
+				    <div class="legend-wrapper">
+				        <div class="legend-item" style="color:#00FF00;">
+				            <div class="legend-icon" style="background-color:#00FF00;border: 1px solid #00FF00;"></div>
+				            <span>能源站</span>
+				        </div>
+				        <div class="legend-item" style="color:#ffff00;">
+				            <div class="legend-icon" style="background-color:#ffff00;border: 1px solid #ffff00;"></div>
+				            <span>光伏站</span>
+				        </div>
+				        <div class="legend-item" style="color:#B27BEB;">
+				            <div class="legend-icon" style="background-color:#B27BEB;border: 1px solid #B27BEB;"></div>
+				            <span>热电厂</span>
+				        </div>
+				         <div class="legend-item" style="color:#FFFFFF;">
+				            <div class="legend-icon" style="background-color:#FFFFFF;border: 1px solid #FFFFFF;"></div>
+				            <span>空压站</span>
+				        </div>
+				         <div class="legend-item" style="color:#FF9933;">
+				            <div class="legend-icon" style="background-color:#FF9933;border: 1px solid #FF9933;"></div>
+				            <span>热水站</span>
+				        </div>
+				        <div class="legend-item" style="color:#00FBFE;">
+				            <div class="legend-icon" style="background-color:#00FBFE;border: 1px solid #00FBFE;"></div>
+				            <span>水厂</span>
+				        </div>
+				    </div>	
+				</div>
+			</div>
+			<div style="background: #071B4E;padding:2vh 0;font-size:0;text-align: center">
+				<a id="searchTypeBtn1" class="mini-button blueBtn1" iconCls="icon-electric" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">电</a>
+				<a id="searchTypeBtn2" class="mini-button blueBtn" iconCls="icon-water" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">水</a>
+				<a id="searchTypeBtn3" class="mini-button purpleBtn" iconCls="icon-cool" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">冷</a>
+				<a id="searchTypeBtn4" class="mini-button orangeBtn" iconCls="icon-heat" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">热</a>
+				<!--
+				<a id="searchTypeBtn5" class="mini-button redBtn" iconCls="icon-equivalentTime" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">当量时间</a>
+				-->
+				<a id="searchTypeBtn6" class="mini-button greenBtn" iconCls="icon-flow" checkOnClick="true" groupName="searchTypeBtns" oncheckedchanged="onCheckedChanged">流量</a>
+			</div>
+			<div class="mini-fit" style="background: #071B4E;">
+				<div class="regionDiv" style="width:30%;height:100%;margin-right:1.2%;float:left;">
+					<span class="title">逐时总耗</span>
+        			<div class="separatorDiv"></div>
+        			<div class="mini-fit">
+        				<div id="chart1Div" class="chart">暂无数据</div>
+        			</div>
+				</div>
+				<div class="regionDiv" style="width:30%;height:100%;margin-right:1.2%;float:left;">
+					<span class="title">逐日总耗</span>
+        			<div class="separatorDiv"></div>
+        			<div class="mini-fit">
+        				<div id="chart2Div" class="chart">暂无数据</div>
+        			</div>
+				</div>
+				<div class="regionDiv" style="width:18%;height:100%;margin-right:1.4%;float:left;">
+					<span class="title">日同比分析</span>
+        			<div class="separatorDiv"></div>
+        			<div class="mini-fit energyAnalysis">
+        				<div>当日总耗：<span id="todayUse">--</span></div>
+        				<div>昨日总耗：<span id="yesterdayUse">--</span></div>
+        				<div style="margin-bottom:1.5vh;">同期对比：<span id="todayTQ">--</span></div>
+        			</div>
+				</div>
+				<div class="regionDiv" style="width:18%;height:100%;float:left;">
+					<span class="title">月同比分析</span>
+        			<div class="separatorDiv"></div>
+        			<div class="mini-fit energyAnalysis">
+        				<div>当月总耗：<span id="thisMonthUse">--</span></div>
+        				<div>上月总耗：<span id="lastMonthUse">--</span></div>
+        				<div style="margin-bottom:1.5vh;">同月对比：<span id="thisMonthTQ">--</span></div>
+        			</div>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			mini.parse();
+		 	function test(){
+		       	let url="gui-R2/homePage/mainMenu.jsp"
+				window.open(url);
+	     	}
+			var map;
+			$(function(){
+				/*if(typeof(BMap)!=="undefined"){
+					// 百度地图API功能
+					map = new BMap.Map("allmap",{enableMapClick:false});    // 创建Map实例
+					//map.centerAndZoom(new BMap.Point(114.284235,30.607877), 5);  // 初始化地图,设置中心点坐标和地图级别
+					//map.centerAndZoom("杭州", 10);  // 初始化地图,设置中心点坐标和地图级别
+					map.setMapType(BMAP_HYBRID_MAP); 
+					//map.addControl(new BMap.MapTypeControl());   //添加地图类型控件
+					map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+					showByMarker();
+				}*/
+			})
+			function showByMarker(){
+				$.ajax( {
+					url : "loadProjectMainPageInfo",
+					type : "post",
+					success : function(text) {
+						if(text!=null&&text.projectCoordinates!=null&&text.projectCoordinates!=""){
+    						var str=text.projectCoordinates.split(",")
+    						var gpsPoint=null;
+							var gpsPoint = new BMap.Point(str[0],str[1]);
+							map.centerAndZoom(new BMap.Point(str[0],str[1]), 15);
+							/*var points=[gpsPoint];
+							map.setViewport(points);//根据提供的地理区域或坐标设置地图视野，调整后的视野会保证包含提供的地理区域或坐标
+							*/
+							marker=new BMap.Marker(gpsPoint);
+							map.addOverlay(marker);
+							marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动动画
+    					}
+    					else
+    						map.centerAndZoom("杭州", 10); 
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+			}
+			
+			loadEquipmentGeneralSituation();
+			setTimeout('loadEquipmentGeneralSituation()',1000*60*5);
+			function loadEquipmentGeneralSituation(){
+				$.ajax( {
+					url : "2021/loadEquipmentGeneralSituation",
+					type : "post",
+					success : function(data) {
+						loadGeneralSituation(data);
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+					}
+				});
+			}
+			function loadGeneralSituation(data){
+				var equipmentTotal=0,equipmentWarn=0;
+				//中继器
+				var totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.中继器;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.中继器;
+				document.getElementById("gatewayCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"中继器\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				
+				//电表
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.电表;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.电表;
+				document.getElementById("electricMeterCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"电表\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				//水表
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.水表;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.水表;
+				document.getElementById("waterMeterCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"水表\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				//冷热量表
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.冷热量表;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.冷热量表;
+				document.getElementById("coldHeatMeterCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"冷热量表\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				//温控器
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.温控器;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.温控器;
+				document.getElementById("thermostatCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"温控器\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				//流量计
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.流量计;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.流量计;
+				document.getElementById("flowMeterCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"流量计\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				//时间采样仪
+				totalCount=0,warnCount=0;
+				if(data!=null&&data.totalCount!=null)
+					totalCount=data.totalCount.时间采样仪;
+				if(data!=null&&data.warnCount!=null)
+					warnCount=data.warnCount.时间采样仪;
+				document.getElementById("timeSamplingInstrumentCount").innerHTML = (totalCount==null?0:totalCount)+"<a href='javaScript:warningInfoShow(\"时间采样仪\")'><span>("+(warnCount==null?0:warnCount)+")</span></a>";
+				equipmentTotal=equipmentTotal+(totalCount==null?0:totalCount);
+				equipmentWarn=equipmentWarn+(warnCount==null?0:warnCount);
+				
+				document.getElementById("equipmentCount").innerHTML = (equipmentTotal==null?0:equipmentTotal)+"<a href='javaScript:warningInfoShow(\"电表,水表,冷热量表,温控器,流量计,时间采样仪\")'><span>("+(equipmentWarn==null?0:equipmentWarn)+")</span></a>";
+			}
+			function warningInfoShow(equipmentTypes){
+        		mini.open({
+                   url:"gui-R2/warning/warningInfo.jsp",
+                   title:"报警信息",
+                   headerStyle:"background:#113f83;color:#FFF",
+                   width:"80%",
+                   height:"80%",
+                   onload:function(){
+                   			var iframe=this.getIFrameEl();
+                       		var data={"equipmentTypes":equipmentTypes};
+                       		iframe.contentWindow.SetData(data);
+                   },
+                   ondestroy: function (action) {
+                               
+                   }
+                });
+        	}
+			////////////////////////////////////////////////////////////////////////////
+			mini.get("searchTypeBtn1").doClick();
+			var searchType="电量";
+    		function onCheckedChanged(e) {
+            	var btn = e.sender;
+            	var checked = btn.getChecked();
+            	var text = btn.getText();
+
+            	if(checked){
+                	if(text=="电")
+                		searchType="电量";
+                	else if(text=="水")
+                		searchType="水量";
+                	else if(text=="热")
+                		searchType="热量";
+                	else if(text=="冷")
+                		searchType="冷量";
+                	else if(text=="当量时间")
+                		searchType="当量时间";
+                	else if(text=="流量")
+                		searchType="流量";
+                	else
+                		searchType=null;
+            	}
+            	mini.mask({
+            		el: document.body,
+            		cls: 'mini-mask-loading',
+            		html: '加载中...'
+        		});
+        		chart1=null;
+            	chart1=showChart("chart1Div","小时");
+            	chart2=null;
+            	chart2=showChart("chart2Div","日");
+            	loadEnergyInfo();
+            	mini.unmask(document.body);
+        	}
+			var chart1,chart2;
+			function showChart(obj,timeType){ 
+				var chart=null;
+				$.ajax({
+			    		type : "POST",
+			    		url : "2021/loadEnergyLineJson",
+			    		data : {
+			    				"type":searchType,
+				   				"timeType":timeType
+			    		},
+			    		async:false,
+			    		cache: false,
+			    		dataType : "json",
+			    		success : function(data) {
+			    				if(data!=null&&data.length>0){
+			    					var showChart=false;
+			    					for(var i=0;i<data.length;i++){
+			    						if(data[i].data!=null&&data[i].data.length>0){
+			    							showChart=true;
+			    							break;
+			    						}
+			    					}
+			    					if(showChart)
+			    						chart=createLine2(obj,data);
+			    					else{
+			    						document.getElementById(obj).innerHTML="暂无数据";
+										chart=null;
+			    					}
+				  				}
+				  				else{
+				  					document.getElementById(obj).innerHTML="暂无数据";
+									chart=null;
+				  				}
+			    		},
+			    		error : function(data) {
+								mini.alert("对不起，加载错误");
+								return false;
+						}
+		     	});
+		     	return chart;
+			}
+			function loadEnergyInfo(){
+				$.ajax( {
+					url : "2021/loadEnergyDataInfo",
+					data : {
+			    				"type":searchType
+			    	},
+			    	cache: false,
+			    	async:false,
+					type : "post",
+					success : function(data) {
+								if(data!=null&&data.当日总耗!=null)
+									document.getElementById("todayUse").innerHTML=data.当日总耗.toFixed(2);
+								else
+									document.getElementById("todayUse").innerHTML="--";
+								if(data!=null&&data.昨日总耗!=null)
+									document.getElementById("yesterdayUse").innerHTML=data.昨日总耗.toFixed(2);
+								else
+									document.getElementById("yesterdayUse").innerHTML="--";
+								if(data!=null&&data.同期对比!=null)
+									document.getElementById("todayTQ").innerHTML=data.同期对比.toFixed(2);
+								else
+									document.getElementById("todayTQ").innerHTML="--";
+									
+								if(data!=null&&data.当月总耗!=null)
+									document.getElementById("thisMonthUse").innerHTML=data.当月总耗.toFixed(2);
+								else
+									document.getElementById("thisMonthUse").innerHTML="--";
+								if(data!=null&&data.上月总耗!=null)
+									document.getElementById("lastMonthUse").innerHTML=data.上月总耗.toFixed(2);
+								else
+									document.getElementById("lastMonthUse").innerHTML="--";
+								if(data!=null&&data.同月对比!=null)
+									document.getElementById("thisMonthTQ").innerHTML=data.同月对比.toFixed(2);
+								else
+									document.getElementById("thisMonthTQ").innerHTML="--";
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+								mini.alert("对不起，加载错误");
+								return false;
+					}
+				});
+			}
+			/***************************以下是地图***************************/
+			//var width=window.innerWidth;//窗口宽度
+			//var height=window.innerHeight;//窗口高度
+			var width=$('#map').width();
+			var height=$('#map').height();
+			//渲染器
+			var renderer = new THREE.WebGLRenderer({antialias: true,alpha : true});//开启反锯齿
+			renderer.setSize(width, height);
+			renderer.setPixelRatio(window.devicePixelRatio);//设置设备像素比。通常用于避免HiDPI设备上绘图模糊
+			//document.body.appendChild(renderer.domElement);
+			document.getElementById("map").appendChild(renderer.domElement);
+			//相机
+	    	var k = width / height; //窗口宽高比
+	    	var s = 3;//根据包围盒大小(行政区域经纬度分布范围大小)设置渲染范围
+	    	//创建相机对象
+	    	var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+	    	//通过OrbitControls在控制台打印相机位置选择一个合适的位置
+			//camera.position.set(93.55, -136.98, 172.95);
+			//camera.position.set(-25.76,265.4,311.15); //设置相机位置
+			camera.position.set(-40.604701512574785,331.3383168389403,237.65338518530746);
+	
+			//用户交互插件 鼠标左键按住旋转,右键按住平移,滚轮缩放
+			var controls = new THREE.OrbitControls(camera, renderer.domElement);
+	    	//controls.target.set(104.06, 36.05, 0.49);
+			//controls.enableRotate=false;//禁用摄像机水平或垂直旋转
+			//防止旋转到地图背面
+			controls.maxPolarAngle=Math.PI/2;
+			controls.minPolarAngle=-Math.PI/2;
+			controls.minZoom=0.45;
+	
+			//场景
+			var scene = new THREE.Scene();
+			//scene.background=new THREE.Color(0x021134);
+			// 平行光1
+	    	var directionalLight = new THREE.DirectionalLight(0xffffff, 0.7);
+	    	directionalLight.position.set(400, 200, 300);
+	    	scene.add(directionalLight);
+	    	// 平行光2
+	    	var directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.7);
+	    	directionalLight2.position.set(-400, -200, -300);
+	    	scene.add(directionalLight2);
+			
+			var spotLight = new THREE.SpotLight(0xffffff,10,75,0.5);
+	    	spotLight.position.set(0, 70, 0);
+	    	scene.add(spotLight);
+			
+			/*var lightHelper = new THREE.SpotLightHelper(spotLight);
+			scene.add( lightHelper );*/
+			
+	    	//环境光
+	    	var ambient = new THREE.AmbientLight(0xffffff, 1);
+	    	scene.add(ambient);
+	
+			//three.js辅助坐标系
+	    	var axesHelper = new THREE.AxesHelper(300);
+	    	//scene.add(axesHelper);
+	
+			// 创建一个CSS3渲染器CSS2DRenderer
+	    	var css2DRenderer = new THREE.CSS2DRenderer();
+	    	css2DRenderer.setSize(width, height);
+	    	css2DRenderer.domElement.style.position = 'absolute';
+	    	// 避免renderer.domElement影响HTMl标签定位，设置top为0px
+	    	css2DRenderer.domElement.style.top = '0px';
+	    	css2DRenderer.domElement.style.left = '0px';
+	    	//设置.pointerEvents=none，以免模型标签HTML元素遮挡鼠标选择场景模型
+	    	css2DRenderer.domElement.style.pointerEvents = 'none';
+	    	document.getElementById("map").appendChild(css2DRenderer.domElement);
+	
+			// 创建一个CSS3渲染器CSS3DRenderer
+	    	var css3DRenderer = new THREE.CSS3DRenderer();
+	    	css3DRenderer.setSize(width, height);
+	    	css3DRenderer.domElement.style.position = 'absolute';
+	    	// 避免renderer.domElement影响HTMl标签定位，设置top为0px
+	    	css3DRenderer.domElement.style.top = '0px';
+	    	css3DRenderer.domElement.style.left = '0px';
+	    	//设置.pointerEvents=none，以免模型标签HTML元素遮挡鼠标选择场景模型
+	    	css3DRenderer.domElement.style.pointerEvents = 'none';
+	    	document.getElementById("map").appendChild(css3DRenderer.domElement);
+			////////////////////////////////////////////////////////////////////////////////////////////////
+			var SIZE_MIN,SIZE_MID,SIZE_MAX;
+			//three.js文件加载类FileLoader：封装了XMLHttpRequest
+	    	var loader = new THREE.FileLoader();
+	    	loader.setResponseType('json');
+	
+			// 组对象mapGroup是所有国家边界Line模型的父对象
+	    	var mapGroup = new THREE.Group();
+	    	scene.add(mapGroup);
+	    	var lineGroup = new THREE.Group();//边界线组
+	    	mapGroup.add(lineGroup);
+	    	var meshGroup = new THREE.Group();//轮廓Mesh组
+	    	mapGroup.add(meshGroup);
+			var placeNameLabelGroup = new THREE.Group();//轮廓Mesh组
+	    	mapGroup.add(placeNameLabelGroup);
+	    	var projectPointGroup = new THREE.Group();//项目点组
+    		mapGroup.add(projectPointGroup);
+	    	//加载./china.json
+			var fileUrl='./3D-Map/GeoJson/钱塘区.json';
+	    	loader.load(fileUrl, function (data) {
+				//坐标处理
+				data.features.forEach(function (area) {
+	        		//"Polygon"：省份area有一个封闭轮廓
+	       			//"MultiPolygon"：省份area有多个封闭轮廓
+	        		if(area.geometry.type === "Polygon") {
+	          			//把"Polygon"和"MultiPolygon"的geometry.coordinates数据结构处理为一致
+	          			area.geometry.coordinates = [area.geometry.coordinates];
+	        		}
+	      		});
+	      		//提取行政区域所有子区域边界数据,画边线
+				data.features.forEach(function (area) {
+	        		// 解析所有封闭轮廓边界坐标area.geometry.coordinates
+					let lineG=MapBoundaryLine(area.geometry.coordinates);
+					lineG.name=area.properties.name;
+	        		lineGroup.add(lineG);//省份边界轮廓插入组对象mapGroup
+	      		});
+				//画形状
+				
+				let maxL = CenterCamera(mapGroup, camera,k,0.45);
+				//console.log("maxL:"+maxL)
+	  			let mapHeight= maxL * 0.05; //轮廓拉伸高度
+				s=maxL / 2 *0.45;
+				SIZE_MIN =s*0.027;
+				SIZE_MID = SIZE_MIN*2;
+				SIZE_MAX = SIZE_MIN*3;
+				lineGroup.position.z = mapHeight+mapHeight * 0.01;//适当偏移解决深度冲突
+	      		data.features.forEach(function (area) {
+					let extrudeMesh=MapExtrudeMesh(area.geometry.coordinates, mapHeight);
+					extrudeMesh.type="map";
+					extrudeMesh.name=area.properties.name;
+					extrudeMesh.color =extrudeMesh.material.color.clone();
+	        		meshGroup.add(extrudeMesh);//省份轮廓拉伸Mesh插入组对象mapGroup
+					/*
+					//地名标签
+					var name = area.properties.name;//省份名
+					if (name) {
+						let placeNameLabel=null;
+						if(name=="益阳市"||name=="汕尾市"){
+							let center = area.properties.center;//行政区几何中心经纬度坐标
+							placeNameLabel=PlaceNameCSS3DLabel(center[0], center[1],name);
+						}
+						else{
+							let geometry = extrudeMesh.geometry;
+	    					geometry.computeBoundingBox();   
+	    					let center = geometry.boundingBox.getCenter();
+	    					extrudeMesh.localToWorld(center);
+	            			placeNameLabel=PlaceNameCSS3DLabel(center.x, center.y,name);
+						}
+						placeNameLabel.position.z = mapHeight-mapHeight*0.01;
+						
+	            		//缩放CSS3DObject模型对象
+						let size=s*0.004;//根据相机S值调整
+	            		placeNameLabel.scale.set(size, size,size);//根据相机渲染范围适当缩放
+	            		placeNameLabelGroup.add(placeNameLabel);
+	          		}
+	          		*/
+	      		});
+	      		// 地图底部边界线
+	      		var lineGroup2 = lineGroup.clone();
+	      		mapGroup.add(lineGroup2);
+	      		lineGroup2.position.z = -mapHeight * 0.01;//适当偏移解决深度冲突
+	
+				// 注意居中之前进行旋转
+	      		mapGroup.rotateX(-Math.PI / 2);
+	      		CenterCamera(mapGroup, camera,k,0.45);
+	      		
+	      		const projectDataList=[
+	      			{name:"医药港1#能源站",type:"能源站",coordinates:"120.336680,30.338142",offsetX:-0.003,offsetY:-0.003},
+	      			{name:"医药港2#能源站",type:"能源站",coordinates:"120.343719,30.344372",offsetX:0.002,offsetY:0.002},
+	      			{name:"医药港3#能源站",type:"能源站",coordinates:"120.337580,30.344119",offsetX:-0.003},
+	      			{name:"医药港4#能源站",type:"能源站",coordinates:"120.323577,30.339287"},
+	      			{name:"芯谷1#能源站",type:"能源站",coordinates:"120.497412,30.360723"},
+	      			{name:"东部湾总部基地能源站",type:"能源站",coordinates:"120.360542,30.272800"},
+	      			//{name:"传和能源站",type:"能源站",coordinates:"120.339628,30.244039"},
+	      			{name:"杭联热电",type:"热电厂",coordinates:"120.334767,30.296015",offsetX:-0.002},
+	      			{name:"杭联空压站",type:"空压站",coordinates:"120.335387,30.296830",offsetX:0.002},
+	      			{name:"杭电热水站",type:"热水站",coordinates:"120.347599,30.322214"},
+	      			{name:"金沙湖水厂",type:"水厂",coordinates:"120.312773,30.299953"},
+	      			{name:"加一光伏站",type:"光伏站",coordinates:"120.339917,30.337295",offsetX:0.001,offsetY:-0.002},
+	      			{name:"加三光伏站",type:"光伏站",coordinates:"120.340699,30.344053"},
+	      			{name:"加四光伏站",type:"光伏站",coordinates:"120.338723,30.342757",offsetX:-0.003,offsetY:-0.003},
+	      			{name:"数贸大厦光伏站",type:"光伏站",coordinates:"120.377660,30.316167"},
+	      			{name:"安飞诺光伏站",type:"光伏站",coordinates:"120.370410,30.305695"},
+	      			{name:"低碳示范基地光伏站	",type:"光伏站",coordinates:"120.323578,30.339289",offsetX:-0.003,offsetY:-0.003},
+	      			{name:"凯莉特光伏站",type:"光伏站",coordinates:"120.346326,30.340917",offsetX:0.004},
+	      			
+	      		];
+	      		const colors={"能源站":0x00FF00,"光伏站":0xffff00,"热电厂":0xB27BEB,"空压站":0xFFFFFF,"热水站":0xFF9933,"水厂":0x00FBFE}
+	      		projectDataList.forEach(function (project) {
+	      			var pos = project.coordinates.split(",");//每个省份行政中心位置经纬度
+	        		var size = s*0.047;//大小根据地图尺寸范围设置或者说相机渲染范围
+	        		let point = ProjectPointMesh2(size, Number(pos[0]), Number(pos[1]));
+    				point.position.z = mapHeight+0.001;//棱锥高度二分之一位置
+    				if(project.offsetX!=null)
+						point.position.x=point.position.x+project.offsetX;
+					if(project.offsetY!=null)
+						point.position.y=point.position.y+project.offsetY;
+					if(project.type!=null&&colors[project.type]!=null){
+						var newMaterial=point.material.clone();
+						newMaterial.color=new THREE.Color(colors[project.type]);
+						point.material=newMaterial;
+					}
+					point.name=project.name;
+					point.projectData=project;
+					point.color = point.material.color.clone();
+        			projectPointGroup.add(point);
+					
+				});
+	    	});
+			
+			var nameDiv = document.getElementById('nameDiv');
+			var chooseMesh=null;
+			addEventListener('pointermove',function(event){
+				if(chooseMesh) {
+	        		// 把上次选中的mesh设置为原来的颜色
+	        		chooseMesh.material.color.copy(chooseMesh.color);
+				}
+				let objs=[];
+				projectPointGroup.children.forEach(function(obj){
+					if(obj.visible)
+						objs.add(obj);
+				});
+				
+				let chooseObj=ChooseMesh(event,renderer,camera,objs);
+				if(chooseObj!=null){	
+					chooseMesh=chooseObj.object;
+					if(chooseMesh.projectData!=null&&chooseMesh.projectData.type!=null){
+						chooseMesh.material.color.set(0xff0000);//选中改变颜色
+
+						nameDiv.innerText = chooseMesh.projectData.name;
+        				nameDiv.style.visibility = 'visible';
+
+						var worldVector = chooseMesh.position.clone();
+						worldVector.applyMatrix4(mapGroup.matrixWorld);
+        				var standardVector = worldVector.project(camera); //世界坐标转标准设备坐标
+        				var a = width/ 2;
+        				var b = height / 2;
+        				var x = Math.round(standardVector.x * a + a); //标准设备坐标转屏幕坐标
+        				var y = Math.round(-standardVector.y * b + b); //标准设备坐标转屏幕坐标
+
+        				nameDiv.style.removeProperty("left");
+						nameDiv.style.removeProperty("right");
+						nameDiv.style.removeProperty("top");
+						nameDiv.style.removeProperty("bottom");
+						if(x+nameDiv.offsetWidth<=width)
+							nameDiv.style.left = x + 'px';
+						else if(x-nameDiv.offsetWidth>=0)
+							nameDiv.style.right = width-x + 'px';
+						else
+							nameDiv.style.left = '5px';
+						if(y+nameDiv.offsetHeight<=height)
+							nameDiv.style.top = y + 'px';
+						else if(y-nameDiv.offsetHeight>=0)
+							nameDiv.style.bottom = height-y + 'px';
+						else
+							nameDiv.style.top = '5px';
+					}
+					else{
+						nameDiv.style.visibility = 'hidden';
+						chooseMesh=null;
+					}
+				}
+				else{
+					nameDiv.style.visibility = 'hidden';
+					chooseMesh=null;
+				}
+			});
+			
+			animate();
+
+			// 光圈大小在原大小基础上1~2.5倍在之间变化,也就是mesh.size范围2~5之间
+			var _s = SIZE_MIN;
+			function render() {
+				/*lineGroup.children.forEach(function(child){
+	        		child.children.forEach(function(line){
+	        			line.material.uniforms.time.value = performance.now();
+	        		});
+	        	})*/
+	        	renderer.render(scene, camera);
+				//渲染场景中的HTMl元素包装成的CSS3模型对象
+				if(css2DRenderer)
+	      			css2DRenderer.render(scene, camera);
+				//渲染场景中的HTMl元素包装成的CSS3模型对象
+				if(css3DRenderer)
+	      			css3DRenderer.render(scene, camera);
+	      		
+	      		/*_s += SIZE_MIN/100;
+				projectPointGroup.children.forEach(function (obj) {
+					if(obj.isMesh){
+						//obj.scale.set(_s, _s, _s);
+     					if (_s <= SIZE_MID) {
+       						obj.material.opacity = (_s - SIZE_MIN) * (1/(SIZE_MID-SIZE_MIN));//1.67约等于1/(2.6-2.0)，保证透明度在0~1之间变化
+     					} else if (_s > SIZE_MIN && _s <= SIZE_MAX) {
+       						obj.material.opacity = 1 - (_s - SIZE_MIN) / (SIZE_MAX-SIZE_MIN);//缩放5.0对应0 缩放2.0对应1
+     					} else {
+       						_s = SIZE_MIN;
+     					}	
+					}
+				});*/
+				
+	    	}
+	    	function animate() {
+	        	//更新控制器
+	        	controls.update();//update()函数内会执行camera.lookAt(controls.target)
+	        	//更新性能插件
+	        	//stats.update();
+	        	render();
+	        	requestAnimationFrame(animate);
+	        	
+	    	}
+			// 浏览器窗口变动触发的方法
+			window.addEventListener('resize',onWindowResize);
+			
+			function onWindowResize() {
+				width=$('#map').width();
+				height=$('#map').height();
+	    		// 重新设置相机宽高比例
+	    		camera.aspect = width/height;
+	    		// 更新相机投影矩阵
+	    		camera.updateProjectionMatrix();
+	    		// 重新设置渲染器渲染范围
+	    		renderer.setSize(width,height);
+				if(css2DRenderer)
+					css2DRenderer.setSize(width,height);
+				if(css3DRenderer)
+					css3DRenderer.setSize(width,height);
+			}
+        </script>	
+	</body>
+</html>

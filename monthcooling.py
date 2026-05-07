@@ -14,8 +14,135 @@ plt.rcParams['axes.unicode_minus'] = False  # 正常显示坐标轴上的负号
 # ==========================================
 # 1. 真实数据读取与全局参数设定 (已修改为单 Excel 多 Sheet 读取)
 # ==========================================
+DEFAULT_CONFIG_EXCEL_PATH = 'D:/minicondadaima/lianxi/中心站测试模板.xlsx'
+DEFAULT_TYPICAL_DAY_LOAD_FILE = (
+    'D:/study/和达能源站/zrs2026/峰值处理/已处理后/中心站秋季典型日.xlsx'
+)
+DEFAULT_REAL_MONTH_USER_LOAD_FILE = (
+    'D:/minicondadaima/lianxi/duqudaochu/output/'
+    '中心能源站-维亚园区+中心能源站-中心站地块+中心能源站-加速器五期高区+'
+    '中心能源站-加速器五期低区+中心能源站-康洲园区_2025-10-01_00-00-00_'
+    '2025-11-01_00-00-00_冷量汇总.xlsx'
+)
+
+
+def _cli_value(flag_name, default=None):
+    if flag_name not in sys.argv:
+        return default
+    idx = sys.argv.index(flag_name)
+    if idx + 1 >= len(sys.argv):
+        return default
+    return sys.argv[idx + 1]
+
+
+def _cli_has(*tokens):
+    return any(token in sys.argv for token in tokens)
+
+
+def _read_external_load_profile(path):
+    """
+    读取外部典型日/负荷文件。
+    支持:
+      1. 原模板结构: sheet=负荷, column=load_kwc
+      2. 典型日结构: 任意 sheet 中包含 总冷量/冷量/load_kwc 等列
+    返回 24 点逐时 kW 冷负荷。
+    """
+    xl = pd.ExcelFile(path)
+    candidate_sheets = ['负荷'] + [s for s in xl.sheet_names if s != '负荷']
+    load_columns = ['load_kwc', '总冷量', '冷量', '总负荷', 'total_load', 'load_kw', 'load']
+
+    for sheet in candidate_sheets:
+        if sheet not in xl.sheet_names:
+            continue
+        df = pd.read_excel(path, sheet_name=sheet)
+        matched_col = None
+        for col in df.columns:
+            col_text = str(col).strip()
+            if col_text in load_columns:
+                matched_col = col
+                break
+        if matched_col is None:
+            continue
+
+        values = pd.to_numeric(df[matched_col], errors='coerce').dropna().to_numpy(dtype=float)
+        if values.size >= 25:
+            values = values[:24]
+        if values.size != HOURS_IN_DAY:
+            raise ValueError(
+                f"外部负荷文件 {path} 的 sheet={sheet} 列={matched_col} 有 {values.size} 个有效点，"
+                f"当前典型日仿真需要 {HOURS_IN_DAY} 个逐时点。"
+            )
+        print(f"✅ 已读取外部典型日负荷: {path}")
+        print(f"   sheet={sheet}, column={matched_col}, 峰值={np.max(values):.2f} kW, 均值={np.mean(values):.2f} kW")
+        return values
+
+    raise ValueError(f"外部负荷文件 {path} 中没有找到可识别的负荷列: {load_columns}")
+
+
+def _read_real_user_month_profiles(path):
+    """
+    读取真实整月三个用户逐时冷负荷。
+    映射关系:
+      维亚园区 -> 用户3
+      加速器五期 -> 用户4
+      康洲园区 -> 用户6
+    10月应为 31*24=744 小时。若文件含 2025-11-01 00:00 终点，则自动裁掉。
+    """
+    area_col = '区域名称'
+    time_col = '时间'
+    load_col = '冷量汇总'
+    user_area_map = {
+        3: '维亚园区',
+        4: '加速器五期',
+        6: '康洲园区',
+    }
+
+    df = pd.read_excel(path)
+    missing_cols = [c for c in [area_col, time_col, load_col] if c not in df.columns]
+    if missing_cols:
+        raise ValueError(f"真实用户负荷文件缺少列: {missing_cols}，实际列为: {list(df.columns)}")
+
+    df = df[[area_col, time_col, load_col]].copy()
+    df[time_col] = pd.to_datetime(df[time_col])
+    df[load_col] = pd.to_numeric(df[load_col], errors='coerce').fillna(0.0)
+
+    start = pd.Timestamp('2025-10-01 00:00:00')
+    end = pd.Timestamp('2025-11-01 00:00:00')
+    df = df[(df[time_col] >= start) & (df[time_col] <= end)]
+
+    selected_areas = list(user_area_map.values())
+    pivot = (
+        df[df[area_col].isin(selected_areas)]
+        .pivot_table(index=time_col, columns=area_col, values=load_col, aggfunc='sum')
+        .sort_index()
+    )
+
+    expected_index_with_end = pd.date_range(start, end, freq='h')
+    pivot = pivot.reindex(expected_index_with_end)
+    missing = pivot[selected_areas].isna().sum()
+    if missing.any():
+        raise ValueError(f"真实用户负荷文件存在缺失小时: {missing.to_dict()}")
+
+    pivot = pivot[pivot.index < end]
+    expected_hours = 31 * HOURS_IN_DAY
+    if len(pivot) != expected_hours:
+        raise ValueError(f"10月真实用户负荷应为 {expected_hours} 小时，当前为 {len(pivot)} 小时。")
+
+    user_loads = {
+        user_id: pivot[area_name].to_numpy(dtype=float)
+        for user_id, area_name in user_area_map.items()
+    }
+    total = sum(user_loads.values())
+    print(f"✅ 已读取真实10月三个用户逐时负荷: {path}")
+    for user_id, area_name in user_area_map.items():
+        values = user_loads[user_id]
+        print(f"   用户{user_id}({area_name}): 峰值={np.max(values):.2f} kW, 均值={np.mean(values):.2f} kW")
+    print(f"   三用户合计: 峰值={np.max(total):.2f} kW, 均值={np.mean(total):.2f} kW, 小时数={len(total)}")
+    return user_loads
+
+
 print("正在读取 Excel 设备与参数配置...")
-excel_path = 'D:/minicondadaima/lianxi/中心站测试模板.xlsx'  # 确保文件名与您本地一致
+excel_path = DEFAULT_CONFIG_EXCEL_PATH  # 设备参数与电价配置模板
 
 # 读取同一个 Excel 文件的不同 Sheet
 load_df = pd.read_excel(excel_path, sheet_name='负荷')
@@ -31,6 +158,23 @@ TOU_PRICES = price_df['price'].values
 # 系统核心参数
 DAYS_IN_MONTH = int(params_df.loc['days_in_month', 'value'])
 HOURS_IN_DAY = 24
+external_load_file = _cli_value('--load-file')
+real_user_load_file = _cli_value('--user-load-file')
+if _cli_has('prepare_typical', 'diagnose_typical', 'typical'):
+    external_load_file = external_load_file or DEFAULT_TYPICAL_DAY_LOAD_FILE
+if _cli_has('prepare_real_month', 'diagnose_real_month', 'real_month'):
+    real_user_load_file = real_user_load_file or DEFAULT_REAL_MONTH_USER_LOAD_FILE
+
+real_user_loads = None
+if real_user_load_file:
+    real_user_loads = _read_real_user_month_profiles(real_user_load_file)
+    BASE_LOAD = sum(real_user_loads.values())
+    DAYS_IN_MONTH = int(len(BASE_LOAD) // HOURS_IN_DAY)
+elif external_load_file:
+    # 外部典型日只覆盖负荷曲线；设备、电价、经济参数仍来自中心站测试模板。
+    BASE_LOAD = _read_external_load_profile(external_load_file)
+    DAYS_IN_MONTH = int(_cli_value('--days', 1))
+
 TOTAL_HOURS = DAYS_IN_MONTH * HOURS_IN_DAY
 DEMAND_CHARGE_RATE = params_df.loc['demand_price', 'value'] # 48元/kVA
 PF = params_df.loc['pf', 'value']                           # 功率因数 0.85
@@ -79,21 +223,37 @@ PUMP_PRESSURE_SOFT_START_SEC = 60.0
 # ==========================================
 # 2. 生成 30 天逐时负荷并按比例切分 (供 Simulink 使用)
 # ==========================================
-print("正在生成 30 天 (720小时) 管网水力负荷边界条件...")
+print(f"正在生成 {DAYS_IN_MONTH} 天 ({TOTAL_HOURS}小时) 管网水力负荷边界条件...")
 np.random.seed(42)
 MONTHLY_LOAD = []
-for day in range(DAYS_IN_MONTH):
-    # 模拟天气波动：每天在基准负荷上产生 ±10% 的随机浮动
-    daily_variation = np.random.uniform(0.9, 1.1, size=HOURS_IN_DAY)
-    MONTHLY_LOAD.append(BASE_LOAD * daily_variation)
+if real_user_loads is not None:
+    print("正在使用真实三用户逐时负荷生成整月仿真边界，不再叠加随机天气扰动，也不再按比例拆分。")
+    for day in range(DAYS_IN_MONTH):
+        start_idx = day * HOURS_IN_DAY
+        end_idx = (day + 1) * HOURS_IN_DAY
+        MONTHLY_LOAD.append(BASE_LOAD[start_idx:end_idx])
+elif external_load_file:
+    print(f"正在使用外部典型日负荷生成 {DAYS_IN_MONTH} 天仿真边界，不再叠加随机天气扰动。")
+    for day in range(DAYS_IN_MONTH):
+        MONTHLY_LOAD.append(BASE_LOAD.copy())
+else:
+    for day in range(DAYS_IN_MONTH):
+        # 模拟天气波动：每天在基准负荷上产生 ±10% 的随机浮动
+        daily_variation = np.random.uniform(0.9, 1.1, size=HOURS_IN_DAY)
+        MONTHLY_LOAD.append(BASE_LOAD * daily_variation)
 
 # 展平为连续的 720 小时总负荷
 flat_total_load = np.concatenate(MONTHLY_LOAD)
 
-# 按照 Simulink 模型的 1:9:12 比例分配末端负荷 (总份数 22)
-load_u3 = flat_total_load * USER_LOAD_RATIOS[3]
-load_u4 = flat_total_load * USER_LOAD_RATIOS[4]
-load_u6 = flat_total_load * USER_LOAD_RATIOS[6]
+if real_user_loads is not None:
+    load_u3 = real_user_loads[3]
+    load_u4 = real_user_loads[4]
+    load_u6 = real_user_loads[6]
+else:
+    # 按照 Simulink 模型的 1:9:12 比例分配末端负荷 (总份数 22)
+    load_u3 = flat_total_load * USER_LOAD_RATIOS[3]
+    load_u4 = flat_total_load * USER_LOAD_RATIOS[4]
+    load_u6 = flat_total_load * USER_LOAD_RATIOS[6]
 
 # 导出为 Simulink From Workspace 可直接读取的格式 [time_sec, value]
 time_series_sec = np.arange(TOTAL_HOURS) * 3600  
@@ -269,7 +429,13 @@ def load_or_create_valve_settings():
 
 def _workspace_series(values):
     """From Workspace 使用的 [time_sec, value] 矩阵。"""
-    return np.column_stack((time_series_sec, np.asarray(values, dtype=float)))
+    values = np.asarray(values, dtype=float)
+    times = time_series_sec
+    terminal_time = float(TOTAL_HOURS * 3600)
+    if values.size == TOTAL_HOURS:
+        times = np.concatenate((time_series_sec, [terminal_time]))
+        values = np.concatenate((values, [values[-1]]))
+    return np.column_stack((times, values))
 
 
 def _workspace_series_with_time(times, values):
@@ -291,8 +457,8 @@ def _soft_start_series(hourly_values, start_value=0.0, ramp_sec=PUMP_PRESSURE_SO
     if ramp_sec <= 0:
         return _workspace_series(hourly_values)
 
-    times = np.concatenate(([0.0, float(ramp_sec)], time_series_sec[1:]))
-    values = np.concatenate(([float(start_value), hourly_values[0]], hourly_values[1:]))
+    times = np.concatenate(([0.0, float(ramp_sec)], time_series_sec[1:], [float(TOTAL_HOURS * 3600)]))
+    values = np.concatenate(([float(start_value), hourly_values[0]], hourly_values[1:], [hourly_values[-1]]))
     return _workspace_series_with_time(times, values)
 
 
@@ -701,18 +867,20 @@ def step2_optimize_with_real_physics_data():
 
 def main():
     mode = sys.argv[1].lower() if len(sys.argv) > 1 else 'prepare'
-    if mode in ['prepare', 'input']:
+    if mode in ['prepare', 'input', 'prepare_typical', 'typical', 'prepare_real_month', 'real_month']:
         step1_generate_fixed_valve_boundaries_for_simulink()
         print("\n下一步：请在 Simulink 中重新加载 Simulink_30Days_Input.mat 并运行模型。")
         print("仿真完成并保存 sim_result.mat 后，再执行: python monthcooling.py diagnose")
-    elif mode in ['diagnose', 'report']:
+    elif mode in ['diagnose', 'report', 'diagnose_typical', 'diagnose_real_month']:
         step2_optimize_with_real_physics_data()
     elif mode == 'all':
         step1_generate_fixed_valve_boundaries_for_simulink()
         print("\n⚠️ all 模式会立即读取现有 sim_result.mat；请确认它对应当前阀门配置。")
         step2_optimize_with_real_physics_data()
     else:
-        print("用法: python monthcooling.py prepare | diagnose | all")
+        print("用法: python monthcooling.py prepare | prepare_typical | prepare_real_month | diagnose | diagnose_typical | diagnose_real_month | all")
+        print("可选: --load-file <外部典型日负荷.xlsx> --days <重复天数>")
+        print("可选: --user-load-file <真实三用户整月负荷.xlsx>")
 
 
 # 执行入口
