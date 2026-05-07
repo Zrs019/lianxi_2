@@ -1,2 +1,3 @@
-2026/04/29-17:01:15.513 410c Creating DB D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EntityExtractionAssetStore.db since it was missing.
-2026/04/29-17:01:15.545 410c Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EntityExtractionAssetStore.db/MANIFEST-000001
+2026/05/07-18:29:25.710 4db0 Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EntityExtractionAssetStore.db/MANIFEST-000001
+2026/05/07-18:29:25.733 4db0 Recovering log #3
+2026/05/07-18:29:25.760 4db0 Reusing old log D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EntityExtractionAssetStore.db/000003.log 

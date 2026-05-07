@@ -1,0 +1,96 @@
+batch_index: 2
+label: 中心能源站-中心站地块
+leaf_count: 3
+node_values:
+- '428'
+- '447'
+- '524'
+node_names:
+- 艾比奥
+- 德琪
+- 海昶地块
+node_details:
+- label: 艾比奥
+  pathText: 中心能源站-中心站地块-艾比奥
+  valueCandidates:
+  - 428
+  - '868909072226296'
+  - mini-11$row2$135
+  - mini-11$checkbox$135
+  - mini-11$checkbox$135
+  - 艾比奥
+  - 中心能源站-中心站地块-艾比奥
+  raw:
+    id: 428
+    code: '868909072226296'
+    name: 艾比奥
+    type: 冷热量表
+    pid: 427
+    expanded: false
+    _id: 135
+    _uid: 135
+    _pid: 134
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$135
+- label: 德琪
+  pathText: 中心能源站-中心站地块-德琪
+  valueCandidates:
+  - 447
+  - '868909072223145'
+  - mini-11$row2$136
+  - mini-11$checkbox$136
+  - mini-11$checkbox$136
+  - 德琪
+  - 中心能源站-中心站地块-德琪
+  raw:
+    id: 447
+    code: '868909072223145'
+    name: 德琪
+    type: 冷热量表
+    pid: 427
+    expanded: false
+    _id: 136
+    _uid: 136
+    _pid: 134
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$136
+- label: 海昶地块
+  pathText: 中心能源站-中心站地块-海昶地块
+  valueCandidates:
+  - 524
+  - '864601068739077'
+  - mini-11$row2$137
+  - mini-11$checkbox$137
+  - mini-11$checkbox$137
+  - 海昶地块
+  - 中心能源站-中心站地块-海昶地块
+  raw:
+    id: 524
+    code: '864601068739077'
+    name: 海昶地块
+    type: 冷热量表
+    pid: 427
+    expanded: false
+    _id: 137
+    _uid: 137
+    _pid: 134
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$137
+prep_payload: null
+export_payload:
+  equipmentType: 冷热量表
+  ids: 428,447,524
+  excelNames: 艾比奥,德琪,海昶地块
+  legendNames: 累计冷量使用量,累计热量使用量
+  beginDateStr: '2025-10-25 00:00:00'
+  endDateStr: '2025-10-26 00:00:00'
+  type: 小时

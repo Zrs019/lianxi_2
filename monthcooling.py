@@ -65,6 +65,16 @@ VALVE_STEP_LIMIT = 0.15
 UNMET_RATIO_TOL = 0.02
 LOW_DELTA_T_RATIO = 0.60
 
+# 冷站理想出水温度边界/反馈冷源参数
+STATION_SUPPLY_TEMP_SET_C = 7.0
+STATION_SUPPLY_TEMP_SET_K = STATION_SUPPLY_TEMP_SET_C + 273.15
+STATION_SUPPLY_TEMP_WARN_C = 12.0
+STATION_RETURN_TEMP_MAX_C = 20.0
+STATION_COOLING_KP_W_PER_K = 1.0e6
+STATION_COOLING_CAPACITY_SAFETY_FACTOR = 1.25
+STATION_COOLING_CAPACITY_MIN_W = 8.0e6
+PUMP_PRESSURE_SOFT_START_SEC = 60.0
+
 
 # ==========================================
 # 2. 生成 30 天逐时负荷并按比例切分 (供 Simulink 使用)
@@ -262,6 +272,30 @@ def _workspace_series(values):
     return np.column_stack((time_series_sec, np.asarray(values, dtype=float)))
 
 
+def _workspace_series_with_time(times, values):
+    """From Workspace 使用的自定义 [time_sec, value] 矩阵。"""
+    return np.column_stack((np.asarray(times, dtype=float), np.asarray(values, dtype=float)))
+
+
+def _constant_workspace_series(value):
+    """生成长度与仿真时长一致的常数 From Workspace 矩阵。"""
+    return _workspace_series(np.full(TOTAL_HOURS, float(value)))
+
+
+def _soft_start_series(hourly_values, start_value=0.0, ramp_sec=PUMP_PRESSURE_SOFT_START_SEC):
+    """
+    给压差源等容易触发初始化断言的输入增加启动斜坡。
+    t=0 使用 start_value，ramp_sec 后达到第一个小时值，之后按逐时曲线运行。
+    """
+    hourly_values = np.asarray(hourly_values, dtype=float)
+    if ramp_sec <= 0:
+        return _workspace_series(hourly_values)
+
+    times = np.concatenate(([0.0, float(ramp_sec)], time_series_sec[1:]))
+    values = np.concatenate(([float(start_value), hourly_values[0]], hourly_values[1:]))
+    return _workspace_series_with_time(times, values)
+
+
 def step1_generate_fixed_valve_boundaries_for_simulink():
     """
     生成供 Simulink 使用的长期边界条件。
@@ -269,8 +303,38 @@ def step1_generate_fixed_valve_boundaries_for_simulink():
     """
     valve_settings = load_or_create_valve_settings()
     user_loads = _user_load_map()
-    df = pd.DataFrame({'time_sec': time_series_sec, 'total_load': flat_total_load * 1000.0})
-    mat_inputs = {'total_load': _workspace_series(flat_total_load * 1000.0)}
+    total_load_w = flat_total_load * 1000.0
+    station_cooling_feedforward_w = total_load_w.copy()
+    station_cooling_capacity_w = max(
+        float(np.max(station_cooling_feedforward_w) * STATION_COOLING_CAPACITY_SAFETY_FACTOR),
+        STATION_COOLING_CAPACITY_MIN_W,
+    )
+    station_supply_temp_set_k = np.full(TOTAL_HOURS, STATION_SUPPLY_TEMP_SET_K)
+    station_supply_temp_set_c = np.full(TOTAL_HOURS, STATION_SUPPLY_TEMP_SET_C)
+    station_supply_temp_warn_c = np.full(TOTAL_HOURS, STATION_SUPPLY_TEMP_WARN_C)
+    station_return_temp_max_c = np.full(TOTAL_HOURS, STATION_RETURN_TEMP_MAX_C)
+
+    df = pd.DataFrame({
+        'time_sec': time_series_sec,
+        'total_load': total_load_w,
+        'station_supply_temp_set_K': station_supply_temp_set_k,
+        'station_supply_temp_set_C': station_supply_temp_set_c,
+        'station_supply_temp_warn_C': station_supply_temp_warn_c,
+        'station_return_temp_max_C': station_return_temp_max_c,
+        'station_cooling_feedforward_W': station_cooling_feedforward_w,
+        'station_cooling_capacity_W': np.full(TOTAL_HOURS, station_cooling_capacity_w),
+        'station_cooling_kp_W_per_K': np.full(TOTAL_HOURS, STATION_COOLING_KP_W_PER_K),
+    })
+    mat_inputs = {
+        'total_load': _workspace_series(total_load_w),
+        'station_supply_temp_set_K': _workspace_series(station_supply_temp_set_k),
+        'station_supply_temp_set_C': _workspace_series(station_supply_temp_set_c),
+        'station_supply_temp_warn_C': _workspace_series(station_supply_temp_warn_c),
+        'station_return_temp_max_C': _workspace_series(station_return_temp_max_c),
+        'station_cooling_feedforward_W': _workspace_series(station_cooling_feedforward_w),
+        'station_cooling_capacity_W': _constant_workspace_series(station_cooling_capacity_w),
+        'station_cooling_kp_W_per_K': _constant_workspace_series(STATION_COOLING_KP_W_PER_K),
+    }
 
     for user_id, demand_kw in user_loads.items():
         opening = float(valve_settings.loc[user_id, 'valve_opening'])
@@ -300,15 +364,22 @@ def step1_generate_fixed_valve_boundaries_for_simulink():
         for load_kw in flat_total_load
     ]
     pump_pressure_array = np.asarray(pump_pressure_seq, dtype=float)
+    pump_pressure_workspace = _soft_start_series(pump_pressure_array)
     pd.DataFrame({
-        'time_sec': time_series_sec,
-        'pump_pressure': pump_pressure_array
+        'time_sec': pump_pressure_workspace[:, 0],
+        'pump_pressure': pump_pressure_workspace[:, 1]
     }).to_csv('Simulink_30Days_Commands.csv', index=False)
     print("✅ 已导出中心站水泵压差指令: Simulink_30Days_Commands.csv")
 
-    mat_inputs['pump_pressure'] = _workspace_series(pump_pressure_array)
+    mat_inputs['pump_pressure'] = pump_pressure_workspace
     sio.savemat(SIMULINK_INPUT_MAT_FILE, mat_inputs)
     print(f"✅ 已导出与 Simulink From Workspace 同名的 MAT 输入: {SIMULINK_INPUT_MAT_FILE}")
+    print(f"✅ 冷站供水温度设定: {STATION_SUPPLY_TEMP_SET_C:.1f} ℃ ({STATION_SUPPLY_TEMP_SET_K:.2f} K)")
+    print(f"✅ 冷站供水报警阈值: {STATION_SUPPLY_TEMP_WARN_C:.1f} ℃")
+    print(f"✅ 冷站回水上限阈值: {STATION_RETURN_TEMP_MAX_C:.1f} ℃")
+    print(f"✅ 冷站温控比例系数: {STATION_COOLING_KP_W_PER_K:.2e} W/K")
+    print(f"✅ 冷站最大制冷量建议上限: {station_cooling_capacity_w / 1000.0:.1f} kW")
+    print(f"✅ 水泵压差软启动: 0 Pa -> {pump_pressure_array[0]:.0f} Pa，用时 {PUMP_PRESSURE_SOFT_START_SEC:.0f} s")
 
 
 def step1_generate_blind_pressure_for_simulink():

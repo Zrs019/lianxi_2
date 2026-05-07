@@ -1,0 +1,96 @@
+batch_index: 1
+label: 中心能源站-维亚园区
+leaf_count: 3
+node_values:
+- '405'
+- '420'
+- '525'
+node_names:
+- 珂瑞康生物
+- 国科离子
+- 国科离子热
+node_details:
+- label: 珂瑞康生物
+  pathText: 中心能源站-维亚园区-5号楼-珂瑞康生物
+  valueCandidates:
+  - 405
+  - '864601068730134'
+  - mini-11$row2$130
+  - mini-11$checkbox$130
+  - mini-11$checkbox$130
+  - 珂瑞康生物
+  - 中心能源站-维亚园区-5号楼-珂瑞康生物
+  raw:
+    id: 405
+    code: '864601068730134'
+    name: 珂瑞康生物
+    type: 冷热量表
+    pid: 404
+    expanded: false
+    _id: 130
+    _uid: 130
+    _pid: 129
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$130
+- label: 国科离子
+  pathText: 中心能源站-维亚园区-国科离子-国科离子
+  valueCandidates:
+  - 420
+  - '868909072232419'
+  - mini-11$row2$132
+  - mini-11$checkbox$132
+  - mini-11$checkbox$132
+  - 国科离子
+  - 中心能源站-维亚园区-国科离子-国科离子
+  raw:
+    id: 420
+    code: '868909072232419'
+    name: 国科离子
+    type: 冷热量表
+    pid: 421
+    expanded: false
+    _id: 132
+    _uid: 132
+    _pid: 131
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$132
+- label: 国科离子热
+  pathText: 中心能源站-维亚园区-国科离子-国科离子热
+  valueCandidates:
+  - 525
+  - '864865084999037'
+  - mini-11$row2$133
+  - mini-11$checkbox$133
+  - mini-11$checkbox$133
+  - 国科离子热
+  - 中心能源站-维亚园区-国科离子-国科离子热
+  raw:
+    id: 525
+    code: '864865084999037'
+    name: 国科离子热
+    type: 冷热量表
+    pid: 421
+    expanded: false
+    _id: 133
+    _uid: 133
+    _pid: 131
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$133
+prep_payload: null
+export_payload:
+  equipmentType: 冷热量表
+  ids: 405,420,525
+  excelNames: 珂瑞康生物,国科离子,国科离子热
+  legendNames: 累计冷量使用量,累计热量使用量
+  beginDateStr: '2025-10-25 00:00:00'
+  endDateStr: '2025-10-26 00:00:00'
+  type: 小时

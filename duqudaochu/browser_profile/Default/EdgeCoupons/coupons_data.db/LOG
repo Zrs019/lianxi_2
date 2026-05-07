@@ -1,15 +1,6 @@
-2026/04/29-17:46:43.131 9dbc Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/04/29-17:46:43.134 9dbc Recovering log #42
-2026/04/29-17:46:43.134 9dbc Reusing old log D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/000042.log 
-2026/04/29-17:46:43.185 8a0 Level-0 table #46: started
-2026/04/29-17:46:43.187 8a0 Level-0 table #46: 682232 bytes OK
-2026/04/29-17:46:43.188 8a0 Delete type=0 #42
-2026/04/29-17:46:43.189 8a0 Compacting 4@0 + 1@1 files
-2026/04/29-17:46:43.193 8a0 Generated table #47@0: 3 keys, 682232 bytes
-2026/04/29-17:46:43.193 8a0 Compacted 4@0 + 1@1 files => 682232 bytes
-2026/04/29-17:46:43.193 8a0 compacted to: files[ 0 1 1 0 0 0 0 ]
-2026/04/29-17:46:43.193 8a0 Delete type=2 #34
-2026/04/29-17:46:43.193 8a0 Delete type=2 #37
-2026/04/29-17:46:43.193 8a0 Delete type=2 #40
-2026/04/29-17:46:43.193 8a0 Delete type=2 #43
-2026/04/29-17:46:43.194 8a0 Delete type=2 #46
+2026/05/07-21:04:12.061 9d20 Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/05/07-21:04:12.062 9d20 Recovering log #52
+2026/05/07-21:04:12.063 9d20 Reusing old log D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/000052.log 
+2026/05/07-21:04:12.152 3b6c Level-0 table #56: started
+2026/05/07-21:04:12.154 3b6c Level-0 table #56: 682240 bytes OK
+2026/05/07-21:04:12.155 3b6c Delete type=0 #52

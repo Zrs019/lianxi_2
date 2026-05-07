@@ -6,6 +6,7 @@
 website_url: "http://39.170.91.50:2303/RUNPAQ/Login"
 history_menu_text: "冷热量表历史记录"
 app_frame_url_contains: "functionCode=5-20"
+app_direct_url: "http://39.170.91.50:2303/RUNPAQ/2021/project_toPage?functionCode=5-20&theme=2"
 
 # 网站一次查询设备上限。脚本会按这个数量自动分批。
 max_devices_per_query: 100
@@ -16,8 +17,6 @@ selection_levels_preferred: [2, 3]
 
 headless: false
 slow_mo_ms: 80
-
-# 使用 Microsoft Edge 打开浏览器。若想改回 Playwright 自带 Chromium，可设为空字符串 ""。
 browser_channel: "msedge"
 browser_profile_dir: "browser_profile"
 download_dir: "downloads"
@@ -26,27 +25,26 @@ keep_batch_files: true
 export_timeout_ms: 120000
 wait_after_query_seconds: 2
 output_extension: "xlsx"
-
-# 导出方式：
-# - browser：继续使用页面自动化点击，最稳。
-# - api：使用 capture_api.bat 抓到的后端接口直接导出，速度更快。
 export_mode: "api"
 api_capture_file: "api_capture.yaml"
 api:
-  # 如果自动识别失败，运行 capture_api.bat 后按提示把真实参数名填到这里。
+  use_prep_request: false
+  require_numeric_device_ids: true
   parameter_keys:
-    device_ids: ""
-    start_time: ""
-    end_time: ""
-    interval: ""
+    device_ids: "ids"
+    excel_names: "excelNames"
+    start_time: "beginDateStr"
+    end_time: "endDateStr"
+    interval: "type"
     export_type: ""
   interval_values:
-    hour: "时"
-    day: "日"
+    hour: "小时"
+    day: "天"
     month: "月"
     year: "年"
   export_without_chart_value: "不含图表"
-  device_value_keys: ["id", "ID", "deviceId", "devId", "meterId", "nodeId", "code", "value", "domId", "pathText"]
+  debug_payloads: true
+  device_value_keys: ["id", "ID", "deviceId", "devId", "meterId", "nodeId", "code", "value"]
 
 # 该页面看起来像 Element UI / Vue。若脚本找不到控件，优先调整这里。
 selectors:

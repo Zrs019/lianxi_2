@@ -1,0 +1,636 @@
+batch_index: 3
+label: 中心能源站-加速器五期高区
+leaf_count: 23
+node_values:
+- '143'
+- '135'
+- '139'
+- '137'
+- '133'
+- '131'
+- '129'
+- '141'
+- '431'
+- '145'
+- '147'
+- '149'
+- '151'
+- '442'
+- '443'
+- '153'
+- '155'
+- '157'
+- '159'
+- '165'
+- '167'
+- '169'
+- '441'
+node_names:
+- 赛岚生物
+- 和达生物4
+- 和达医检
+- 和达生物5
+- Qbay-3
+- Qbay-2
+- Qbay-1
+- 疾控实验室
+- 迈恩创芯
+- 小蓓生物
+- 信海医药7
+- 信海医药8
+- 卢普生物
+- 生物样本库一楼
+- 生物样本库二楼
+- 久瑞餐饮
+- 浙勤餐饮2
+- 食堂3层
+- 昊谱生物
+- 稳得希林
+- 弓叶具身
+- 汉凡新材9
+- 赛润元启
+node_details:
+- label: 赛岚生物
+  pathText: 中心能源站-加速器五期高区-1号楼-赛岚生物
+  valueCandidates:
+  - 143
+  - '864601065652026'
+  - mini-11$row2$140
+  - mini-11$checkbox$140
+  - mini-11$checkbox$140
+  - 赛岚生物
+  - 中心能源站-加速器五期高区-1号楼-赛岚生物
+  raw:
+    id: 143
+    code: '864601065652026'
+    name: 赛岚生物
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 140
+    _uid: 140
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$140
+- label: 和达生物4
+  pathText: 中心能源站-加速器五期高区-1号楼-和达生物4
+  valueCandidates:
+  - 135
+  - '864601065982076'
+  - mini-11$row2$141
+  - mini-11$checkbox$141
+  - mini-11$checkbox$141
+  - 和达生物4
+  - 中心能源站-加速器五期高区-1号楼-和达生物4
+  raw:
+    id: 135
+    code: '864601065982076'
+    name: 和达生物4
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 141
+    _uid: 141
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$141
+- label: 和达医检
+  pathText: 中心能源站-加速器五期高区-1号楼-和达医检
+  valueCandidates:
+  - 139
+  - '864601066496639'
+  - mini-11$row2$142
+  - mini-11$checkbox$142
+  - mini-11$checkbox$142
+  - 和达医检
+  - 中心能源站-加速器五期高区-1号楼-和达医检
+  raw:
+    id: 139
+    code: '864601066496639'
+    name: 和达医检
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 142
+    _uid: 142
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$142
+- label: 和达生物5
+  pathText: 中心能源站-加速器五期高区-1号楼-和达生物5
+  valueCandidates:
+  - 137
+  - '864601066496845'
+  - mini-11$row2$143
+  - mini-11$checkbox$143
+  - mini-11$checkbox$143
+  - 和达生物5
+  - 中心能源站-加速器五期高区-1号楼-和达生物5
+  raw:
+    id: 137
+    code: '864601066496845'
+    name: 和达生物5
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 143
+    _uid: 143
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$143
+- label: Qbay-3
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-3
+  valueCandidates:
+  - 133
+  - '864601068729813'
+  - mini-11$row2$144
+  - mini-11$checkbox$144
+  - mini-11$checkbox$144
+  - Qbay-3
+  - 中心能源站-加速器五期高区-1号楼-Qbay-3
+  raw:
+    id: 133
+    code: '864601068729813'
+    name: Qbay-3
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 144
+    _uid: 144
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$144
+- label: Qbay-2
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-2
+  valueCandidates:
+  - 131
+  - '864601068725076'
+  - mini-11$row2$145
+  - mini-11$checkbox$145
+  - mini-11$checkbox$145
+  - Qbay-2
+  - 中心能源站-加速器五期高区-1号楼-Qbay-2
+  raw:
+    id: 131
+    code: '864601068725076'
+    name: Qbay-2
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 145
+    _uid: 145
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$145
+- label: Qbay-1
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-1
+  valueCandidates:
+  - 129
+  - '864601068716364'
+  - mini-11$row2$146
+  - mini-11$checkbox$146
+  - mini-11$checkbox$146
+  - Qbay-1
+  - 中心能源站-加速器五期高区-1号楼-Qbay-1
+  raw:
+    id: 129
+    code: '864601068716364'
+    name: Qbay-1
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 146
+    _uid: 146
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$146
+- label: 疾控实验室
+  pathText: 中心能源站-加速器五期高区-1号楼-疾控实验室
+  valueCandidates:
+  - 141
+  - '864601065522013'
+  - mini-11$row2$147
+  - mini-11$checkbox$147
+  - mini-11$checkbox$147
+  - 疾控实验室
+  - 中心能源站-加速器五期高区-1号楼-疾控实验室
+  raw:
+    id: 141
+    code: '864601065522013'
+    name: 疾控实验室
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 147
+    _uid: 147
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$147
+- label: 迈恩创芯
+  pathText: 中心能源站-加速器五期高区-1号楼-迈恩创芯
+  valueCandidates:
+  - 431
+  - '864601068714013'
+  - mini-11$row2$148
+  - mini-11$checkbox$148
+  - mini-11$checkbox$148
+  - 迈恩创芯
+  - 中心能源站-加速器五期高区-1号楼-迈恩创芯
+  raw:
+    id: 431
+    code: '864601068714013'
+    name: 迈恩创芯
+    type: 冷热量表
+    pid: 395
+    expanded: false
+    _id: 148
+    _uid: 148
+    _pid: 139
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$148
+- label: 小蓓生物
+  pathText: 中心能源站-加速器五期高区-2号楼-小蓓生物
+  valueCandidates:
+  - 145
+  - '864601066323155'
+  - mini-11$row2$150
+  - mini-11$checkbox$150
+  - mini-11$checkbox$150
+  - 小蓓生物
+  - 中心能源站-加速器五期高区-2号楼-小蓓生物
+  raw:
+    id: 145
+    code: '864601066323155'
+    name: 小蓓生物
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 150
+    _uid: 150
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$150
+- label: 信海医药7
+  pathText: 中心能源站-加速器五期高区-2号楼-信海医药7
+  valueCandidates:
+  - 147
+  - '864601066482126'
+  - mini-11$row2$151
+  - mini-11$checkbox$151
+  - mini-11$checkbox$151
+  - 信海医药7
+  - 中心能源站-加速器五期高区-2号楼-信海医药7
+  raw:
+    id: 147
+    code: '864601066482126'
+    name: 信海医药7
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 151
+    _uid: 151
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$151
+- label: 信海医药8
+  pathText: 中心能源站-加速器五期高区-2号楼-信海医药8
+  valueCandidates:
+  - 149
+  - '864601066472150'
+  - mini-11$row2$152
+  - mini-11$checkbox$152
+  - mini-11$checkbox$152
+  - 信海医药8
+  - 中心能源站-加速器五期高区-2号楼-信海医药8
+  raw:
+    id: 149
+    code: '864601066472150'
+    name: 信海医药8
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 152
+    _uid: 152
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$152
+- label: 卢普生物
+  pathText: 中心能源站-加速器五期高区-2号楼-卢普生物
+  valueCandidates:
+  - 151
+  - '864601066269812'
+  - mini-11$row2$153
+  - mini-11$checkbox$153
+  - mini-11$checkbox$153
+  - 卢普生物
+  - 中心能源站-加速器五期高区-2号楼-卢普生物
+  raw:
+    id: 151
+    code: '864601066269812'
+    name: 卢普生物
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 153
+    _uid: 153
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$153
+- label: 生物样本库一楼
+  pathText: 中心能源站-加速器五期高区-2号楼-生物样本库一楼
+  valueCandidates:
+  - 442
+  - '864601066449414'
+  - mini-11$row2$154
+  - mini-11$checkbox$154
+  - mini-11$checkbox$154
+  - 生物样本库一楼
+  - 中心能源站-加速器五期高区-2号楼-生物样本库一楼
+  raw:
+    id: 442
+    code: '864601066449414'
+    name: 生物样本库一楼
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 154
+    _uid: 154
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$154
+- label: 生物样本库二楼
+  pathText: 中心能源站-加速器五期高区-2号楼-生物样本库二楼
+  valueCandidates:
+  - 443
+  - '868909072270377'
+  - mini-11$row2$155
+  - mini-11$checkbox$155
+  - mini-11$checkbox$155
+  - 生物样本库二楼
+  - 中心能源站-加速器五期高区-2号楼-生物样本库二楼
+  raw:
+    id: 443
+    code: '868909072270377'
+    name: 生物样本库二楼
+    type: 冷热量表
+    pid: 396
+    expanded: false
+    _id: 155
+    _uid: 155
+    _pid: 149
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$155
+- label: 久瑞餐饮
+  pathText: 中心能源站-加速器五期高区-3号楼-久瑞餐饮
+  valueCandidates:
+  - 153
+  - '864601065634206'
+  - mini-11$row2$157
+  - mini-11$checkbox$157
+  - mini-11$checkbox$157
+  - 久瑞餐饮
+  - 中心能源站-加速器五期高区-3号楼-久瑞餐饮
+  raw:
+    id: 153
+    code: '864601065634206'
+    name: 久瑞餐饮
+    type: 冷热量表
+    pid: 397
+    expanded: false
+    _id: 157
+    _uid: 157
+    _pid: 156
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$157
+- label: 浙勤餐饮2
+  pathText: 中心能源站-加速器五期高区-3号楼-浙勤餐饮2
+  valueCandidates:
+  - 155
+  - '864601066015652'
+  - mini-11$row2$158
+  - mini-11$checkbox$158
+  - mini-11$checkbox$158
+  - 浙勤餐饮2
+  - 中心能源站-加速器五期高区-3号楼-浙勤餐饮2
+  raw:
+    id: 155
+    code: '864601066015652'
+    name: 浙勤餐饮2
+    type: 冷热量表
+    pid: 397
+    expanded: false
+    _id: 158
+    _uid: 158
+    _pid: 156
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$158
+- label: 食堂3层
+  pathText: 中心能源站-加速器五期高区-3号楼-食堂3层
+  valueCandidates:
+  - 157
+  - '864601068731611'
+  - mini-11$row2$159
+  - mini-11$checkbox$159
+  - mini-11$checkbox$159
+  - 食堂3层
+  - 中心能源站-加速器五期高区-3号楼-食堂3层
+  raw:
+    id: 157
+    code: '864601068731611'
+    name: 食堂3层
+    type: 冷热量表
+    pid: 397
+    expanded: false
+    _id: 159
+    _uid: 159
+    _pid: 156
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$159
+- label: 昊谱生物
+  pathText: 中心能源站-加速器五期高区-4号楼-昊谱生物
+  valueCandidates:
+  - 159
+  - '864601066283110'
+  - mini-11$row2$161
+  - mini-11$checkbox$161
+  - mini-11$checkbox$161
+  - 昊谱生物
+  - 中心能源站-加速器五期高区-4号楼-昊谱生物
+  raw:
+    id: 159
+    code: '864601066283110'
+    name: 昊谱生物
+    type: 冷热量表
+    pid: 398
+    expanded: false
+    _id: 161
+    _uid: 161
+    _pid: 160
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$161
+- label: 稳得希林
+  pathText: 中心能源站-加速器五期高区-10号楼-稳得希林
+  valueCandidates:
+  - 165
+  - '864601066464496'
+  - mini-11$row2$163
+  - mini-11$checkbox$163
+  - mini-11$checkbox$163
+  - 稳得希林
+  - 中心能源站-加速器五期高区-10号楼-稳得希林
+  raw:
+    id: 165
+    code: '864601066464496'
+    name: 稳得希林
+    type: 冷热量表
+    pid: 399
+    expanded: false
+    _id: 163
+    _uid: 163
+    _pid: 162
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$163
+- label: 弓叶具身
+  pathText: 中心能源站-加速器五期高区-10号楼-弓叶具身
+  valueCandidates:
+  - 167
+  - '864601065599078'
+  - mini-11$row2$164
+  - mini-11$checkbox$164
+  - mini-11$checkbox$164
+  - 弓叶具身
+  - 中心能源站-加速器五期高区-10号楼-弓叶具身
+  raw:
+    id: 167
+    code: '864601065599078'
+    name: 弓叶具身
+    type: 冷热量表
+    pid: 399
+    expanded: false
+    _id: 164
+    _uid: 164
+    _pid: 162
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$164
+- label: 汉凡新材9
+  pathText: 中心能源站-加速器五期高区-10号楼-汉凡新材9
+  valueCandidates:
+  - 169
+  - '864601065644460'
+  - mini-11$row2$165
+  - mini-11$checkbox$165
+  - mini-11$checkbox$165
+  - 汉凡新材9
+  - 中心能源站-加速器五期高区-10号楼-汉凡新材9
+  raw:
+    id: 169
+    code: '864601065644460'
+    name: 汉凡新材9
+    type: 冷热量表
+    pid: 399
+    expanded: false
+    _id: 165
+    _uid: 165
+    _pid: 162
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$165
+- label: 赛润元启
+  pathText: 中心能源站-加速器五期高区-10号楼-赛润元启
+  valueCandidates:
+  - 441
+  - '868909072251914'
+  - mini-11$row2$166
+  - mini-11$checkbox$166
+  - mini-11$checkbox$166
+  - 赛润元启
+  - 中心能源站-加速器五期高区-10号楼-赛润元启
+  raw:
+    id: 441
+    code: '868909072251914'
+    name: 赛润元启
+    type: 冷热量表
+    pid: 399
+    expanded: false
+    _id: 166
+    _uid: 166
+    _pid: 162
+    _level: 3
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$166
+prep_payload: null
+export_payload:
+  equipmentType: 冷热量表
+  ids: 143,135,139,137,133,131,129,141,431,145,147,149,151,442,443,153,155,157,159,165,167,169,441
+  excelNames: 赛岚生物,和达生物4,和达医检,和达生物5,Qbay-3,Qbay-2,Qbay-1,疾控实验室,迈恩创芯,小蓓生物,信海医药7,信海医药8,卢普生物,生物样本库一楼,生物样本库二楼,久瑞餐饮,浙勤餐饮2,食堂3层,昊谱生物,稳得希林,弓叶具身,汉凡新材9,赛润元启
+  legendNames: 累计冷量使用量,累计热量使用量
+  beginDateStr: '2025-10-25 00:00:00'
+  endDateStr: '2025-10-26 00:00:00'
+  type: 小时

@@ -120,8 +120,7 @@ def process_cooling_data_new_format(file_path):
     return result_df
 
 # 使用函数处理数据
-result_df = process_cooling_data_new_format(r"D:\study\和达能源站\zrs2026\峰值处理\原始\3站十月数据.xls")  # 修改为你的测试文件
-
+result_df = process_cooling_data_new_format(r"D:\study\和达能源站\zrs2026\峰值处理\原始\中心能源站-维亚园区+中心能源站-中心站地块+中心能源站-加速器五期高区+中心能源站-加速器五期低区+中心能源站-康洲园区_2025-10-25_00-00-00_2025-10-26_00-00-00.xlsx")
 if not result_df.empty:
     print("\n" + "="*50)
     print("每个时刻的总冷量:")

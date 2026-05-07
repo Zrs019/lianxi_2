@@ -1,0 +1,96 @@
+batch_index: 4
+label: 中心能源站-加速器五期低区
+leaf_count: 3
+node_values:
+- '161'
+- '163'
+- '171'
+node_names:
+- 鼎龙科技
+- 鼐济药业
+- 加五霍德
+node_details:
+- label: 鼎龙科技
+  pathText: 中心能源站-加速器五期低区-鼎龙科技
+  valueCandidates:
+  - 161
+  - '864601066460056'
+  - mini-11$row2$168
+  - mini-11$checkbox$168
+  - mini-11$checkbox$168
+  - 鼎龙科技
+  - 中心能源站-加速器五期低区-鼎龙科技
+  raw:
+    id: 161
+    code: '864601066460056'
+    name: 鼎龙科技
+    type: 冷热量表
+    pid: 400
+    expanded: false
+    _id: 168
+    _uid: 168
+    _pid: 167
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$168
+- label: 鼐济药业
+  pathText: 中心能源站-加速器五期低区-鼐济药业
+  valueCandidates:
+  - 163
+  - '864601065595019'
+  - mini-11$row2$169
+  - mini-11$checkbox$169
+  - mini-11$checkbox$169
+  - 鼐济药业
+  - 中心能源站-加速器五期低区-鼐济药业
+  raw:
+    id: 163
+    code: '864601065595019'
+    name: 鼐济药业
+    type: 冷热量表
+    pid: 400
+    expanded: false
+    _id: 169
+    _uid: 169
+    _pid: 167
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$169
+- label: 加五霍德
+  pathText: 中心能源站-加速器五期低区-加五霍德
+  valueCandidates:
+  - 171
+  - '864601065629925'
+  - mini-11$row2$170
+  - mini-11$checkbox$170
+  - mini-11$checkbox$170
+  - 加五霍德
+  - 中心能源站-加速器五期低区-加五霍德
+  raw:
+    id: 171
+    code: '864601065629925'
+    name: 加五霍德
+    type: 冷热量表
+    pid: 400
+    expanded: false
+    _id: 170
+    _uid: 170
+    _pid: 167
+    _level: 2
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$170
+prep_payload: null
+export_payload:
+  equipmentType: 冷热量表
+  ids: 161,163,171
+  excelNames: 鼎龙科技,鼐济药业,加五霍德
+  legendNames: 累计冷量使用量,累计热量使用量
+  beginDateStr: '2025-10-25 00:00:00'
+  endDateStr: '2025-10-26 00:00:00'
+  type: 小时

@@ -296,13 +296,29 @@ MINI_SNAPSHOT_JS = r"""
     }
     return out;
   };
+  const rawLabelOf = (item) => norm(
+    item.text || item.name || item.equipmentName || item.deviceName || item.label ||
+    item.displayName || item.title || item.NAME || item.TEXT || ""
+  );
+  const mapRawData = (items, parentPath = [], out = {}) => {
+    for (const item of Array.isArray(items) ? items : []) {
+      const label = rawLabelOf(item);
+      const path = label ? parentPath.concat(label) : parentPath;
+      if (label) out[path.join("-")] = item;
+      mapRawData(item.children || item._children || item.nodes || [], path, out);
+    }
+    return out;
+  };
   let rawNodes = [];
+  let rawByPath = {};
   try {
     const control = window.mini && tree.id ? mini.get(tree.id) : null;
     const data = control && control.getData ? control.getData() : (control && control.data ? control.data : []);
     rawNodes = flattenMiniData(data);
+    rawByPath = mapRawData(data);
   } catch (err) {
     rawNodes = [];
+    rawByPath = {};
   }
   const titles = Array.from(tree.querySelectorAll(".mini-tree-nodetitle"));
   const roots = [];
@@ -310,7 +326,6 @@ MINI_SNAPSHOT_JS = r"""
 
   for (let index = 0; index < titles.length; index += 1) {
     const title = titles[index];
-    const rawNode = rawNodes[index] || {};
     const labelEl = title.querySelector(".mini-tree-nodetext");
     const showEl = title.querySelector(".mini-tree-nodeshow");
     const checkbox = title.querySelector(".mini-tree-checkbox");
@@ -321,6 +336,7 @@ MINI_SNAPSHOT_JS = r"""
     const level = title.querySelectorAll(".mini-tree-indent").length + 1;
     const parentPath = level > 1 && stack[level - 2] ? stack[level - 2].path : [];
     const path = parentPath.concat(label);
+    const rawNode = rawByPath[path.join("-")] || rawNodes[index] || {};
     const item = {
       label,
       path,
@@ -702,15 +718,20 @@ def absolutize_url(page: Page, src: str) -> str:
 
 def open_matching_iframe_as_page(page: Page, cfg: dict[str, Any]) -> None:
     contains_text = cfg.get("app_frame_url_contains")
-    if not contains_text:
+    target_url = ""
+    if contains_text:
+        try:
+            match = page.evaluate(MATCHING_IFRAME_JS, contains_text)
+        except PlaywrightError:
+            match = None
+        if match and match.get("src"):
+            target_url = absolutize_url(page, match["src"])
+    if not target_url:
+        direct_url = cfg.get("app_direct_url")
+        if direct_url and direct_url not in page.url:
+            target_url = direct_url
+    if not target_url:
         return
-    try:
-        match = page.evaluate(MATCHING_IFRAME_JS, contains_text)
-    except PlaywrightError:
-        return
-    if not match or not match.get("src"):
-        return
-    target_url = absolutize_url(page, match["src"])
     if page.url == target_url:
         return
     print(f"正在进入实际功能页面: {target_url}")
@@ -728,7 +749,7 @@ def frame_label(scope: Scope) -> str:
     return f"frame name={name!r} url={scope.url!r}"
 
 
-def find_app_scope(page: Page, cfg: dict[str, Any]) -> tuple[Scope, str]:
+def find_app_scope_once(page: Page, cfg: dict[str, Any]) -> tuple[Scope, str] | None:
     js_cfg = cfg["selectors"]
     scopes: list[Scope] = [page.main_frame]
     scopes.extend(frame for frame in page.frames if frame is not page.main_frame)
@@ -757,7 +778,16 @@ def find_app_scope(page: Page, cfg: dict[str, Any]) -> tuple[Scope, str]:
         except PlaywrightError:
             continue
 
-    return page.main_frame, "element"
+    return None
+
+
+def find_app_scope(page: Page, cfg: dict[str, Any]) -> tuple[Scope, str]:
+    for _ in range(20):
+        found = find_app_scope_once(page, cfg)
+        if found:
+            return found
+        page.wait_for_timeout(500)
+    raise RuntimeError("找不到设备树。请确认已进入“冷热量表历史记录”页面，或运行 .\\inspect.bat 查看页面结构。")
 
 
 def click_text(scope: Scope, text: str, timeout: int = 5000) -> bool:
@@ -872,7 +902,7 @@ def make_export_batches(choices: list[TreeChoice], max_devices: int) -> list[Exp
         return [
             ExportBatch(
                 label="+".join(choice.path_text for choice in choices),
-                nodes=[choice.node for choice in choices],
+                nodes=[leaf for choice in choices for leaf in choice.leaves],
                 leaf_count=total_leaves,
                 uses_leaf_devices=False,
             )
@@ -884,7 +914,7 @@ def make_export_batches(choices: list[TreeChoice], max_devices: int) -> list[Exp
             batches.append(
                 ExportBatch(
                     label=choice.path_text,
-                    nodes=[choice.node],
+                    nodes=choice.leaves,
                     leaf_count=len(choice.leaves),
                     uses_leaf_devices=False,
                 )
@@ -1148,14 +1178,17 @@ def infer_parameter_keys(payload: dict[str, Any], cfg: dict[str, Any]) -> dict[s
     return {
         "device_ids": first_configured_key(cfg, "device_ids")
         or guess_key(payload, ["deviceIds", "deviceId", "meterIds", "meterId", "ids", "id", "nodeIds", "pointIds"]),
+        "excel_names": first_configured_key(cfg, "excel_names")
+        or guess_key(payload, ["excelNames", "equipmentNames", "deviceNames", "names", "name"]),
         "start_time": first_configured_key(cfg, "start_time")
         or guess_key(payload, ["startTime", "beginTime", "startDate", "beginDate", "sTime", "stime", "start"]),
         "end_time": first_configured_key(cfg, "end_time")
         or guess_key(payload, ["endTime", "stopTime", "finishTime", "endDate", "eTime", "etime", "end"]),
         "interval": first_configured_key(cfg, "interval")
         or guess_key(payload, ["interval", "dateType", "timeType", "queryType", "type", "step", "granularity"]),
-        "export_type": first_configured_key(cfg, "export_type")
-        or guess_key(payload, ["exportType", "chartType", "isChart", "hasChart", "includeChart", "type"]),
+        # exportEquipmentHistory has no separate "without chart" parameter in the captured
+        # request. Do not guess here, otherwise "type" (hour/day/month/year) gets overwritten.
+        "export_type": first_configured_key(cfg, "export_type"),
     }
 
 
@@ -1173,8 +1206,13 @@ def node_value(node: dict[str, Any], cfg: dict[str, Any]) -> str:
             return str(attrs[key])
     candidates = node.get("valueCandidates") or []
     for candidate in candidates:
-        if candidate:
+        if candidate and re.fullmatch(r"\d+", str(candidate)):
             return str(candidate)
+    for candidate in candidates:
+        text = str(candidate or "")
+        match = re.search(r"(?:^|[^\d])(\d{2,})(?:[^\d]|$)", text)
+        if match:
+            return match.group(1)
     return str(node.get("pathText") or node.get("label") or "")
 
 
@@ -1187,6 +1225,17 @@ def node_values(nodes: list[dict[str, Any]], cfg: dict[str, Any]) -> list[str]:
             seen.add(value)
             values.append(value)
     return values
+
+
+def node_names(nodes: list[dict[str, Any]]) -> list[str]:
+    seen: set[str] = set()
+    names: list[str] = []
+    for node in nodes:
+        name = str(node.get("label") or node.get("pathText") or "").strip()
+        if name and name not in seen:
+            seen.add(name)
+            names.append(name)
+    return names
 
 
 def update_payload_for_export(
@@ -1204,12 +1253,29 @@ def update_payload_for_export(
         raise RuntimeError("无法识别设备参数名。请运行 capture_api.bat 后在 config.yaml 的 api.parameter_keys.device_ids 填入真实参数名。")
 
     values = node_values(batch.nodes, cfg)
+    if (cfg.get("api") or {}).get("require_numeric_device_ids", False):
+        bad_values = [value for value in values if not re.fullmatch(r"\d+", str(value))]
+        if bad_values:
+            raise RuntimeError(
+                "设备 ID 提取失败，拿到的不是数字 ID: "
+                + ", ".join(bad_values[:10])
+                + "。请把这段报错和所选目录发给我。"
+            )
     current = get_nested_value(updated, device_key)
     if isinstance(current, list):
         device_value: Any = values
     else:
         device_value = ",".join(values)
     set_nested_value(updated, device_key, device_value)
+
+    excel_names_key = keys.get("excel_names")
+    if excel_names_key:
+        names = node_names(batch.nodes)
+        current_names = get_nested_value(updated, excel_names_key)
+        if isinstance(current_names, list):
+            set_nested_value(updated, excel_names_key, names)
+        else:
+            set_nested_value(updated, excel_names_key, ",".join(names))
 
     if keys.get("start_time"):
         set_nested_value(updated, keys["start_time"], start_time)
@@ -1283,6 +1349,40 @@ def request_export_file(
     return target
 
 
+def save_debug_payload(
+    cfg: dict[str, Any],
+    batch_index: int,
+    batch: ExportBatch,
+    prep_payload: dict[str, Any] | None,
+    export_payload: dict[str, Any],
+) -> None:
+    if not ((cfg.get("api") or {}).get("debug_payloads", False)):
+        return
+    debug_dir = PROJECT_DIR / "debug_payloads"
+    debug_dir.mkdir(parents=True, exist_ok=True)
+    data = {
+        "batch_index": batch_index,
+        "label": batch.label,
+        "leaf_count": batch.leaf_count,
+        "node_values": node_values(batch.nodes, cfg),
+        "node_names": node_names(batch.nodes),
+        "node_details": [
+            {
+                "label": node.get("label"),
+                "pathText": node.get("pathText"),
+                "valueCandidates": node.get("valueCandidates"),
+                "raw": node.get("raw"),
+                "attrs": node.get("attrs"),
+            }
+            for node in batch.nodes
+        ],
+        "prep_payload": prep_payload,
+        "export_payload": export_payload,
+    }
+    with (debug_dir / f"batch_{batch_index:03d}.yaml").open("w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f, allow_unicode=True, sort_keys=False)
+
+
 def run_api_exports(
     context: Any,
     cfg: dict[str, Any],
@@ -1293,7 +1393,8 @@ def run_api_exports(
     batches_dir: Path,
 ) -> list[Path]:
     capture = load_capture_file(cfg)
-    prep_capture = capture.get("prep_request") if isinstance(capture.get("prep_request"), dict) else None
+    use_prep = bool((cfg.get("api") or {}).get("use_prep_request", False))
+    prep_capture = capture.get("prep_request") if use_prep and isinstance(capture.get("prep_request"), dict) else None
     parameter_capture = prep_capture or capture
     base_payload = parse_request_payload(parameter_capture)
     keys = infer_parameter_keys(base_payload, cfg)
@@ -1317,8 +1418,10 @@ def run_api_exports(
     for index, batch in enumerate(batches, start=1):
         print(f"\n接口导出第 {index}/{len(batches)} 批: {batch.label}，约 {batch.leaf_count} 台")
         payload = update_payload_for_export(base_payload, keys, cfg, batch, start_time, end_time, interval_key)
+        prep_payload_for_debug = None
         if prep_capture:
             send_captured_request(session, prep_capture, payload)
+            prep_payload_for_debug = payload
             payload_for_download = export_payload
             if export_payload and export_keys.get("device_ids"):
                 payload_for_download = update_payload_for_export(
@@ -1332,6 +1435,7 @@ def run_api_exports(
                 )
         else:
             payload_for_download = payload
+        save_debug_payload(cfg, index, batch, prep_payload_for_debug, payload_for_download)
         file = request_export_file(session, capture, payload_for_download, batch, batches_dir, index, extension)
         downloaded.append(file)
         print(f"已下载: {file.name}")
