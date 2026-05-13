@@ -1,96 +1,231 @@
 batch_index: 2
-label: 中心能源站-中心站地块
-leaf_count: 3
+label: 3号能源站-B线
+leaf_count: 8
 node_values:
-- '428'
-- '447'
-- '524'
+- '71'
+- '77'
+- '81'
+- '83'
+- '85'
+- '87'
+- '93'
+- '402'
 node_names:
-- 艾比奥
-- 德琪
-- 海昶地块
+- B线总表
+- 龙传生物
+- 海昶生物
+- 美亚生物
+- 医泰兰迪
+- 领业生物
+- 赛普过滤
+- 宜生生物
 node_details:
-- label: 艾比奥
-  pathText: 中心能源站-中心站地块-艾比奥
+- label: B线总表
+  pathText: 3号能源站-B线-站内-B线总表
   valueCandidates:
-  - 428
-  - '868909072226296'
-  - mini-11$row2$135
-  - mini-11$checkbox$135
-  - mini-11$checkbox$135
-  - 艾比奥
-  - 中心能源站-中心站地块-艾比奥
+  - 71
+  - '864601066464751'
+  - mini-11$row2$93
+  - mini-11$checkbox$93
+  - mini-11$checkbox$93
+  - B线总表
+  - 3号能源站-B线-站内-B线总表
   raw:
-    id: 428
-    code: '868909072226296'
-    name: 艾比奥
+    id: 71
+    code: '864601066464751'
+    name: B线总表
     type: 冷热量表
-    pid: 427
+    pid: 118
     expanded: false
-    _id: 135
-    _uid: 135
-    _pid: 134
-    _level: 2
+    _id: 93
+    _uid: 93
+    _pid: 92
+    _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$135
-- label: 德琪
-  pathText: 中心能源站-中心站地块-德琪
+    id: mini-11$checkbox$93
+- label: 龙传生物
+  pathText: 3号能源站-B线-四期-7号楼-龙传生物
   valueCandidates:
-  - 447
-  - '868909072223145'
-  - mini-11$row2$136
-  - mini-11$checkbox$136
-  - mini-11$checkbox$136
-  - 德琪
-  - 中心能源站-中心站地块-德琪
+  - 77
+  - '864601068730514'
+  - mini-11$row2$96
+  - mini-11$checkbox$96
+  - mini-11$checkbox$96
+  - 龙传生物
+  - 3号能源站-B线-四期-7号楼-龙传生物
   raw:
-    id: 447
-    code: '868909072223145'
-    name: 德琪
+    id: 77
+    code: '864601068730514'
+    name: 龙传生物
     type: 冷热量表
-    pid: 427
+    pid: 76
     expanded: false
-    _id: 136
-    _uid: 136
-    _pid: 134
-    _level: 2
+    _id: 96
+    _uid: 96
+    _pid: 95
+    _level: 4
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$136
-- label: 海昶地块
-  pathText: 中心能源站-中心站地块-海昶地块
+    id: mini-11$checkbox$96
+- label: 海昶生物
+  pathText: 3号能源站-B线-四期-11号楼3层-海昶生物
   valueCandidates:
-  - 524
-  - '864601068739077'
-  - mini-11$row2$137
-  - mini-11$checkbox$137
-  - mini-11$checkbox$137
-  - 海昶地块
-  - 中心能源站-中心站地块-海昶地块
+  - 81
+  - '864601065523615'
+  - mini-11$row2$98
+  - mini-11$checkbox$98
+  - mini-11$checkbox$98
+  - 海昶生物
+  - 3号能源站-B线-四期-11号楼3层-海昶生物
   raw:
-    id: 524
-    code: '864601068739077'
-    name: 海昶地块
+    id: 81
+    code: '864601065523615'
+    name: 海昶生物
     type: 冷热量表
-    pid: 427
+    pid: 80
     expanded: false
-    _id: 137
-    _uid: 137
-    _pid: 134
-    _level: 2
+    _id: 98
+    _uid: 98
+    _pid: 97
+    _level: 4
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$137
+    id: mini-11$checkbox$98
+- label: 美亚生物
+  pathText: 3号能源站-B线-四期-12号楼1层-美亚生物
+  valueCandidates:
+  - 83
+  - '864601066449158'
+  - mini-11$row2$100
+  - mini-11$checkbox$100
+  - mini-11$checkbox$100
+  - 美亚生物
+  - 3号能源站-B线-四期-12号楼1层-美亚生物
+  raw:
+    id: 83
+    code: '864601066449158'
+    name: 美亚生物
+    type: 冷热量表
+    pid: 82
+    expanded: false
+    _id: 100
+    _uid: 100
+    _pid: 99
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$100
+- label: 医泰兰迪
+  pathText: 3号能源站-B线-四期-12号楼6层-医泰兰迪
+  valueCandidates:
+  - 85
+  - '864601068727239'
+  - mini-11$row2$102
+  - mini-11$checkbox$102
+  - mini-11$checkbox$102
+  - 医泰兰迪
+  - 3号能源站-B线-四期-12号楼6层-医泰兰迪
+  raw:
+    id: 85
+    code: '864601068727239'
+    name: 医泰兰迪
+    type: 冷热量表
+    pid: 84
+    expanded: false
+    _id: 102
+    _uid: 102
+    _pid: 101
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$102
+- label: 领业生物
+  pathText: 3号能源站-B线-四期-13号楼-领业生物
+  valueCandidates:
+  - 87
+  - '864601065544090'
+  - mini-11$row2$104
+  - mini-11$checkbox$104
+  - mini-11$checkbox$104
+  - 领业生物
+  - 3号能源站-B线-四期-13号楼-领业生物
+  raw:
+    id: 87
+    code: '864601065544090'
+    name: 领业生物
+    type: 冷热量表
+    pid: 86
+    expanded: false
+    _id: 104
+    _uid: 104
+    _pid: 103
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$104
+- label: 赛普过滤
+  pathText: 3号能源站-B线-四期-17号楼-赛普过滤
+  valueCandidates:
+  - 93
+  - '864601066447483'
+  - mini-11$row2$106
+  - mini-11$checkbox$106
+  - mini-11$checkbox$106
+  - 赛普过滤
+  - 3号能源站-B线-四期-17号楼-赛普过滤
+  raw:
+    id: 93
+    code: '864601066447483'
+    name: 赛普过滤
+    type: 冷热量表
+    pid: 92
+    expanded: false
+    _id: 106
+    _uid: 106
+    _pid: 105
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$106
+- label: 宜生生物
+  pathText: 3号能源站-B线-四期-12号楼3层-宜生生物
+  valueCandidates:
+  - 402
+  - '864601068740323'
+  - mini-11$row2$108
+  - mini-11$checkbox$108
+  - mini-11$checkbox$108
+  - 宜生生物
+  - 3号能源站-B线-四期-12号楼3层-宜生生物
+  raw:
+    id: 402
+    code: '864601068740323'
+    name: 宜生生物
+    type: 冷热量表
+    pid: 401
+    expanded: false
+    _id: 108
+    _uid: 108
+    _pid: 107
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$108
 prep_payload: null
 export_payload:
   equipmentType: 冷热量表
-  ids: 428,447,524
-  excelNames: 艾比奥,德琪,海昶地块
+  ids: 71,77,81,83,85,87,93,402
+  excelNames: B线总表,龙传生物,海昶生物,美亚生物,医泰兰迪,领业生物,赛普过滤,宜生生物
   legendNames: 累计冷量使用量,累计热量使用量
-  beginDateStr: '2026-01-01 00:00:00'
-  endDateStr: '2026-02-01 00:00:00'
+  beginDateStr: '2025-08-01 00:00:00'
+  endDateStr: '2025-09-01 00:00:00'
   type: 小时

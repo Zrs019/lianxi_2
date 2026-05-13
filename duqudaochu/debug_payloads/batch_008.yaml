@@ -1,879 +1,96 @@
 batch_index: 8
-label: 中心能源站-康洲园区_batch004
-leaf_count: 32
+label: 中心能源站-加速器五期低区
+leaf_count: 3
 node_values:
-- '417'
-- '350'
-- '351'
-- '352'
-- '353'
-- '354'
-- '355'
-- '356'
-- '357'
-- '358'
-- '359'
-- '360'
-- '361'
-- '362'
-- '363'
-- '364'
-- '365'
-- '274'
-- '276'
-- '280'
-- '281'
-- '387'
-- '388'
-- '389'
-- '386'
-- '385'
-- '384'
-- '390'
-- '391'
-- '392'
-- '393'
-- '623'
+- '161'
+- '163'
+- '171'
 node_names:
-- A2-1508
-- A2-1601
-- A2-1602
-- A2-1603
-- A2-1604
-- A2-1605
-- A2-1606
-- A2-1607
-- A2-1608
-- A2-1701
-- A2-1702
-- A2-1703
-- A2-1704
-- A2-1705
-- A2-1706
-- A2-1707
-- A2-1708
-- A2-18楼
-- A2-19楼
-- A2-20楼
-- A2-21楼
-- C-1楼设备机房
-- C-101
-- C-102
-- C-103
-- C-104
-- C-105
-- C-2楼
-- C-3楼
-- C-4楼
-- C-5楼
-- 康洲生物
+- 鼎龙科技
+- 鼐济药业
+- 加五霍德
 node_details:
-- label: A2-1508
-  pathText: 中心能源站-康洲园区-A2座-A2-1508
+- label: 鼎龙科技
+  pathText: 中心能源站-加速器五期低区-鼎龙科技
   valueCandidates:
-  - 417
-  - e04b410053c300005f1501000a000000
-  - mini-11$row2$324
-  - mini-11$checkbox$324
-  - mini-11$checkbox$324
-  - A2-1508
-  - 中心能源站-康洲园区-A2座-A2-1508
+  - 161
+  - '864601066460056'
+  - mini-11$row2$168
+  - mini-11$checkbox$168
+  - mini-11$checkbox$168
+  - 鼎龙科技
+  - 中心能源站-加速器五期低区-鼎龙科技
   raw:
-    id: 417
-    code: e04b410053c300005f1501000a000000
-    name: A2-1508
+    id: 161
+    code: '864601066460056'
+    name: 鼎龙科技
     type: 冷热量表
-    pid: 273
+    pid: 400
     expanded: false
-    _id: 324
-    _uid: 324
-    _pid: 234
-    _level: 3
+    _id: 168
+    _uid: 168
+    _pid: 167
+    _level: 2
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$324
-- label: A2-1601
-  pathText: 中心能源站-康洲园区-A2座-A2-1601
+    id: mini-11$checkbox$168
+- label: 鼐济药业
+  pathText: 中心能源站-加速器五期低区-鼐济药业
   valueCandidates:
-  - 350
-  - e04b410052aa00005f1501000d000000
-  - mini-11$row2$325
-  - mini-11$checkbox$325
-  - mini-11$checkbox$325
-  - A2-1601
-  - 中心能源站-康洲园区-A2座-A2-1601
+  - 163
+  - '864601065595019'
+  - mini-11$row2$169
+  - mini-11$checkbox$169
+  - mini-11$checkbox$169
+  - 鼐济药业
+  - 中心能源站-加速器五期低区-鼐济药业
   raw:
-    id: 350
-    code: e04b410052aa00005f1501000d000000
-    name: A2-1601
+    id: 163
+    code: '864601065595019'
+    name: 鼐济药业
     type: 冷热量表
-    pid: 273
+    pid: 400
     expanded: false
-    _id: 325
-    _uid: 325
-    _pid: 234
-    _level: 3
+    _id: 169
+    _uid: 169
+    _pid: 167
+    _level: 2
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$325
-- label: A2-1602
-  pathText: 中心能源站-康洲园区-A2座-A2-1602
+    id: mini-11$checkbox$169
+- label: 加五霍德
+  pathText: 中心能源站-加速器五期低区-加五霍德
   valueCandidates:
-  - 351
-  - e04b410052aa00005f1501000e000000
-  - mini-11$row2$326
-  - mini-11$checkbox$326
-  - mini-11$checkbox$326
-  - A2-1602
-  - 中心能源站-康洲园区-A2座-A2-1602
+  - 171
+  - '864601065629925'
+  - mini-11$row2$170
+  - mini-11$checkbox$170
+  - mini-11$checkbox$170
+  - 加五霍德
+  - 中心能源站-加速器五期低区-加五霍德
   raw:
-    id: 351
-    code: e04b410052aa00005f1501000e000000
-    name: A2-1602
+    id: 171
+    code: '864601065629925'
+    name: 加五霍德
     type: 冷热量表
-    pid: 273
+    pid: 400
     expanded: false
-    _id: 326
-    _uid: 326
-    _pid: 234
-    _level: 3
+    _id: 170
+    _uid: 170
+    _pid: 167
+    _level: 2
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$326
-- label: A2-1603
-  pathText: 中心能源站-康洲园区-A2座-A2-1603
-  valueCandidates:
-  - 352
-  - e04b410052aa00005f1501000f000000
-  - mini-11$row2$327
-  - mini-11$checkbox$327
-  - mini-11$checkbox$327
-  - A2-1603
-  - 中心能源站-康洲园区-A2座-A2-1603
-  raw:
-    id: 352
-    code: e04b410052aa00005f1501000f000000
-    name: A2-1603
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 327
-    _uid: 327
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$327
-- label: A2-1604
-  pathText: 中心能源站-康洲园区-A2座-A2-1604
-  valueCandidates:
-  - 353
-  - e04b410052aa00005f15010010000000
-  - mini-11$row2$328
-  - mini-11$checkbox$328
-  - mini-11$checkbox$328
-  - A2-1604
-  - 中心能源站-康洲园区-A2座-A2-1604
-  raw:
-    id: 353
-    code: e04b410052aa00005f15010010000000
-    name: A2-1604
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 328
-    _uid: 328
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$328
-- label: A2-1605
-  pathText: 中心能源站-康洲园区-A2座-A2-1605
-  valueCandidates:
-  - 354
-  - e04b410052aa00005f15010011000000
-  - mini-11$row2$329
-  - mini-11$checkbox$329
-  - mini-11$checkbox$329
-  - A2-1605
-  - 中心能源站-康洲园区-A2座-A2-1605
-  raw:
-    id: 354
-    code: e04b410052aa00005f15010011000000
-    name: A2-1605
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 329
-    _uid: 329
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$329
-- label: A2-1606
-  pathText: 中心能源站-康洲园区-A2座-A2-1606
-  valueCandidates:
-  - 355
-  - e04b410052aa00005f15010012000000
-  - mini-11$row2$330
-  - mini-11$checkbox$330
-  - mini-11$checkbox$330
-  - A2-1606
-  - 中心能源站-康洲园区-A2座-A2-1606
-  raw:
-    id: 355
-    code: e04b410052aa00005f15010012000000
-    name: A2-1606
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 330
-    _uid: 330
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$330
-- label: A2-1607
-  pathText: 中心能源站-康洲园区-A2座-A2-1607
-  valueCandidates:
-  - 356
-  - e04b410052aa00005f15010013000000
-  - mini-11$row2$331
-  - mini-11$checkbox$331
-  - mini-11$checkbox$331
-  - A2-1607
-  - 中心能源站-康洲园区-A2座-A2-1607
-  raw:
-    id: 356
-    code: e04b410052aa00005f15010013000000
-    name: A2-1607
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 331
-    _uid: 331
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$331
-- label: A2-1608
-  pathText: 中心能源站-康洲园区-A2座-A2-1608
-  valueCandidates:
-  - 357
-  - e04b410052aa00005f15010014000000
-  - mini-11$row2$332
-  - mini-11$checkbox$332
-  - mini-11$checkbox$332
-  - A2-1608
-  - 中心能源站-康洲园区-A2座-A2-1608
-  raw:
-    id: 357
-    code: e04b410052aa00005f15010014000000
-    name: A2-1608
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 332
-    _uid: 332
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$332
-- label: A2-1701
-  pathText: 中心能源站-康洲园区-A2座-A2-1701
-  valueCandidates:
-  - 358
-  - e04b410052aa00005f15010015000000
-  - mini-11$row2$333
-  - mini-11$checkbox$333
-  - mini-11$checkbox$333
-  - A2-1701
-  - 中心能源站-康洲园区-A2座-A2-1701
-  raw:
-    id: 358
-    code: e04b410052aa00005f15010015000000
-    name: A2-1701
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 333
-    _uid: 333
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$333
-- label: A2-1702
-  pathText: 中心能源站-康洲园区-A2座-A2-1702
-  valueCandidates:
-  - 359
-  - e04b410052aa00005f15010016000000
-  - mini-11$row2$334
-  - mini-11$checkbox$334
-  - mini-11$checkbox$334
-  - A2-1702
-  - 中心能源站-康洲园区-A2座-A2-1702
-  raw:
-    id: 359
-    code: e04b410052aa00005f15010016000000
-    name: A2-1702
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 334
-    _uid: 334
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$334
-- label: A2-1703
-  pathText: 中心能源站-康洲园区-A2座-A2-1703
-  valueCandidates:
-  - 360
-  - e04b410052aa00005f15010008000000
-  - mini-11$row2$335
-  - mini-11$checkbox$335
-  - mini-11$checkbox$335
-  - A2-1703
-  - 中心能源站-康洲园区-A2座-A2-1703
-  raw:
-    id: 360
-    code: e04b410052aa00005f15010008000000
-    name: A2-1703
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 335
-    _uid: 335
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$335
-- label: A2-1704
-  pathText: 中心能源站-康洲园区-A2座-A2-1704
-  valueCandidates:
-  - 361
-  - e04b410052aa00005f15010009000000
-  - mini-11$row2$336
-  - mini-11$checkbox$336
-  - mini-11$checkbox$336
-  - A2-1704
-  - 中心能源站-康洲园区-A2座-A2-1704
-  raw:
-    id: 361
-    code: e04b410052aa00005f15010009000000
-    name: A2-1704
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 336
-    _uid: 336
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$336
-- label: A2-1705
-  pathText: 中心能源站-康洲园区-A2座-A2-1705
-  valueCandidates:
-  - 362
-  - e04b410052aa00005f1501000a000000
-  - mini-11$row2$337
-  - mini-11$checkbox$337
-  - mini-11$checkbox$337
-  - A2-1705
-  - 中心能源站-康洲园区-A2座-A2-1705
-  raw:
-    id: 362
-    code: e04b410052aa00005f1501000a000000
-    name: A2-1705
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 337
-    _uid: 337
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$337
-- label: A2-1706
-  pathText: 中心能源站-康洲园区-A2座-A2-1706
-  valueCandidates:
-  - 363
-  - e04b410052aa00005f1501000b000000
-  - mini-11$row2$338
-  - mini-11$checkbox$338
-  - mini-11$checkbox$338
-  - A2-1706
-  - 中心能源站-康洲园区-A2座-A2-1706
-  raw:
-    id: 363
-    code: e04b410052aa00005f1501000b000000
-    name: A2-1706
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 338
-    _uid: 338
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$338
-- label: A2-1707
-  pathText: 中心能源站-康洲园区-A2座-A2-1707
-  valueCandidates:
-  - 364
-  - e04b410052aa00005f1501000c000000
-  - mini-11$row2$339
-  - mini-11$checkbox$339
-  - mini-11$checkbox$339
-  - A2-1707
-  - 中心能源站-康洲园区-A2座-A2-1707
-  raw:
-    id: 364
-    code: e04b410052aa00005f1501000c000000
-    name: A2-1707
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 339
-    _uid: 339
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$339
-- label: A2-1708
-  pathText: 中心能源站-康洲园区-A2座-A2-1708
-  valueCandidates:
-  - 365
-  - e04b410052aa00005f15010017000000
-  - mini-11$row2$340
-  - mini-11$checkbox$340
-  - mini-11$checkbox$340
-  - A2-1708
-  - 中心能源站-康洲园区-A2座-A2-1708
-  raw:
-    id: 365
-    code: e04b410052aa00005f15010017000000
-    name: A2-1708
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 340
-    _uid: 340
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$340
-- label: A2-18楼
-  pathText: 中心能源站-康洲园区-A2座-A2-18楼
-  valueCandidates:
-  - 274
-  - e04b410052aa00005f15010000000000
-  - mini-11$row2$341
-  - mini-11$checkbox$341
-  - mini-11$checkbox$341
-  - A2-18楼
-  - 中心能源站-康洲园区-A2座-A2-18楼
-  raw:
-    id: 274
-    code: e04b410052aa00005f15010000000000
-    name: A2-18楼
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 341
-    _uid: 341
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$341
-- label: A2-19楼
-  pathText: 中心能源站-康洲园区-A2座-A2-19楼
-  valueCandidates:
-  - 276
-  - e04b410052aa00005f15010002000000
-  - mini-11$row2$342
-  - mini-11$checkbox$342
-  - mini-11$checkbox$342
-  - A2-19楼
-  - 中心能源站-康洲园区-A2座-A2-19楼
-  raw:
-    id: 276
-    code: e04b410052aa00005f15010002000000
-    name: A2-19楼
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 342
-    _uid: 342
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$342
-- label: A2-20楼
-  pathText: 中心能源站-康洲园区-A2座-A2-20楼
-  valueCandidates:
-  - 280
-  - e04b410052aa00005f15010006000000
-  - mini-11$row2$343
-  - mini-11$checkbox$343
-  - mini-11$checkbox$343
-  - A2-20楼
-  - 中心能源站-康洲园区-A2座-A2-20楼
-  raw:
-    id: 280
-    code: e04b410052aa00005f15010006000000
-    name: A2-20楼
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 343
-    _uid: 343
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$343
-- label: A2-21楼
-  pathText: 中心能源站-康洲园区-A2座-A2-21楼
-  valueCandidates:
-  - 281
-  - e04b410052aa00005f15010007000000
-  - mini-11$row2$344
-  - mini-11$checkbox$344
-  - mini-11$checkbox$344
-  - A2-21楼
-  - 中心能源站-康洲园区-A2座-A2-21楼
-  raw:
-    id: 281
-    code: e04b410052aa00005f15010007000000
-    name: A2-21楼
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 344
-    _uid: 344
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$344
-- label: C-1楼设备机房
-  pathText: 中心能源站-康洲园区-C座-C-1楼设备机房
-  valueCandidates:
-  - 387
-  - e04b4100526d00005f15010009000000
-  - mini-11$row2$346
-  - mini-11$checkbox$346
-  - mini-11$checkbox$346
-  - C-1楼设备机房
-  - 中心能源站-康洲园区-C座-C-1楼设备机房
-  raw:
-    id: 387
-    code: e04b4100526d00005f15010009000000
-    name: C-1楼设备机房
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 346
-    _uid: 346
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$346
-- label: C-101
-  pathText: 中心能源站-康洲园区-C座-C-101
-  valueCandidates:
-  - 388
-  - e04b4100526d00005f15010002000000
-  - mini-11$row2$347
-  - mini-11$checkbox$347
-  - mini-11$checkbox$347
-  - C-101
-  - 中心能源站-康洲园区-C座-C-101
-  raw:
-    id: 388
-    code: e04b4100526d00005f15010002000000
-    name: C-101
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 347
-    _uid: 347
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$347
-- label: C-102
-  pathText: 中心能源站-康洲园区-C座-C-102
-  valueCandidates:
-  - 389
-  - e04b4100526d00005f15010003000000
-  - mini-11$row2$348
-  - mini-11$checkbox$348
-  - mini-11$checkbox$348
-  - C-102
-  - 中心能源站-康洲园区-C座-C-102
-  raw:
-    id: 389
-    code: e04b4100526d00005f15010003000000
-    name: C-102
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 348
-    _uid: 348
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$348
-- label: C-103
-  pathText: 中心能源站-康洲园区-C座-C-103
-  valueCandidates:
-  - 386
-  - e04b4100526d00005f15010001000000
-  - mini-11$row2$349
-  - mini-11$checkbox$349
-  - mini-11$checkbox$349
-  - C-103
-  - 中心能源站-康洲园区-C座-C-103
-  raw:
-    id: 386
-    code: e04b4100526d00005f15010001000000
-    name: C-103
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 349
-    _uid: 349
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$349
-- label: C-104
-  pathText: 中心能源站-康洲园区-C座-C-104
-  valueCandidates:
-  - 385
-  - e04b4100526d00005f15010000000000
-  - mini-11$row2$350
-  - mini-11$checkbox$350
-  - mini-11$checkbox$350
-  - C-104
-  - 中心能源站-康洲园区-C座-C-104
-  raw:
-    id: 385
-    code: e04b4100526d00005f15010000000000
-    name: C-104
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 350
-    _uid: 350
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$350
-- label: C-105
-  pathText: 中心能源站-康洲园区-C座-C-105
-  valueCandidates:
-  - 384
-  - e04b4100526d00005f15010007000000
-  - mini-11$row2$351
-  - mini-11$checkbox$351
-  - mini-11$checkbox$351
-  - C-105
-  - 中心能源站-康洲园区-C座-C-105
-  raw:
-    id: 384
-    code: e04b4100526d00005f15010007000000
-    name: C-105
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 351
-    _uid: 351
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$351
-- label: C-2楼
-  pathText: 中心能源站-康洲园区-C座-C-2楼
-  valueCandidates:
-  - 390
-  - e04b4100526d00005f15010008000000
-  - mini-11$row2$352
-  - mini-11$checkbox$352
-  - mini-11$checkbox$352
-  - C-2楼
-  - 中心能源站-康洲园区-C座-C-2楼
-  raw:
-    id: 390
-    code: e04b4100526d00005f15010008000000
-    name: C-2楼
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 352
-    _uid: 352
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$352
-- label: C-3楼
-  pathText: 中心能源站-康洲园区-C座-C-3楼
-  valueCandidates:
-  - 391
-  - e04b4100526d00005f15010004000000
-  - mini-11$row2$353
-  - mini-11$checkbox$353
-  - mini-11$checkbox$353
-  - C-3楼
-  - 中心能源站-康洲园区-C座-C-3楼
-  raw:
-    id: 391
-    code: e04b4100526d00005f15010004000000
-    name: C-3楼
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 353
-    _uid: 353
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$353
-- label: C-4楼
-  pathText: 中心能源站-康洲园区-C座-C-4楼
-  valueCandidates:
-  - 392
-  - e04b4100526d00005f15010005000000
-  - mini-11$row2$354
-  - mini-11$checkbox$354
-  - mini-11$checkbox$354
-  - C-4楼
-  - 中心能源站-康洲园区-C座-C-4楼
-  raw:
-    id: 392
-    code: e04b4100526d00005f15010005000000
-    name: C-4楼
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 354
-    _uid: 354
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$354
-- label: C-5楼
-  pathText: 中心能源站-康洲园区-C座-C-5楼
-  valueCandidates:
-  - 393
-  - e04b4100526d00005f15010006000000
-  - mini-11$row2$355
-  - mini-11$checkbox$355
-  - mini-11$checkbox$355
-  - C-5楼
-  - 中心能源站-康洲园区-C座-C-5楼
-  raw:
-    id: 393
-    code: e04b4100526d00005f15010006000000
-    name: C-5楼
-    type: 冷热量表
-    pid: 383
-    expanded: false
-    _id: 355
-    _uid: 355
-    _pid: 345
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$355
-- label: 康洲生物
-  pathText: 中心能源站-康洲园区-康洲总表-康洲生物
-  valueCandidates:
-  - 623
-  - '864601066445438'
-  - mini-11$row2$357
-  - mini-11$checkbox$357
-  - mini-11$checkbox$357
-  - 康洲生物
-  - 中心能源站-康洲园区-康洲总表-康洲生物
-  raw:
-    id: 623
-    code: '864601066445438'
-    name: 康洲生物
-    type: 冷热量表
-    pid: 618
-    expanded: false
-    _id: 357
-    _uid: 357
-    _pid: 356
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$357
+    id: mini-11$checkbox$170
 prep_payload: null
 export_payload:
   equipmentType: 冷热量表
-  ids: 417,350,351,352,353,354,355,356,357,358,359,360,361,362,363,364,365,274,276,280,281,387,388,389,386,385,384,390,391,392,393,623
-  excelNames: A2-1508,A2-1601,A2-1602,A2-1603,A2-1604,A2-1605,A2-1606,A2-1607,A2-1608,A2-1701,A2-1702,A2-1703,A2-1704,A2-1705,A2-1706,A2-1707,A2-1708,A2-18楼,A2-19楼,A2-20楼,A2-21楼,C-1楼设备机房,C-101,C-102,C-103,C-104,C-105,C-2楼,C-3楼,C-4楼,C-5楼,康洲生物
+  ids: 161,163,171
+  excelNames: 鼎龙科技,鼐济药业,加五霍德
   legendNames: 累计冷量使用量,累计热量使用量
-  beginDateStr: '2026-01-01 00:00:00'
-  endDateStr: '2026-02-01 00:00:00'
+  beginDateStr: '2025-08-01 00:00:00'
+  endDateStr: '2025-09-01 00:00:00'
   type: 小时

@@ -12,7 +12,7 @@ plt.rcParams["axes.unicode_minus"] = False
 
 
 CP_WATER_KJ_PER_KG_K = 4.186
-USERS = (3, 4, 6)
+USERS = (1, 3, 4, 6)
 SUPPLY_TEMP_SET_C = 7.0
 SUPPLY_TEMP_WARN_C = 12.0
 RETURN_TEMP_MAX_C = 20.0

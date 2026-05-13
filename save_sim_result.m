@@ -1,20 +1,26 @@
 % Save Simulink cooling-station results for Python post-processing.
-% Usage:
+% Usage in MATLAB:
+%   cd('D:\minicondadaima\lianxi')
 %   out = sim('guanwangmoxing3_2025a');
 %   save_sim_result
 
 result_file = fullfile('D:\minicondadaima\lianxi', 'sim_result.mat');
 
 signal_names = {
+    'T_ret_1'
     'T_ret_3'
     'T_ret_4'
     'T_ret_6'
+    'T_sup_1'
     'T_sup_3'
     'T_sup_4'
     'T_sup_6'
+    'real_flow_1'
     'real_flow_3'
     'real_flow_4'
     'real_flow_6'
+    'p_pump_A'
+    'p_pump_B'
     'T_station_supply'
     'T_station_return'
     'Q_station_cooling'
@@ -57,6 +63,7 @@ function value = extract_signal(name)
 
     if evalin('base', 'exist(''out'', ''var'')')
         out_obj = evalin('base', 'out');
+
         try
             value = out_obj.(name);
             value = normalize_signal(value);

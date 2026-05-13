@@ -1,96 +1,231 @@
 batch_index: 1
-label: 中心能源站-维亚园区
-leaf_count: 3
+label: 3号能源站-A线
+leaf_count: 8
 node_values:
-- '405'
-- '420'
-- '525'
+- '70'
+- '95'
+- '97'
+- '105'
+- '107'
+- '109'
+- '111'
+- '113'
 node_names:
-- 珂瑞康生物
-- 国科离子
-- 国科离子热
+- A线总表
+- 畅溪制药
+- 恩和生物
+- 巴泰-1
+- 巴泰-2
+- 巴泰-3
+- 尝安医药1
+- 尝安医药2
 node_details:
-- label: 珂瑞康生物
-  pathText: 中心能源站-维亚园区-5号楼-珂瑞康生物
+- label: A线总表
+  pathText: 3号能源站-A线-站内-A线总表
   valueCandidates:
-  - 405
-  - '864601068730134'
-  - mini-11$row2$130
-  - mini-11$checkbox$130
-  - mini-11$checkbox$130
-  - 珂瑞康生物
-  - 中心能源站-维亚园区-5号楼-珂瑞康生物
+  - 70
+  - '864601066433038'
+  - mini-11$row2$75
+  - mini-11$checkbox$75
+  - mini-11$checkbox$75
+  - A线总表
+  - 3号能源站-A线-站内-A线总表
   raw:
-    id: 405
-    code: '864601068730134'
-    name: 珂瑞康生物
+    id: 70
+    code: '864601066433038'
+    name: A线总表
     type: 冷热量表
-    pid: 404
+    pid: 115
     expanded: false
-    _id: 130
-    _uid: 130
-    _pid: 129
+    _id: 75
+    _uid: 75
+    _pid: 74
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$130
-- label: 国科离子
-  pathText: 中心能源站-维亚园区-国科离子-国科离子
+    id: mini-11$checkbox$75
+- label: 畅溪制药
+  pathText: 3号能源站-A线-四期-18号楼-畅溪制药
   valueCandidates:
-  - 420
-  - '868909072232419'
-  - mini-11$row2$132
-  - mini-11$checkbox$132
-  - mini-11$checkbox$132
-  - 国科离子
-  - 中心能源站-维亚园区-国科离子-国科离子
+  - 95
+  - '864601066308396'
+  - mini-11$row2$78
+  - mini-11$checkbox$78
+  - mini-11$checkbox$78
+  - 畅溪制药
+  - 3号能源站-A线-四期-18号楼-畅溪制药
   raw:
-    id: 420
-    code: '868909072232419'
-    name: 国科离子
+    id: 95
+    code: '864601066308396'
+    name: 畅溪制药
     type: 冷热量表
-    pid: 421
+    pid: 94
     expanded: false
-    _id: 132
-    _uid: 132
-    _pid: 131
-    _level: 3
+    _id: 78
+    _uid: 78
+    _pid: 77
+    _level: 4
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$132
-- label: 国科离子热
-  pathText: 中心能源站-维亚园区-国科离子-国科离子热
+    id: mini-11$checkbox$78
+- label: 恩和生物
+  pathText: 3号能源站-A线-四期-22号楼-恩和生物
   valueCandidates:
-  - 525
-  - '864865084999037'
-  - mini-11$row2$133
-  - mini-11$checkbox$133
-  - mini-11$checkbox$133
-  - 国科离子热
-  - 中心能源站-维亚园区-国科离子-国科离子热
+  - 97
+  - '864601066458787'
+  - mini-11$row2$80
+  - mini-11$checkbox$80
+  - mini-11$checkbox$80
+  - 恩和生物
+  - 3号能源站-A线-四期-22号楼-恩和生物
   raw:
-    id: 525
-    code: '864865084999037'
-    name: 国科离子热
+    id: 97
+    code: '864601066458787'
+    name: 恩和生物
     type: 冷热量表
-    pid: 421
+    pid: 96
     expanded: false
-    _id: 133
-    _uid: 133
-    _pid: 131
-    _level: 3
+    _id: 80
+    _uid: 80
+    _pid: 79
+    _level: 4
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$133
+    id: mini-11$checkbox$80
+- label: 巴泰-1
+  pathText: 3号能源站-A线-四期-26号楼1层-巴泰-1
+  valueCandidates:
+  - 105
+  - '864601066487950'
+  - mini-11$row2$82
+  - mini-11$checkbox$82
+  - mini-11$checkbox$82
+  - 巴泰-1
+  - 3号能源站-A线-四期-26号楼1层-巴泰-1
+  raw:
+    id: 105
+    code: '864601066487950'
+    name: 巴泰-1
+    type: 冷热量表
+    pid: 104
+    expanded: false
+    _id: 82
+    _uid: 82
+    _pid: 81
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$82
+- label: 巴泰-2
+  pathText: 3号能源站-A线-四期-26号楼2层-巴泰-2
+  valueCandidates:
+  - 107
+  - '864601066455973'
+  - mini-11$row2$84
+  - mini-11$checkbox$84
+  - mini-11$checkbox$84
+  - 巴泰-2
+  - 3号能源站-A线-四期-26号楼2层-巴泰-2
+  raw:
+    id: 107
+    code: '864601066455973'
+    name: 巴泰-2
+    type: 冷热量表
+    pid: 106
+    expanded: false
+    _id: 84
+    _uid: 84
+    _pid: 83
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$84
+- label: 巴泰-3
+  pathText: 3号能源站-A线-四期-26号楼3层-巴泰-3
+  valueCandidates:
+  - 109
+  - '864601066459892'
+  - mini-11$row2$86
+  - mini-11$checkbox$86
+  - mini-11$checkbox$86
+  - 巴泰-3
+  - 3号能源站-A线-四期-26号楼3层-巴泰-3
+  raw:
+    id: 109
+    code: '864601066459892'
+    name: 巴泰-3
+    type: 冷热量表
+    pid: 108
+    expanded: false
+    _id: 86
+    _uid: 86
+    _pid: 85
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$86
+- label: 尝安医药1
+  pathText: 3号能源站-A线-四期-27号楼1层-尝安医药1
+  valueCandidates:
+  - 111
+  - '864601068736362'
+  - mini-11$row2$88
+  - mini-11$checkbox$88
+  - mini-11$checkbox$88
+  - 尝安医药1
+  - 3号能源站-A线-四期-27号楼1层-尝安医药1
+  raw:
+    id: 111
+    code: '864601068736362'
+    name: 尝安医药1
+    type: 冷热量表
+    pid: 110
+    expanded: false
+    _id: 88
+    _uid: 88
+    _pid: 87
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$88
+- label: 尝安医药2
+  pathText: 3号能源站-A线-四期-27号楼2层-尝安医药2
+  valueCandidates:
+  - 113
+  - '864601068735216'
+  - mini-11$row2$90
+  - mini-11$checkbox$90
+  - mini-11$checkbox$90
+  - 尝安医药2
+  - 3号能源站-A线-四期-27号楼2层-尝安医药2
+  raw:
+    id: 113
+    code: '864601068735216'
+    name: 尝安医药2
+    type: 冷热量表
+    pid: 112
+    expanded: false
+    _id: 90
+    _uid: 90
+    _pid: 89
+    _level: 4
+  attrs:
+    class: 'mini-icon mini-tree-checkbox '
+    style: ' '
+    id: mini-11$checkbox$90
 prep_payload: null
 export_payload:
   equipmentType: 冷热量表
-  ids: 405,420,525
-  excelNames: 珂瑞康生物,国科离子,国科离子热
+  ids: 70,95,97,105,107,109,111,113
+  excelNames: A线总表,畅溪制药,恩和生物,巴泰-1,巴泰-2,巴泰-3,尝安医药1,尝安医药2
   legendNames: 累计冷量使用量,累计热量使用量
-  beginDateStr: '2026-01-01 00:00:00'
-  endDateStr: '2026-02-01 00:00:00'
+  beginDateStr: '2025-08-01 00:00:00'
+  endDateStr: '2025-09-01 00:00:00'
   type: 小时

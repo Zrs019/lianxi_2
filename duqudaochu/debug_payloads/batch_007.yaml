@@ -1,1365 +1,636 @@
 batch_index: 7
-label: 中心能源站-康洲园区_batch003
-leaf_count: 50
+label: 中心能源站-加速器五期高区
+leaf_count: 23
 node_values:
-- '321'
-- '322'
-- '323'
-- '324'
-- '325'
-- '326'
-- '327'
-- '328'
-- '329'
-- '330'
-- '331'
-- '332'
-- '333'
-- '334'
-- '335'
-- '336'
-- '337'
-- '338'
-- '339'
-- '340'
-- '341'
-- '342'
-- '343'
-- '344'
-- '345'
-- '346'
-- '347'
-- '348'
-- '349'
-- '418'
-- '406'
-- '407'
-- '408'
-- '409'
-- '433'
-- '434'
-- '435'
-- '436'
-- '437'
-- '438'
-- '439'
-- '440'
-- '432'
-- '410'
-- '411'
-- '412'
-- '413'
-- '414'
-- '415'
-- '416'
+- '143'
+- '135'
+- '139'
+- '137'
+- '133'
+- '131'
+- '129'
+- '141'
+- '431'
+- '145'
+- '147'
+- '149'
+- '151'
+- '442'
+- '443'
+- '153'
+- '155'
+- '157'
+- '159'
+- '165'
+- '167'
+- '169'
+- '441'
 node_names:
-- A2-704
-- A2-705
-- A2-706
-- A2-707
-- A2-708
-- A2-801
-- A2-802
-- A2-803
-- A2-804
-- A2-805
-- A2-806
-- A2-807
-- A2-808
-- A2-901
-- A2-902
-- A2-903
-- A2-904
-- A2-905
-- A2-906
-- A2-907
-- A2-908
-- A2-1001
-- A2-1002
-- A2-1003
-- A2-1004
-- A2-1005
-- A2-1006
-- A2-1007
-- A2-1008
-- A2-1101
-- A2-1201
-- A2-1204
-- A2-1205
-- A2-1207
-- A2-1301
-- A2-1302
-- A2-1303
-- A2-1304
-- A2-1305
-- A2-1306
-- A2-1307
-- A2-1308
-- A2-14楼
-- A2-1501
-- A2-1502
-- A2-1503
-- A2-1504
-- A2-1505
-- A2-1506
-- A2-1507
+- 赛岚生物
+- 和达生物4
+- 和达医检
+- 和达生物5
+- Qbay-3
+- Qbay-2
+- Qbay-1
+- 疾控实验室
+- 迈恩创芯
+- 小蓓生物
+- 信海医药7
+- 信海医药8
+- 卢普生物
+- 生物样本库一楼
+- 生物样本库二楼
+- 久瑞餐饮
+- 浙勤餐饮2
+- 食堂3层
+- 昊谱生物
+- 稳得希林
+- 弓叶具身
+- 汉凡新材9
+- 赛润元启
 node_details:
-- label: A2-704
-  pathText: 中心能源站-康洲园区-A2座-A2-704
+- label: 赛岚生物
+  pathText: 中心能源站-加速器五期高区-1号楼-赛岚生物
   valueCandidates:
-  - 321
-  - e04b4100502100005f15010007000000
-  - mini-11$row2$274
-  - mini-11$checkbox$274
-  - mini-11$checkbox$274
-  - A2-704
-  - 中心能源站-康洲园区-A2座-A2-704
+  - 143
+  - '864601065652026'
+  - mini-11$row2$140
+  - mini-11$checkbox$140
+  - mini-11$checkbox$140
+  - 赛岚生物
+  - 中心能源站-加速器五期高区-1号楼-赛岚生物
   raw:
-    id: 321
-    code: e04b4100502100005f15010007000000
-    name: A2-704
+    id: 143
+    code: '864601065652026'
+    name: 赛岚生物
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 274
-    _uid: 274
-    _pid: 234
+    _id: 140
+    _uid: 140
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$274
-- label: A2-705
-  pathText: 中心能源站-康洲园区-A2座-A2-705
+    id: mini-11$checkbox$140
+- label: 和达生物4
+  pathText: 中心能源站-加速器五期高区-1号楼-和达生物4
   valueCandidates:
-  - 322
-  - e04b4100502100005f15010000000000
-  - mini-11$row2$275
-  - mini-11$checkbox$275
-  - mini-11$checkbox$275
-  - A2-705
-  - 中心能源站-康洲园区-A2座-A2-705
+  - 135
+  - '864601065982076'
+  - mini-11$row2$141
+  - mini-11$checkbox$141
+  - mini-11$checkbox$141
+  - 和达生物4
+  - 中心能源站-加速器五期高区-1号楼-和达生物4
   raw:
-    id: 322
-    code: e04b4100502100005f15010000000000
-    name: A2-705
+    id: 135
+    code: '864601065982076'
+    name: 和达生物4
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 275
-    _uid: 275
-    _pid: 234
+    _id: 141
+    _uid: 141
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$275
-- label: A2-706
-  pathText: 中心能源站-康洲园区-A2座-A2-706
+    id: mini-11$checkbox$141
+- label: 和达医检
+  pathText: 中心能源站-加速器五期高区-1号楼-和达医检
   valueCandidates:
-  - 323
-  - e04b4100502100005f15010001000000
-  - mini-11$row2$276
-  - mini-11$checkbox$276
-  - mini-11$checkbox$276
-  - A2-706
-  - 中心能源站-康洲园区-A2座-A2-706
+  - 139
+  - '864601066496639'
+  - mini-11$row2$142
+  - mini-11$checkbox$142
+  - mini-11$checkbox$142
+  - 和达医检
+  - 中心能源站-加速器五期高区-1号楼-和达医检
   raw:
-    id: 323
-    code: e04b4100502100005f15010001000000
-    name: A2-706
+    id: 139
+    code: '864601066496639'
+    name: 和达医检
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 276
-    _uid: 276
-    _pid: 234
+    _id: 142
+    _uid: 142
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$276
-- label: A2-707
-  pathText: 中心能源站-康洲园区-A2座-A2-707
+    id: mini-11$checkbox$142
+- label: 和达生物5
+  pathText: 中心能源站-加速器五期高区-1号楼-和达生物5
   valueCandidates:
-  - 324
-  - e04b4100502100005f15010002000000
-  - mini-11$row2$277
-  - mini-11$checkbox$277
-  - mini-11$checkbox$277
-  - A2-707
-  - 中心能源站-康洲园区-A2座-A2-707
+  - 137
+  - '864601066496845'
+  - mini-11$row2$143
+  - mini-11$checkbox$143
+  - mini-11$checkbox$143
+  - 和达生物5
+  - 中心能源站-加速器五期高区-1号楼-和达生物5
   raw:
-    id: 324
-    code: e04b4100502100005f15010002000000
-    name: A2-707
+    id: 137
+    code: '864601066496845'
+    name: 和达生物5
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 277
-    _uid: 277
-    _pid: 234
+    _id: 143
+    _uid: 143
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$277
-- label: A2-708
-  pathText: 中心能源站-康洲园区-A2座-A2-708
+    id: mini-11$checkbox$143
+- label: Qbay-3
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-3
   valueCandidates:
-  - 325
-  - e04b4100502100005f15010003000000
-  - mini-11$row2$278
-  - mini-11$checkbox$278
-  - mini-11$checkbox$278
-  - A2-708
-  - 中心能源站-康洲园区-A2座-A2-708
+  - 133
+  - '864601068729813'
+  - mini-11$row2$144
+  - mini-11$checkbox$144
+  - mini-11$checkbox$144
+  - Qbay-3
+  - 中心能源站-加速器五期高区-1号楼-Qbay-3
   raw:
-    id: 325
-    code: e04b4100502100005f15010003000000
-    name: A2-708
+    id: 133
+    code: '864601068729813'
+    name: Qbay-3
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 278
-    _uid: 278
-    _pid: 234
+    _id: 144
+    _uid: 144
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$278
-- label: A2-801
-  pathText: 中心能源站-康洲园区-A2座-A2-801
+    id: mini-11$checkbox$144
+- label: Qbay-2
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-2
   valueCandidates:
-  - 326
-  - e04b4100502100005f15010008000000
-  - mini-11$row2$279
-  - mini-11$checkbox$279
-  - mini-11$checkbox$279
-  - A2-801
-  - 中心能源站-康洲园区-A2座-A2-801
+  - 131
+  - '864601068725076'
+  - mini-11$row2$145
+  - mini-11$checkbox$145
+  - mini-11$checkbox$145
+  - Qbay-2
+  - 中心能源站-加速器五期高区-1号楼-Qbay-2
   raw:
-    id: 326
-    code: e04b4100502100005f15010008000000
-    name: A2-801
+    id: 131
+    code: '864601068725076'
+    name: Qbay-2
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 279
-    _uid: 279
-    _pid: 234
+    _id: 145
+    _uid: 145
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$279
-- label: A2-802
-  pathText: 中心能源站-康洲园区-A2座-A2-802
+    id: mini-11$checkbox$145
+- label: Qbay-1
+  pathText: 中心能源站-加速器五期高区-1号楼-Qbay-1
   valueCandidates:
-  - 327
-  - e04b4100502100005f15010009000000
-  - mini-11$row2$280
-  - mini-11$checkbox$280
-  - mini-11$checkbox$280
-  - A2-802
-  - 中心能源站-康洲园区-A2座-A2-802
+  - 129
+  - '864601068716364'
+  - mini-11$row2$146
+  - mini-11$checkbox$146
+  - mini-11$checkbox$146
+  - Qbay-1
+  - 中心能源站-加速器五期高区-1号楼-Qbay-1
   raw:
-    id: 327
-    code: e04b4100502100005f15010009000000
-    name: A2-802
+    id: 129
+    code: '864601068716364'
+    name: Qbay-1
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 280
-    _uid: 280
-    _pid: 234
+    _id: 146
+    _uid: 146
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$280
-- label: A2-803
-  pathText: 中心能源站-康洲园区-A2座-A2-803
+    id: mini-11$checkbox$146
+- label: 疾控实验室
+  pathText: 中心能源站-加速器五期高区-1号楼-疾控实验室
   valueCandidates:
-  - 328
-  - e04b4100502100005f1501000a000000
-  - mini-11$row2$281
-  - mini-11$checkbox$281
-  - mini-11$checkbox$281
-  - A2-803
-  - 中心能源站-康洲园区-A2座-A2-803
+  - 141
+  - '864601065522013'
+  - mini-11$row2$147
+  - mini-11$checkbox$147
+  - mini-11$checkbox$147
+  - 疾控实验室
+  - 中心能源站-加速器五期高区-1号楼-疾控实验室
   raw:
-    id: 328
-    code: e04b4100502100005f1501000a000000
-    name: A2-803
+    id: 141
+    code: '864601065522013'
+    name: 疾控实验室
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 281
-    _uid: 281
-    _pid: 234
+    _id: 147
+    _uid: 147
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$281
-- label: A2-804
-  pathText: 中心能源站-康洲园区-A2座-A2-804
+    id: mini-11$checkbox$147
+- label: 迈恩创芯
+  pathText: 中心能源站-加速器五期高区-1号楼-迈恩创芯
   valueCandidates:
-  - 329
-  - e04b4100502100005f1501000b000000
-  - mini-11$row2$282
-  - mini-11$checkbox$282
-  - mini-11$checkbox$282
-  - A2-804
-  - 中心能源站-康洲园区-A2座-A2-804
+  - 431
+  - '864601068714013'
+  - mini-11$row2$148
+  - mini-11$checkbox$148
+  - mini-11$checkbox$148
+  - 迈恩创芯
+  - 中心能源站-加速器五期高区-1号楼-迈恩创芯
   raw:
-    id: 329
-    code: e04b4100502100005f1501000b000000
-    name: A2-804
+    id: 431
+    code: '864601068714013'
+    name: 迈恩创芯
     type: 冷热量表
-    pid: 273
+    pid: 395
     expanded: false
-    _id: 282
-    _uid: 282
-    _pid: 234
+    _id: 148
+    _uid: 148
+    _pid: 139
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$282
-- label: A2-805
-  pathText: 中心能源站-康洲园区-A2座-A2-805
+    id: mini-11$checkbox$148
+- label: 小蓓生物
+  pathText: 中心能源站-加速器五期高区-2号楼-小蓓生物
   valueCandidates:
-  - 330
-  - e04b4100502100005f1501000c000000
-  - mini-11$row2$283
-  - mini-11$checkbox$283
-  - mini-11$checkbox$283
-  - A2-805
-  - 中心能源站-康洲园区-A2座-A2-805
+  - 145
+  - '864601066323155'
+  - mini-11$row2$150
+  - mini-11$checkbox$150
+  - mini-11$checkbox$150
+  - 小蓓生物
+  - 中心能源站-加速器五期高区-2号楼-小蓓生物
   raw:
-    id: 330
-    code: e04b4100502100005f1501000c000000
-    name: A2-805
+    id: 145
+    code: '864601066323155'
+    name: 小蓓生物
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 283
-    _uid: 283
-    _pid: 234
+    _id: 150
+    _uid: 150
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$283
-- label: A2-806
-  pathText: 中心能源站-康洲园区-A2座-A2-806
+    id: mini-11$checkbox$150
+- label: 信海医药7
+  pathText: 中心能源站-加速器五期高区-2号楼-信海医药7
   valueCandidates:
-  - 331
-  - e04b4100502100005f1501000d000000
-  - mini-11$row2$284
-  - mini-11$checkbox$284
-  - mini-11$checkbox$284
-  - A2-806
-  - 中心能源站-康洲园区-A2座-A2-806
+  - 147
+  - '864601066482126'
+  - mini-11$row2$151
+  - mini-11$checkbox$151
+  - mini-11$checkbox$151
+  - 信海医药7
+  - 中心能源站-加速器五期高区-2号楼-信海医药7
   raw:
-    id: 331
-    code: e04b4100502100005f1501000d000000
-    name: A2-806
+    id: 147
+    code: '864601066482126'
+    name: 信海医药7
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 284
-    _uid: 284
-    _pid: 234
+    _id: 151
+    _uid: 151
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$284
-- label: A2-807
-  pathText: 中心能源站-康洲园区-A2座-A2-807
+    id: mini-11$checkbox$151
+- label: 信海医药8
+  pathText: 中心能源站-加速器五期高区-2号楼-信海医药8
   valueCandidates:
-  - 332
-  - e04b4100502100005f1501000e000000
-  - mini-11$row2$285
-  - mini-11$checkbox$285
-  - mini-11$checkbox$285
-  - A2-807
-  - 中心能源站-康洲园区-A2座-A2-807
+  - 149
+  - '864601066472150'
+  - mini-11$row2$152
+  - mini-11$checkbox$152
+  - mini-11$checkbox$152
+  - 信海医药8
+  - 中心能源站-加速器五期高区-2号楼-信海医药8
   raw:
-    id: 332
-    code: e04b4100502100005f1501000e000000
-    name: A2-807
+    id: 149
+    code: '864601066472150'
+    name: 信海医药8
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 285
-    _uid: 285
-    _pid: 234
+    _id: 152
+    _uid: 152
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$285
-- label: A2-808
-  pathText: 中心能源站-康洲园区-A2座-A2-808
+    id: mini-11$checkbox$152
+- label: 卢普生物
+  pathText: 中心能源站-加速器五期高区-2号楼-卢普生物
   valueCandidates:
-  - 333
-  - e04b4100502100005f1501000f000000
-  - mini-11$row2$286
-  - mini-11$checkbox$286
-  - mini-11$checkbox$286
-  - A2-808
-  - 中心能源站-康洲园区-A2座-A2-808
+  - 151
+  - '864601066269812'
+  - mini-11$row2$153
+  - mini-11$checkbox$153
+  - mini-11$checkbox$153
+  - 卢普生物
+  - 中心能源站-加速器五期高区-2号楼-卢普生物
   raw:
-    id: 333
-    code: e04b4100502100005f1501000f000000
-    name: A2-808
+    id: 151
+    code: '864601066269812'
+    name: 卢普生物
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 286
-    _uid: 286
-    _pid: 234
+    _id: 153
+    _uid: 153
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$286
-- label: A2-901
-  pathText: 中心能源站-康洲园区-A2座-A2-901
+    id: mini-11$checkbox$153
+- label: 生物样本库一楼
+  pathText: 中心能源站-加速器五期高区-2号楼-生物样本库一楼
   valueCandidates:
-  - 334
-  - e04b4100502100005f15010010000000
-  - mini-11$row2$287
-  - mini-11$checkbox$287
-  - mini-11$checkbox$287
-  - A2-901
-  - 中心能源站-康洲园区-A2座-A2-901
+  - 442
+  - '864601066449414'
+  - mini-11$row2$154
+  - mini-11$checkbox$154
+  - mini-11$checkbox$154
+  - 生物样本库一楼
+  - 中心能源站-加速器五期高区-2号楼-生物样本库一楼
   raw:
-    id: 334
-    code: e04b4100502100005f15010010000000
-    name: A2-901
+    id: 442
+    code: '864601066449414'
+    name: 生物样本库一楼
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 287
-    _uid: 287
-    _pid: 234
+    _id: 154
+    _uid: 154
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$287
-- label: A2-902
-  pathText: 中心能源站-康洲园区-A2座-A2-902
+    id: mini-11$checkbox$154
+- label: 生物样本库二楼
+  pathText: 中心能源站-加速器五期高区-2号楼-生物样本库二楼
   valueCandidates:
-  - 335
-  - e04b4100502100005f15010011000000
-  - mini-11$row2$288
-  - mini-11$checkbox$288
-  - mini-11$checkbox$288
-  - A2-902
-  - 中心能源站-康洲园区-A2座-A2-902
+  - 443
+  - '868909072270377'
+  - mini-11$row2$155
+  - mini-11$checkbox$155
+  - mini-11$checkbox$155
+  - 生物样本库二楼
+  - 中心能源站-加速器五期高区-2号楼-生物样本库二楼
   raw:
-    id: 335
-    code: e04b4100502100005f15010011000000
-    name: A2-902
+    id: 443
+    code: '868909072270377'
+    name: 生物样本库二楼
     type: 冷热量表
-    pid: 273
+    pid: 396
     expanded: false
-    _id: 288
-    _uid: 288
-    _pid: 234
+    _id: 155
+    _uid: 155
+    _pid: 149
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$288
-- label: A2-903
-  pathText: 中心能源站-康洲园区-A2座-A2-903
+    id: mini-11$checkbox$155
+- label: 久瑞餐饮
+  pathText: 中心能源站-加速器五期高区-3号楼-久瑞餐饮
   valueCandidates:
-  - 336
-  - e04b4100502100005f15010012000000
-  - mini-11$row2$289
-  - mini-11$checkbox$289
-  - mini-11$checkbox$289
-  - A2-903
-  - 中心能源站-康洲园区-A2座-A2-903
+  - 153
+  - '864601065634206'
+  - mini-11$row2$157
+  - mini-11$checkbox$157
+  - mini-11$checkbox$157
+  - 久瑞餐饮
+  - 中心能源站-加速器五期高区-3号楼-久瑞餐饮
   raw:
-    id: 336
-    code: e04b4100502100005f15010012000000
-    name: A2-903
+    id: 153
+    code: '864601065634206'
+    name: 久瑞餐饮
     type: 冷热量表
-    pid: 273
+    pid: 397
     expanded: false
-    _id: 289
-    _uid: 289
-    _pid: 234
+    _id: 157
+    _uid: 157
+    _pid: 156
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$289
-- label: A2-904
-  pathText: 中心能源站-康洲园区-A2座-A2-904
+    id: mini-11$checkbox$157
+- label: 浙勤餐饮2
+  pathText: 中心能源站-加速器五期高区-3号楼-浙勤餐饮2
   valueCandidates:
-  - 337
-  - e04b4100502100005f15010013000000
-  - mini-11$row2$290
-  - mini-11$checkbox$290
-  - mini-11$checkbox$290
-  - A2-904
-  - 中心能源站-康洲园区-A2座-A2-904
+  - 155
+  - '864601066015652'
+  - mini-11$row2$158
+  - mini-11$checkbox$158
+  - mini-11$checkbox$158
+  - 浙勤餐饮2
+  - 中心能源站-加速器五期高区-3号楼-浙勤餐饮2
   raw:
-    id: 337
-    code: e04b4100502100005f15010013000000
-    name: A2-904
+    id: 155
+    code: '864601066015652'
+    name: 浙勤餐饮2
     type: 冷热量表
-    pid: 273
+    pid: 397
     expanded: false
-    _id: 290
-    _uid: 290
-    _pid: 234
+    _id: 158
+    _uid: 158
+    _pid: 156
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$290
-- label: A2-905
-  pathText: 中心能源站-康洲园区-A2座-A2-905
+    id: mini-11$checkbox$158
+- label: 食堂3层
+  pathText: 中心能源站-加速器五期高区-3号楼-食堂3层
   valueCandidates:
-  - 338
-  - e04b4100502100005f15010014000000
-  - mini-11$row2$291
-  - mini-11$checkbox$291
-  - mini-11$checkbox$291
-  - A2-905
-  - 中心能源站-康洲园区-A2座-A2-905
+  - 157
+  - '864601068731611'
+  - mini-11$row2$159
+  - mini-11$checkbox$159
+  - mini-11$checkbox$159
+  - 食堂3层
+  - 中心能源站-加速器五期高区-3号楼-食堂3层
   raw:
-    id: 338
-    code: e04b4100502100005f15010014000000
-    name: A2-905
+    id: 157
+    code: '864601068731611'
+    name: 食堂3层
     type: 冷热量表
-    pid: 273
+    pid: 397
     expanded: false
-    _id: 291
-    _uid: 291
-    _pid: 234
+    _id: 159
+    _uid: 159
+    _pid: 156
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$291
-- label: A2-906
-  pathText: 中心能源站-康洲园区-A2座-A2-906
+    id: mini-11$checkbox$159
+- label: 昊谱生物
+  pathText: 中心能源站-加速器五期高区-4号楼-昊谱生物
   valueCandidates:
-  - 339
-  - e04b4100502100005f15010015000000
-  - mini-11$row2$292
-  - mini-11$checkbox$292
-  - mini-11$checkbox$292
-  - A2-906
-  - 中心能源站-康洲园区-A2座-A2-906
+  - 159
+  - '864601066283110'
+  - mini-11$row2$161
+  - mini-11$checkbox$161
+  - mini-11$checkbox$161
+  - 昊谱生物
+  - 中心能源站-加速器五期高区-4号楼-昊谱生物
   raw:
-    id: 339
-    code: e04b4100502100005f15010015000000
-    name: A2-906
+    id: 159
+    code: '864601066283110'
+    name: 昊谱生物
     type: 冷热量表
-    pid: 273
+    pid: 398
     expanded: false
-    _id: 292
-    _uid: 292
-    _pid: 234
+    _id: 161
+    _uid: 161
+    _pid: 160
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$292
-- label: A2-907
-  pathText: 中心能源站-康洲园区-A2座-A2-907
+    id: mini-11$checkbox$161
+- label: 稳得希林
+  pathText: 中心能源站-加速器五期高区-10号楼-稳得希林
   valueCandidates:
-  - 340
-  - e04b4100502100005f15010016000000
-  - mini-11$row2$293
-  - mini-11$checkbox$293
-  - mini-11$checkbox$293
-  - A2-907
-  - 中心能源站-康洲园区-A2座-A2-907
+  - 165
+  - '864601066464496'
+  - mini-11$row2$163
+  - mini-11$checkbox$163
+  - mini-11$checkbox$163
+  - 稳得希林
+  - 中心能源站-加速器五期高区-10号楼-稳得希林
   raw:
-    id: 340
-    code: e04b4100502100005f15010016000000
-    name: A2-907
+    id: 165
+    code: '864601066464496'
+    name: 稳得希林
     type: 冷热量表
-    pid: 273
+    pid: 399
     expanded: false
-    _id: 293
-    _uid: 293
-    _pid: 234
+    _id: 163
+    _uid: 163
+    _pid: 162
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$293
-- label: A2-908
-  pathText: 中心能源站-康洲园区-A2座-A2-908
+    id: mini-11$checkbox$163
+- label: 弓叶具身
+  pathText: 中心能源站-加速器五期高区-10号楼-弓叶具身
   valueCandidates:
-  - 341
-  - e04b4100502100005f15010017000000
-  - mini-11$row2$294
-  - mini-11$checkbox$294
-  - mini-11$checkbox$294
-  - A2-908
-  - 中心能源站-康洲园区-A2座-A2-908
+  - 167
+  - '864601065599078'
+  - mini-11$row2$164
+  - mini-11$checkbox$164
+  - mini-11$checkbox$164
+  - 弓叶具身
+  - 中心能源站-加速器五期高区-10号楼-弓叶具身
   raw:
-    id: 341
-    code: e04b4100502100005f15010017000000
-    name: A2-908
+    id: 167
+    code: '864601065599078'
+    name: 弓叶具身
     type: 冷热量表
-    pid: 273
+    pid: 399
     expanded: false
-    _id: 294
-    _uid: 294
-    _pid: 234
+    _id: 164
+    _uid: 164
+    _pid: 162
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$294
-- label: A2-1001
-  pathText: 中心能源站-康洲园区-A2座-A2-1001
+    id: mini-11$checkbox$164
+- label: 汉凡新材9
+  pathText: 中心能源站-加速器五期高区-10号楼-汉凡新材9
   valueCandidates:
-  - 342
-  - e04b4100502100005f15010018000000
-  - mini-11$row2$295
-  - mini-11$checkbox$295
-  - mini-11$checkbox$295
-  - A2-1001
-  - 中心能源站-康洲园区-A2座-A2-1001
+  - 169
+  - '864601065644460'
+  - mini-11$row2$165
+  - mini-11$checkbox$165
+  - mini-11$checkbox$165
+  - 汉凡新材9
+  - 中心能源站-加速器五期高区-10号楼-汉凡新材9
   raw:
-    id: 342
-    code: e04b4100502100005f15010018000000
-    name: A2-1001
+    id: 169
+    code: '864601065644460'
+    name: 汉凡新材9
     type: 冷热量表
-    pid: 273
+    pid: 399
     expanded: false
-    _id: 295
-    _uid: 295
-    _pid: 234
+    _id: 165
+    _uid: 165
+    _pid: 162
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$295
-- label: A2-1002
-  pathText: 中心能源站-康洲园区-A2座-A2-1002
+    id: mini-11$checkbox$165
+- label: 赛润元启
+  pathText: 中心能源站-加速器五期高区-10号楼-赛润元启
   valueCandidates:
-  - 343
-  - e04b4100502100005f15010019000000
-  - mini-11$row2$296
-  - mini-11$checkbox$296
-  - mini-11$checkbox$296
-  - A2-1002
-  - 中心能源站-康洲园区-A2座-A2-1002
+  - 441
+  - '868909072251914'
+  - mini-11$row2$166
+  - mini-11$checkbox$166
+  - mini-11$checkbox$166
+  - 赛润元启
+  - 中心能源站-加速器五期高区-10号楼-赛润元启
   raw:
-    id: 343
-    code: e04b4100502100005f15010019000000
-    name: A2-1002
+    id: 441
+    code: '868909072251914'
+    name: 赛润元启
     type: 冷热量表
-    pid: 273
+    pid: 399
     expanded: false
-    _id: 296
-    _uid: 296
-    _pid: 234
+    _id: 166
+    _uid: 166
+    _pid: 162
     _level: 3
   attrs:
     class: 'mini-icon mini-tree-checkbox '
     style: ' '
-    id: mini-11$checkbox$296
-- label: A2-1003
-  pathText: 中心能源站-康洲园区-A2座-A2-1003
-  valueCandidates:
-  - 344
-  - e04b4100502100005f1501001a000000
-  - mini-11$row2$297
-  - mini-11$checkbox$297
-  - mini-11$checkbox$297
-  - A2-1003
-  - 中心能源站-康洲园区-A2座-A2-1003
-  raw:
-    id: 344
-    code: e04b4100502100005f1501001a000000
-    name: A2-1003
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 297
-    _uid: 297
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$297
-- label: A2-1004
-  pathText: 中心能源站-康洲园区-A2座-A2-1004
-  valueCandidates:
-  - 345
-  - e04b4100502100005f1501001b000000
-  - mini-11$row2$298
-  - mini-11$checkbox$298
-  - mini-11$checkbox$298
-  - A2-1004
-  - 中心能源站-康洲园区-A2座-A2-1004
-  raw:
-    id: 345
-    code: e04b4100502100005f1501001b000000
-    name: A2-1004
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 298
-    _uid: 298
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$298
-- label: A2-1005
-  pathText: 中心能源站-康洲园区-A2座-A2-1005
-  valueCandidates:
-  - 346
-  - e04b4100502100005f1501001c000000
-  - mini-11$row2$299
-  - mini-11$checkbox$299
-  - mini-11$checkbox$299
-  - A2-1005
-  - 中心能源站-康洲园区-A2座-A2-1005
-  raw:
-    id: 346
-    code: e04b4100502100005f1501001c000000
-    name: A2-1005
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 299
-    _uid: 299
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$299
-- label: A2-1006
-  pathText: 中心能源站-康洲园区-A2座-A2-1006
-  valueCandidates:
-  - 347
-  - e04b4100502100005f1501001d000000
-  - mini-11$row2$300
-  - mini-11$checkbox$300
-  - mini-11$checkbox$300
-  - A2-1006
-  - 中心能源站-康洲园区-A2座-A2-1006
-  raw:
-    id: 347
-    code: e04b4100502100005f1501001d000000
-    name: A2-1006
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 300
-    _uid: 300
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$300
-- label: A2-1007
-  pathText: 中心能源站-康洲园区-A2座-A2-1007
-  valueCandidates:
-  - 348
-  - e04b4100502100005f1501001e000000
-  - mini-11$row2$301
-  - mini-11$checkbox$301
-  - mini-11$checkbox$301
-  - A2-1007
-  - 中心能源站-康洲园区-A2座-A2-1007
-  raw:
-    id: 348
-    code: e04b4100502100005f1501001e000000
-    name: A2-1007
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 301
-    _uid: 301
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$301
-- label: A2-1008
-  pathText: 中心能源站-康洲园区-A2座-A2-1008
-  valueCandidates:
-  - 349
-  - e04b4100502100005f1501001f000000
-  - mini-11$row2$302
-  - mini-11$checkbox$302
-  - mini-11$checkbox$302
-  - A2-1008
-  - 中心能源站-康洲园区-A2座-A2-1008
-  raw:
-    id: 349
-    code: e04b4100502100005f1501001f000000
-    name: A2-1008
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 302
-    _uid: 302
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$302
-- label: A2-1101
-  pathText: 中心能源站-康洲园区-A2座-A2-1101
-  valueCandidates:
-  - 418
-  - e04b410053c300005f1501000c000000
-  - mini-11$row2$303
-  - mini-11$checkbox$303
-  - mini-11$checkbox$303
-  - A2-1101
-  - 中心能源站-康洲园区-A2座-A2-1101
-  raw:
-    id: 418
-    code: e04b410053c300005f1501000c000000
-    name: A2-1101
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 303
-    _uid: 303
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$303
-- label: A2-1201
-  pathText: 中心能源站-康洲园区-A2座-A2-1201
-  valueCandidates:
-  - 406
-  - e04b410053c300005f1501000b000000
-  - mini-11$row2$304
-  - mini-11$checkbox$304
-  - mini-11$checkbox$304
-  - A2-1201
-  - 中心能源站-康洲园区-A2座-A2-1201
-  raw:
-    id: 406
-    code: e04b410053c300005f1501000b000000
-    name: A2-1201
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 304
-    _uid: 304
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$304
-- label: A2-1204
-  pathText: 中心能源站-康洲园区-A2座-A2-1204
-  valueCandidates:
-  - 407
-  - e04b410053c300005f15010000000000
-  - mini-11$row2$305
-  - mini-11$checkbox$305
-  - mini-11$checkbox$305
-  - A2-1204
-  - 中心能源站-康洲园区-A2座-A2-1204
-  raw:
-    id: 407
-    code: e04b410053c300005f15010000000000
-    name: A2-1204
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 305
-    _uid: 305
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$305
-- label: A2-1205
-  pathText: 中心能源站-康洲园区-A2座-A2-1205
-  valueCandidates:
-  - 408
-  - e04b410053c300005f15010001000000
-  - mini-11$row2$306
-  - mini-11$checkbox$306
-  - mini-11$checkbox$306
-  - A2-1205
-  - 中心能源站-康洲园区-A2座-A2-1205
-  raw:
-    id: 408
-    code: e04b410053c300005f15010001000000
-    name: A2-1205
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 306
-    _uid: 306
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$306
-- label: A2-1207
-  pathText: 中心能源站-康洲园区-A2座-A2-1207
-  valueCandidates:
-  - 409
-  - e04b410053c300005f15010002000000
-  - mini-11$row2$307
-  - mini-11$checkbox$307
-  - mini-11$checkbox$307
-  - A2-1207
-  - 中心能源站-康洲园区-A2座-A2-1207
-  raw:
-    id: 409
-    code: e04b410053c300005f15010002000000
-    name: A2-1207
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 307
-    _uid: 307
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$307
-- label: A2-1301
-  pathText: 中心能源站-康洲园区-A2座-A2-1301
-  valueCandidates:
-  - 433
-  - e04b410053c300005f1501000d000000
-  - mini-11$row2$308
-  - mini-11$checkbox$308
-  - mini-11$checkbox$308
-  - A2-1301
-  - 中心能源站-康洲园区-A2座-A2-1301
-  raw:
-    id: 433
-    code: e04b410053c300005f1501000d000000
-    name: A2-1301
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 308
-    _uid: 308
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$308
-- label: A2-1302
-  pathText: 中心能源站-康洲园区-A2座-A2-1302
-  valueCandidates:
-  - 434
-  - e04b410053c300005f1501000e000000
-  - mini-11$row2$309
-  - mini-11$checkbox$309
-  - mini-11$checkbox$309
-  - A2-1302
-  - 中心能源站-康洲园区-A2座-A2-1302
-  raw:
-    id: 434
-    code: e04b410053c300005f1501000e000000
-    name: A2-1302
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 309
-    _uid: 309
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$309
-- label: A2-1303
-  pathText: 中心能源站-康洲园区-A2座-A2-1303
-  valueCandidates:
-  - 435
-  - e04b410053c300005f1501000f000000
-  - mini-11$row2$310
-  - mini-11$checkbox$310
-  - mini-11$checkbox$310
-  - A2-1303
-  - 中心能源站-康洲园区-A2座-A2-1303
-  raw:
-    id: 435
-    code: e04b410053c300005f1501000f000000
-    name: A2-1303
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 310
-    _uid: 310
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$310
-- label: A2-1304
-  pathText: 中心能源站-康洲园区-A2座-A2-1304
-  valueCandidates:
-  - 436
-  - e04b410053c300005f15010010000000
-  - mini-11$row2$311
-  - mini-11$checkbox$311
-  - mini-11$checkbox$311
-  - A2-1304
-  - 中心能源站-康洲园区-A2座-A2-1304
-  raw:
-    id: 436
-    code: e04b410053c300005f15010010000000
-    name: A2-1304
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 311
-    _uid: 311
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$311
-- label: A2-1305
-  pathText: 中心能源站-康洲园区-A2座-A2-1305
-  valueCandidates:
-  - 437
-  - e04b410053c300005f15010011000000
-  - mini-11$row2$312
-  - mini-11$checkbox$312
-  - mini-11$checkbox$312
-  - A2-1305
-  - 中心能源站-康洲园区-A2座-A2-1305
-  raw:
-    id: 437
-    code: e04b410053c300005f15010011000000
-    name: A2-1305
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 312
-    _uid: 312
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$312
-- label: A2-1306
-  pathText: 中心能源站-康洲园区-A2座-A2-1306
-  valueCandidates:
-  - 438
-  - e04b410053c300005f15010012000000
-  - mini-11$row2$313
-  - mini-11$checkbox$313
-  - mini-11$checkbox$313
-  - A2-1306
-  - 中心能源站-康洲园区-A2座-A2-1306
-  raw:
-    id: 438
-    code: e04b410053c300005f15010012000000
-    name: A2-1306
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 313
-    _uid: 313
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$313
-- label: A2-1307
-  pathText: 中心能源站-康洲园区-A2座-A2-1307
-  valueCandidates:
-  - 439
-  - e04b410053c300005f15010013000000
-  - mini-11$row2$314
-  - mini-11$checkbox$314
-  - mini-11$checkbox$314
-  - A2-1307
-  - 中心能源站-康洲园区-A2座-A2-1307
-  raw:
-    id: 439
-    code: e04b410053c300005f15010013000000
-    name: A2-1307
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 314
-    _uid: 314
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$314
-- label: A2-1308
-  pathText: 中心能源站-康洲园区-A2座-A2-1308
-  valueCandidates:
-  - 440
-  - e04b410053c300005f15010014000000
-  - mini-11$row2$315
-  - mini-11$checkbox$315
-  - mini-11$checkbox$315
-  - A2-1308
-  - 中心能源站-康洲园区-A2座-A2-1308
-  raw:
-    id: 440
-    code: e04b410053c300005f15010014000000
-    name: A2-1308
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 315
-    _uid: 315
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$315
-- label: A2-14楼
-  pathText: 中心能源站-康洲园区-A2座-A2-14楼
-  valueCandidates:
-  - 432
-  - e04b410053c300005f15010015000000
-  - mini-11$row2$316
-  - mini-11$checkbox$316
-  - mini-11$checkbox$316
-  - A2-14楼
-  - 中心能源站-康洲园区-A2座-A2-14楼
-  raw:
-    id: 432
-    code: e04b410053c300005f15010015000000
-    name: A2-14楼
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 316
-    _uid: 316
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$316
-- label: A2-1501
-  pathText: 中心能源站-康洲园区-A2座-A2-1501
-  valueCandidates:
-  - 410
-  - e04b410053c300005f15010003000000
-  - mini-11$row2$317
-  - mini-11$checkbox$317
-  - mini-11$checkbox$317
-  - A2-1501
-  - 中心能源站-康洲园区-A2座-A2-1501
-  raw:
-    id: 410
-    code: e04b410053c300005f15010003000000
-    name: A2-1501
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 317
-    _uid: 317
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$317
-- label: A2-1502
-  pathText: 中心能源站-康洲园区-A2座-A2-1502
-  valueCandidates:
-  - 411
-  - e04b410053c300005f15010004000000
-  - mini-11$row2$318
-  - mini-11$checkbox$318
-  - mini-11$checkbox$318
-  - A2-1502
-  - 中心能源站-康洲园区-A2座-A2-1502
-  raw:
-    id: 411
-    code: e04b410053c300005f15010004000000
-    name: A2-1502
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 318
-    _uid: 318
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$318
-- label: A2-1503
-  pathText: 中心能源站-康洲园区-A2座-A2-1503
-  valueCandidates:
-  - 412
-  - e04b410053c300005f15010005000000
-  - mini-11$row2$319
-  - mini-11$checkbox$319
-  - mini-11$checkbox$319
-  - A2-1503
-  - 中心能源站-康洲园区-A2座-A2-1503
-  raw:
-    id: 412
-    code: e04b410053c300005f15010005000000
-    name: A2-1503
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 319
-    _uid: 319
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$319
-- label: A2-1504
-  pathText: 中心能源站-康洲园区-A2座-A2-1504
-  valueCandidates:
-  - 413
-  - e04b410053c300005f15010006000000
-  - mini-11$row2$320
-  - mini-11$checkbox$320
-  - mini-11$checkbox$320
-  - A2-1504
-  - 中心能源站-康洲园区-A2座-A2-1504
-  raw:
-    id: 413
-    code: e04b410053c300005f15010006000000
-    name: A2-1504
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 320
-    _uid: 320
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$320
-- label: A2-1505
-  pathText: 中心能源站-康洲园区-A2座-A2-1505
-  valueCandidates:
-  - 414
-  - e04b410053c300005f15010007000000
-  - mini-11$row2$321
-  - mini-11$checkbox$321
-  - mini-11$checkbox$321
-  - A2-1505
-  - 中心能源站-康洲园区-A2座-A2-1505
-  raw:
-    id: 414
-    code: e04b410053c300005f15010007000000
-    name: A2-1505
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 321
-    _uid: 321
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$321
-- label: A2-1506
-  pathText: 中心能源站-康洲园区-A2座-A2-1506
-  valueCandidates:
-  - 415
-  - e04b410053c300005f15010008000000
-  - mini-11$row2$322
-  - mini-11$checkbox$322
-  - mini-11$checkbox$322
-  - A2-1506
-  - 中心能源站-康洲园区-A2座-A2-1506
-  raw:
-    id: 415
-    code: e04b410053c300005f15010008000000
-    name: A2-1506
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 322
-    _uid: 322
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$322
-- label: A2-1507
-  pathText: 中心能源站-康洲园区-A2座-A2-1507
-  valueCandidates:
-  - 416
-  - e04b410053c300005f15010009000000
-  - mini-11$row2$323
-  - mini-11$checkbox$323
-  - mini-11$checkbox$323
-  - A2-1507
-  - 中心能源站-康洲园区-A2座-A2-1507
-  raw:
-    id: 416
-    code: e04b410053c300005f15010009000000
-    name: A2-1507
-    type: 冷热量表
-    pid: 273
-    expanded: false
-    _id: 323
-    _uid: 323
-    _pid: 234
-    _level: 3
-  attrs:
-    class: 'mini-icon mini-tree-checkbox '
-    style: ' '
-    id: mini-11$checkbox$323
+    id: mini-11$checkbox$166
 prep_payload: null
 export_payload:
   equipmentType: 冷热量表
-  ids: 321,322,323,324,325,326,327,328,329,330,331,332,333,334,335,336,337,338,339,340,341,342,343,344,345,346,347,348,349,418,406,407,408,409,433,434,435,436,437,438,439,440,432,410,411,412,413,414,415,416
-  excelNames: A2-704,A2-705,A2-706,A2-707,A2-708,A2-801,A2-802,A2-803,A2-804,A2-805,A2-806,A2-807,A2-808,A2-901,A2-902,A2-903,A2-904,A2-905,A2-906,A2-907,A2-908,A2-1001,A2-1002,A2-1003,A2-1004,A2-1005,A2-1006,A2-1007,A2-1008,A2-1101,A2-1201,A2-1204,A2-1205,A2-1207,A2-1301,A2-1302,A2-1303,A2-1304,A2-1305,A2-1306,A2-1307,A2-1308,A2-14楼,A2-1501,A2-1502,A2-1503,A2-1504,A2-1505,A2-1506,A2-1507
+  ids: 143,135,139,137,133,131,129,141,431,145,147,149,151,442,443,153,155,157,159,165,167,169,441
+  excelNames: 赛岚生物,和达生物4,和达医检,和达生物5,Qbay-3,Qbay-2,Qbay-1,疾控实验室,迈恩创芯,小蓓生物,信海医药7,信海医药8,卢普生物,生物样本库一楼,生物样本库二楼,久瑞餐饮,浙勤餐饮2,食堂3层,昊谱生物,稳得希林,弓叶具身,汉凡新材9,赛润元启
   legendNames: 累计冷量使用量,累计热量使用量
-  beginDateStr: '2026-01-01 00:00:00'
-  endDateStr: '2026-02-01 00:00:00'
+  beginDateStr: '2025-08-01 00:00:00'
+  endDateStr: '2025-09-01 00:00:00'
   type: 小时

@@ -1,6 +1,6 @@
-2026/05/07-22:52:58.690 6668 Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
-2026/05/07-22:52:58.691 6668 Recovering log #58
-2026/05/07-22:52:58.692 6668 Reusing old log D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/000058.log 
-2026/05/07-22:53:00.122 8748 Level-0 table #63: started
-2026/05/07-22:53:00.126 8748 Level-0 table #63: 682248 bytes OK
-2026/05/07-22:53:00.127 8748 Delete type=0 #58
+2026/05/08-00:52:49.425 6070 Reusing MANIFEST D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/05/08-00:52:49.429 6070 Recovering log #62
+2026/05/08-00:52:49.429 6070 Reusing old log D:\minicondadaima\lianxi\duqudaochu\browser_profile\Default\EdgeCoupons/coupons_data.db/000062.log 
+2026/05/08-00:52:49.693 9560 Level-0 table #66: started
+2026/05/08-00:52:49.696 9560 Level-0 table #66: 682248 bytes OK
+2026/05/08-00:52:49.697 9560 Delete type=0 #62

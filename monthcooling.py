@@ -24,6 +24,12 @@ DEFAULT_REAL_MONTH_USER_LOAD_FILE = (
     '中心能源站-加速器五期低区+中心能源站-康洲园区_2025-10-01_00-00-00_'
     '2025-11-01_00-00-00_冷量汇总.xlsx'
 )
+DEFAULT_REAL_JANUARY_USER_LOAD_FILE = (
+    'D:/minicondadaima/lianxi/duqudaochu/output/'
+    '中心能源站-维亚园区+中心能源站-中心站地块+中心能源站-加速器五期高区+'
+    '中心能源站-加速器五期低区+中心能源站-康洲园区_2026-01-01_00-00-00_'
+    '2026-02-01_00-00-00_冷量汇总.xlsx'
+)
 
 
 def _cli_value(flag_name, default=None):
@@ -86,7 +92,7 @@ def _read_real_user_month_profiles(path):
       维亚园区 -> 用户3
       加速器五期 -> 用户4
       康洲园区 -> 用户6
-    10月应为 31*24=744 小时。若文件含 2025-11-01 00:00 终点，则自动裁掉。
+    文件通常包含整月起点到次月1日0点的闭区间，末端点会自动裁掉。
     """
     area_col = '区域名称'
     time_col = '时间'
@@ -106,8 +112,12 @@ def _read_real_user_month_profiles(path):
     df[time_col] = pd.to_datetime(df[time_col])
     df[load_col] = pd.to_numeric(df[load_col], errors='coerce').fillna(0.0)
 
-    start = pd.Timestamp('2025-10-01 00:00:00')
-    end = pd.Timestamp('2025-11-01 00:00:00')
+    start = df[time_col].min()
+    end = df[time_col].max()
+    if pd.isna(start) or pd.isna(end) or end <= start:
+        raise ValueError("真实用户负荷文件时间范围无效。")
+    if start.minute != 0 or start.second != 0 or end.minute != 0 or end.second != 0:
+        raise ValueError(f"真实用户负荷文件不是整点逐时数据: start={start}, end={end}")
     df = df[(df[time_col] >= start) & (df[time_col] <= end)]
 
     selected_areas = list(user_area_map.values())
@@ -117,23 +127,26 @@ def _read_real_user_month_profiles(path):
         .sort_index()
     )
 
-    expected_index_with_end = pd.date_range(start, end, freq='h')
+    expected_index_with_end = pd.date_range(start, end, freq='1h')
     pivot = pivot.reindex(expected_index_with_end)
     missing = pivot[selected_areas].isna().sum()
     if missing.any():
         raise ValueError(f"真实用户负荷文件存在缺失小时: {missing.to_dict()}")
 
     pivot = pivot[pivot.index < end]
-    expected_hours = 31 * HOURS_IN_DAY
-    if len(pivot) != expected_hours:
-        raise ValueError(f"10月真实用户负荷应为 {expected_hours} 小时，当前为 {len(pivot)} 小时。")
+    elapsed_hours = int(round((end - start).total_seconds() / 3600.0))
+    if len(pivot) != elapsed_hours:
+        raise ValueError(f"真实用户负荷应为 {elapsed_hours} 小时，当前为 {len(pivot)} 小时。")
+    if elapsed_hours % HOURS_IN_DAY != 0:
+        raise ValueError(f"真实用户负荷小时数 {elapsed_hours} 不能整除 24，请检查起止时间。")
 
     user_loads = {
         user_id: pivot[area_name].to_numpy(dtype=float)
         for user_id, area_name in user_area_map.items()
     }
     total = sum(user_loads.values())
-    print(f"✅ 已读取真实10月三个用户逐时负荷: {path}")
+    print(f"✅ 已读取真实整月三个用户逐时负荷: {path}")
+    print(f"   时间范围: {start} 到 {end}，仿真天数={elapsed_hours // HOURS_IN_DAY}，小时数={elapsed_hours}")
     for user_id, area_name in user_area_map.items():
         values = user_loads[user_id]
         print(f"   用户{user_id}({area_name}): 峰值={np.max(values):.2f} kW, 均值={np.mean(values):.2f} kW")
@@ -162,7 +175,9 @@ external_load_file = _cli_value('--load-file')
 real_user_load_file = _cli_value('--user-load-file')
 if _cli_has('prepare_typical', 'diagnose_typical', 'typical'):
     external_load_file = external_load_file or DEFAULT_TYPICAL_DAY_LOAD_FILE
-if _cli_has('prepare_real_month', 'diagnose_real_month', 'real_month'):
+if _cli_has('prepare_real_january', 'diagnose_real_january', 'real_january'):
+    real_user_load_file = real_user_load_file or DEFAULT_REAL_JANUARY_USER_LOAD_FILE
+elif _cli_has('prepare_real_month', 'diagnose_real_month', 'real_month'):
     real_user_load_file = real_user_load_file or DEFAULT_REAL_MONTH_USER_LOAD_FILE
 
 real_user_loads = None
@@ -867,18 +882,21 @@ def step2_optimize_with_real_physics_data():
 
 def main():
     mode = sys.argv[1].lower() if len(sys.argv) > 1 else 'prepare'
-    if mode in ['prepare', 'input', 'prepare_typical', 'typical', 'prepare_real_month', 'real_month']:
+    if mode in [
+        'prepare', 'input', 'prepare_typical', 'typical',
+        'prepare_real_month', 'real_month', 'prepare_real_january', 'real_january'
+    ]:
         step1_generate_fixed_valve_boundaries_for_simulink()
         print("\n下一步：请在 Simulink 中重新加载 Simulink_30Days_Input.mat 并运行模型。")
         print("仿真完成并保存 sim_result.mat 后，再执行: python monthcooling.py diagnose")
-    elif mode in ['diagnose', 'report', 'diagnose_typical', 'diagnose_real_month']:
+    elif mode in ['diagnose', 'report', 'diagnose_typical', 'diagnose_real_month', 'diagnose_real_january']:
         step2_optimize_with_real_physics_data()
     elif mode == 'all':
         step1_generate_fixed_valve_boundaries_for_simulink()
         print("\n⚠️ all 模式会立即读取现有 sim_result.mat；请确认它对应当前阀门配置。")
         step2_optimize_with_real_physics_data()
     else:
-        print("用法: python monthcooling.py prepare | prepare_typical | prepare_real_month | diagnose | diagnose_typical | diagnose_real_month | all")
+        print("用法: python monthcooling.py prepare | prepare_typical | prepare_real_month | prepare_real_january | diagnose | diagnose_typical | diagnose_real_month | diagnose_real_january | all")
         print("可选: --load-file <外部典型日负荷.xlsx> --days <重复天数>")
         print("可选: --user-load-file <真实三用户整月负荷.xlsx>")
 
